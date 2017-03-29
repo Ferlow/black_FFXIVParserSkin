@@ -1,0 +1,254 @@
+@blue-text: #E2EBF5;
+@gold-text: #DED7BE;
+
+.gradient-bar(@base-color) {
+    background: linear-gradient(to right, fadeout(@base-color, 50%) 0%, fadeout(darken(@base-color, 10%), 50%) 100%);
+}
+
+* {
+    font-family: "Meiryo";
+    font-size: 14px;
+}
+
+body, html {
+    margin: 0;
+}
+
+html {
+    background-image: url('../icons/handle.png');
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    height: 100%;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.progBarOutside {
+    position: absolute;
+    width: 100%;
+    display: block;
+    height: 30px;
+    
+    .progBar {
+        .gradient-bar(rgb(255, 255, 255));
+        display: block;
+        height: 25px;
+        border-top: 2px solid rgba(255, 255, 255, 0.4);
+        border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+        
+        &.Acn, &.Smn {
+            .gradient-bar(rgb(70, 141, 25));
+        }
+        &.Arc, &.Brd {
+            .gradient-bar(rgb(128, 128, 62));
+        }
+        &.Ast {
+            .gradient-bar(rgb(250, 220, 112));
+        }
+        &.Blm, &.Thm {
+            .gradient-bar(rgb(117, 80, 150));
+        }
+        &.Cnj, &.Whm{
+            .gradient-bar(rgb(187, 171, 126));
+        }
+        &.Drg, &.Lnc{
+            .gradient-bar(rgb(68, 83, 170));
+        }
+        &.Drk {
+            .gradient-bar(rgb(109, 78, 83));
+        }
+        &.Pgl, &.Mnk {
+            .gradient-bar(rgb(174, 144, 24));
+        }
+        &.Mch {
+            .gradient-bar(rgb(114, 218, 206));
+        }
+        &.Mrd, &.War {
+            .gradient-bar(rgb(107, 12, 8));
+        }
+        &.Rog, &.Nin {
+            .gradient-bar(rgb(81, 72, 82));
+        }
+        &.Gld, &.Pld {
+            .gradient-bar(rgb(145, 173, 178));
+        }
+        &.Sch {
+            .gradient-bar(rgb(68, 61, 157));
+        }
+    }
+}
+
+.blue-text {
+    color: @blue-text;
+    text-shadow: -1px 0 3px darken(@blue-text, 50%), 0 1px 3px darken(@blue-text, 50%), 1px 0 3px darken(@blue-text, 50%), 0 -1px 3px darken(@blue-text, 50%);
+}
+.gold-text {
+    color: @gold-text;
+    text-shadow: -1px 0 2px darken(@gold-text, 50%), 0 1px 2px darken(@gold-text, 50%), 1px 0 2px darken(@gold-text, 50%), 0 -1px 2px darken(@gold-text, 50%);
+}
+        
+small {
+    font-size: 10px;
+    text-transform: lowercase;
+    margin-right: 3px;
+}
+
+#combatantTable {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+#combatantTable > tbody > tr {
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
+}
+
+#combatantWrapper {
+    padding-left: 40px;
+    padding-right: 40px;
+    background: linear-gradient(to right, rgba(0,0,0,0.01) 0%, rgba(0,0,0,0.65) 10%, rgba(0,0,0,0.65) 90%, rgba(0,0,0,0) 100%);
+}
+
+#combatantTableBody * {
+    font-weight: 300;
+
+    /*overflow: hidden;*/
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#combatantTableBody > tr > td {
+    padding: 0px;
+}
+
+#combatantTableBody img {
+    height: 20px;
+    display: block;
+}
+
+#encounter, #status {
+    font-weight: 300;
+    white-space: nowrap;
+}
+
+#combatantTableHeader tr {
+    border-bottom: 1px solid #DED7BE;
+}
+
+#status {
+    float: left;
+    width: 100px;
+    text-transform: uppercase;
+}
+
+#status.active {
+    
+}
+
+#current-parse {
+    float: right;
+    overflow: hidden;
+    padding-right: 15px;
+    .text {
+        display: inline-block;
+        font-weight: 300;
+    }
+}
+
+.arrow-right {
+    width: 0; 
+    height: 0; 
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid #DED7BE;
+    display: inline-block;
+}
+
+.arrow-left {
+    width: 0; 
+    height: 0; 
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid #DED7BE;
+    display: inline-block;
+}
+
+#headerWrapper hr {
+    border: 0px;
+    border-bottom: 2px solid @gold-text;
+    box-shadow: -1px 0 2px darken(@gold-text, 50%), 0 1px 2px darken(@gold-text, 50%), 1px 0 2px darken(@gold-text, 50%), 0 -1px 2px darken(@gold-text, 50%);
+    opacity: .8;
+    margin: 0;
+}
+
+.inner-left-table {
+    width: 100%;
+    border-collapse: collapse;
+    
+    .sub-data {
+        font-size: 11px;
+        text-align: right;
+        line-height: 10px;
+        text-transform: uppercase;
+    }
+    .main-data {
+        font-size: 14px;
+        text-align: right;
+        line-height: 14px;
+    }
+    
+    .image {
+        width: 26px;
+        div {
+            margin-left: auto;
+            margin-right: auto;
+            width: 20px;
+            height: 20px;
+            display: block;
+            border: 1px solid #ffde9d;
+            border-radius: 3px;
+            box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75), inset 0px -8px 4px 0px rgba(0,0,0,0.3), inset 0px 0px 2px 0px rgba(255,255,255,0.3);
+        }
+        
+        .Acn,  .Smn, .Arc, .Brd, .Blm, .Thm, .Drg, .Lnc, .Pgl, .Mnk, .Mch, .Rog, .Nin {
+            background-color: #4a2626;
+        }
+        .Ast, .Cnj, .Whm, .Sch {
+            background-color: #3c6829
+        }
+        .Drk, .Mrd, .War, .Gld, .Pld {
+            background-color: #293976
+        }
+    }
+}
+
+.inner-right-table {
+    width: 100%;
+    border-collapse: collapse;
+    /*position: relative;*/
+    .inner-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    & > tbody > tr > td {
+        height: 30px;
+    }
+}
+
+.info-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    position: absolute;
+    /*margin-top: -30px;*/
+    td.info-data {
+        width: 50%;
+        text-align: left;
+        font-size: 12px;
+        line-height: 12px;
+    }
+    td:last-child {
+        text-align: right;
+    }
+}
