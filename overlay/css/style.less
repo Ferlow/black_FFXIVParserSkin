@@ -90,7 +90,6 @@ html {
         
 small {
     font-size: 10px;
-    text-transform: lowercase;
     margin-right: 3px;
 }
 
@@ -98,15 +97,16 @@ small {
     width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
-}
-#combatantTable > tbody > tr {
-    border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
+
+    & > tbody > tr {
+        border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
+    }
 }
 
 #combatantWrapper {
-    padding-left: 40px;
-    padding-right: 40px;
     background: linear-gradient(to right, rgba(0,0,0,0.01) 0%, rgba(0,0,0,0.65) 10%, rgba(0,0,0,0.65) 90%, rgba(0,0,0,0) 100%);
+    height: 100%;
+    position: relative;
 }
 
 #combatantTableBody * {
@@ -136,13 +136,14 @@ small {
 }
 
 #status {
-    float: left;
+    float: right;
     width: 100px;
-    text-transform: uppercase;
-}
+    text-align: right;
+    padding-top: 4px;
+    font-size: 12px;
 
-#status.active {
-    
+    &.active {
+    }
 }
 
 #current-parse {
@@ -173,12 +174,51 @@ small {
     display: inline-block;
 }
 
-#headerWrapper hr {
-    border: 0px;
-    border-bottom: 2px solid @gold-text;
-    box-shadow: -1px 0 2px darken(@gold-text, 50%), 0 1px 2px darken(@gold-text, 50%), 1px 0 2px darken(@gold-text, 50%), 0 -1px 2px darken(@gold-text, 50%);
-    opacity: .8;
-    margin: 0;
+#subWrapper {
+    margin: 0px 40px;
+    height: 100%;
+    position: relative;
+}
+
+#headerWrapper, #footerWrapper {
+    hr {
+        border: 0px;
+        border-bottom: 2px solid @gold-text;
+        box-shadow: -1px 0 2px darken(@gold-text, 50%), 0 1px 2px darken(@gold-text, 50%), 1px 0 2px darken(@gold-text, 50%), 0 -1px 2px darken(@gold-text, 50%);
+        opacity: .8;
+        margin: 0;
+    }
+}
+
+#tableWrapper {
+}
+
+#footerWrapper {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    
+    #parse-tabs {
+        margin: 0px;
+        padding: 5px 0px;
+        list-style-type: none;
+        overflow: hidden;
+        li {
+            font-size: 10px;
+            color: @gold-text;
+            text-shadow: -1px 0 2px darken(@gold-text, 50%), 0 1px 2px darken(@gold-text, 50%), 1px 0 2px darken(@gold-text, 50%), 0 -1px 2px darken(@gold-text, 50%);
+            float: left;
+            padding: 1px 6px;
+            border-left: 1px solid @gold-text;
+            &:first-child {
+                border-left: 0px;
+            }
+            &.active {
+                color: @blue-text;
+                text-shadow: -1px 0 3px darken(@blue-text, 50%), 0 1px 3px darken(@blue-text, 50%), 1px 0 3px darken(@blue-text, 50%), 0 -1px 3px darken(@blue-text, 50%);
+            }
+        }
+    }
 }
 
 .inner-left-table {
