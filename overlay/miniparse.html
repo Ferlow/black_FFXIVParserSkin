@@ -6,10 +6,25 @@
     <link type="text/css" rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-
+    <div id="popupMenu">
+        <p>
+            Menu
+        </p>
+        <ul id="popupMenuList">
+            <li>Minimise Top</li>
+            <li>Reduced Size</li>
+            <li id="load4Man">4 Man Test</li>
+            <li id="load8Man">8 Man Test</li>
+            <li id="load24Man">24 Man Test</li>
+        </ul>
+    </div>
 	<div id="combatantWrapper" class="inactive">
         <div id="subWrapper">
             <div id="headerWrapper">
+                <div id="menu-button">
+                    <div class="menu-button-inner">
+                    </div>
+                </div>
                 <div id="encounter" class="gold-text">
                     No data to show.
                 </div>
@@ -30,6 +45,7 @@
 	<script src="lib/jquery.min.js" type="text/javascript"></script>
 	<script src="lib/underscore.min.js" type="text/javascript"></script>
     <script src="config/settings.js" type="text/javascript"></script>
+    <script src="config/fakedata.js" type="text/javascript"></script>
     <script>
         var lastData = null;
 		var currentParse = 0;
@@ -187,20 +203,36 @@
                     .appendTo("#parse-tabs");
             });
         });
-    </script>
-    
-    <script>
-        /*var oldScript;
-        function load_js() {
-            var head= document.getElementsByTagName('head')[0];
-            if (typeof oldScript != "undefined")
-                head.removeChild(oldScript);
-            oldScript = document.createElement('script');
-            oldScript.src = 'jsondata.js?cachebuster=' + new Date().getTime();
-            head.appendChild(oldScript);
-            //setTimeout(load_js, 2000);
-        }
-        load_js();*/
+        
+        $("#menu-button").on("click", function (e) {
+            if ($("#popupMenu").is(":visible")) {
+                $("#popupMenu").fadeOut('fast');
+            } else {
+                $("#popupMenu").fadeIn('fast');
+            }
+        });
+        
+        $("#popupMenu").on("click", "#load4Man", function (e) {
+            document.dispatchEvent(new CustomEvent('onOverlayDataUpdate', {
+                detail: ActFakeData4
+            }));
+            
+            $("#popupMenu").fadeOut('fast');
+        });
+        $("#popupMenu").on("click", "#load8Man", function (e) {
+            document.dispatchEvent(new CustomEvent('onOverlayDataUpdate', {
+                detail: ActFakeData8
+            }));
+            
+            $("#popupMenu").fadeOut('fast');
+        });
+        $("#popupMenu").on("click", "#load24Man", function (e) {
+            document.dispatchEvent(new CustomEvent('onOverlayDataUpdate', {
+                detail: ActFakeData24
+            }));
+            
+            $("#popupMenu").fadeOut('fast');
+        });
     </script>
 </body>
 </html>
