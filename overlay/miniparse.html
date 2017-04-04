@@ -28,6 +28,7 @@
                 <div id="encounter" class="gold-text">
                     No data to show.
                 </div>
+                <div id="encounterDetail" class="blue-text">
                 <hr />
             </div>
             <div id="tableWrapper">
@@ -44,15 +45,15 @@
 	
 	<script src="lib/jquery.min.js" type="text/javascript"></script>
 	<script src="lib/underscore.min.js" type="text/javascript"></script>
+    
     <script src="config/settings.js" type="text/javascript"></script>
     <script src="config/fakedata.js" type="text/javascript"></script>
+    
+    <script src="js/actdatahandler.js" type="text/javascript"></script>
+    <script src="js/overlay.js" type="text/javascript"></script>
     <script>
         var lastData = null;
 		var currentParse = 0;
-
-        function rankingText(combatant, index) {
-            return (index + 1).toString();
-        }
 
         document.addEventListener("onOverlayDataUpdate", function (e) {
             update(e.detail);
@@ -66,6 +67,7 @@
 
         function updateEncounter(data) {
             $("#encounter").html(parseActFormat(parseDefine[currentParse].encounter, data.Encounter));
+            $("#encounterDetail").html(parseActFormat(parseDefine[currentParse].detail, data.Encounter));
 			if(parseActFormat("{isActive}", data) == "true") {
 				$("#status").html("In Combat").addClass("active blue-text").removeClass("gold-text");
 				$("#combatantWrapper").removeClass("inactive").addClass("active");

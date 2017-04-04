@@ -1,7 +1,8 @@
 var parseDefine = [
     {
         title: "Damage",
-        encounter: "{title} &middot; {duration} &middot; {ENCDPS} <small>team dps</small>",
+        encounter: "{title} &middot; {duration}",
+        detail: "<em>Damage</em> {damage} &middot; <em>Group DPS</em> {dps} &middot; <em>Deaths</em> {deaths}",
         bar: "{damage}",
         sort: "damage",
         data: {
@@ -32,6 +33,7 @@ var parseDefine = [
     {
         title: "Healing",
         encounter: "{title} &middot; {duration} &middot; {ENCHPS} <small>team hps</small>",
+        detail: "<em>Heals</em> {healed} &middot; <em>Group HPS</em> {enchps} &middot; <em>Deaths</em> {deaths}",
         bar: "{enchps}",
         sort: "enchps",
         data: {
@@ -42,7 +44,8 @@ var parseDefine = [
                 text: "{OverHealPct} OVER"
             },
             divider: {
-                img: "{Job}"
+                img: "{Job}",
+                altImg: "{name}"
             },
             barTL: {
                 text: "{name}"
@@ -61,6 +64,7 @@ var parseDefine = [
     {
         title: "Tanking",
         encounter: "{title} &middot; {duration}",
+        detail: "<em>Damage Taken</em> {damagetaken} &middot; <em>Deaths</em> {deaths}",
         bar: "{damagetaken}",
         sort: "damagetaken",
         data: {
@@ -71,7 +75,8 @@ var parseDefine = [
                 text: ""
             },
             divider: {
-                img: "{Job}"
+                img: "{Job}",
+                altImg: "{name}"
             },
             barTL: {
                 text: "{name}"

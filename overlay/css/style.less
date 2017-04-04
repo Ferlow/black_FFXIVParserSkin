@@ -4,6 +4,14 @@
 .gradient-bar(@base-color) {
     background: linear-gradient(to right, fadeout(@base-color, 50%) 0%, fadeout(darken(@base-color, 10%), 50%) 100%);
 }
+.blue-text() {
+    color: @blue-text;
+    text-shadow: -1px 0 3px darken(@blue-text, 50%), 0 1px 3px darken(@blue-text, 50%), 1px 0 3px darken(@blue-text, 50%), 0 -1px 3px darken(@blue-text, 50%);
+}
+.gold-text() {
+    color: @gold-text;
+    text-shadow: -1px 0 2px darken(@gold-text, 50%), 0 1px 2px darken(@gold-text, 50%), 1px 0 2px darken(@gold-text, 50%), 0 -1px 2px darken(@gold-text, 50%);
+}
 
 * {
     font-family: "Meiryo";
@@ -80,12 +88,10 @@ html {
 }
 
 .blue-text {
-    color: @blue-text;
-    text-shadow: -1px 0 3px darken(@blue-text, 50%), 0 1px 3px darken(@blue-text, 50%), 1px 0 3px darken(@blue-text, 50%), 0 -1px 3px darken(@blue-text, 50%);
+    .blue-text();
 }
 .gold-text {
-    color: @gold-text;
-    text-shadow: -1px 0 2px darken(@gold-text, 50%), 0 1px 2px darken(@gold-text, 50%), 1px 0 2px darken(@gold-text, 50%), 0 -1px 2px darken(@gold-text, 50%);
+    .gold-text();
 }
         
 small {
@@ -126,13 +132,21 @@ small {
     display: block;
 }
 
-#encounter, #status {
+#encounter, #status, #encounterDetail {
     font-weight: 300;
     white-space: nowrap;
 }
 
 #encounter {
     padding: 4px 0px;
+}
+
+#encounterDetail {
+    em {
+        .gold-text();
+        font-style: normal;
+        font-size: 80%;
+    }
 }
 
 #combatantTableHeader tr {
@@ -209,8 +223,7 @@ small {
         overflow: hidden;
         li {
             font-size: 10px;
-            color: @gold-text;
-            text-shadow: -1px 0 2px darken(@gold-text, 50%), 0 1px 2px darken(@gold-text, 50%), 1px 0 2px darken(@gold-text, 50%), 0 -1px 2px darken(@gold-text, 50%);
+            .gold-text();
             float: left;
             padding: 1px 6px;
             border-left: 1px solid @gold-text;
@@ -218,8 +231,7 @@ small {
                 border-left: 0px;
             }
             &.active {
-                color: @blue-text;
-                text-shadow: -1px 0 3px darken(@blue-text, 50%), 0 1px 3px darken(@blue-text, 50%), 1px 0 3px darken(@blue-text, 50%), 0 -1px 3px darken(@blue-text, 50%);
+                .blue-text();
             }
         }
     }
