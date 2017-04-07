@@ -22,6 +22,14 @@ body, html {
     margin: 0;
 }
 
+body {
+    --headerHeight: 52px;
+    --footerHeight: 29px;
+    &.minimised-top {
+        --headerHeight: 31px;
+    }
+}
+
 html {
     background-image: url('../icons/handle.png');
     background-position: bottom right;
@@ -36,14 +44,13 @@ html {
     position: absolute;
     width: 100%;
     display: block;
-    height: 30px;
+    height: 29px;
     
     .progBar {
         .gradient-bar(rgb(255, 255, 255));
         display: block;
-        height: 25px;
-        border-top: 2px solid rgba(255, 255, 255, 0.4);
-        border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+        height: 29px;
+        box-shadow: inset 0px 2px 0px rgba(255, 255, 255, 0.2), inset 0px -2px 0px rgba(255, 255, 255, 0.2);
         
         &.Acn, &.Smn {
             .gradient-bar(rgb(70, 141, 25));
@@ -142,10 +149,19 @@ small {
 }
 
 #encounterDetail {
+    &.hidden-top {
+        display: none;
+    }
     em {
         .gold-text();
         font-style: normal;
         font-size: 80%;
+    }
+}
+
+.minimised-top {
+    #encounterDetail {
+        display: none;
     }
 }
 
@@ -209,6 +225,8 @@ small {
 }
 
 #tableWrapper {
+    height: ~"calc(100% - var(--footerHeight) - var(--headerHeight))";
+    overflow: hidden;
 }
 
 #footerWrapper {
@@ -288,7 +306,7 @@ small {
         height: 100%;
     }
     & > tbody > tr > td {
-        height: 30px;
+        height: 28px;
     }
 }
 
