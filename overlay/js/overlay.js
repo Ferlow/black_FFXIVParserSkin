@@ -38,6 +38,16 @@ $("#popupMenu").on("click", "#minimiseTop", function (e) {
     }
     $("#popupMenu").fadeOut('fast');
 });
+$("#popupMenu").on("click", "#reducedSize", function (e) {
+    if ($("body").hasClass("reduced-size")) {
+        $("body").removeClass("reduced-size");
+        $(e.currentTarget).html("Reduced Size");
+    } else {
+        $("body").addClass("reduced-size");
+        $(e.currentTarget).html("Full Size");
+    }
+    $("#popupMenu").fadeOut('fast');
+});
 $("#popupMenu").on("click", "#load4Man", function (e) {
     document.dispatchEvent(new CustomEvent('onOverlayDataUpdate', {
         detail: ActFakeData4
