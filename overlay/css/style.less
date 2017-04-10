@@ -1,5 +1,7 @@
 @blue-text: #E2EBF5;
 @gold-text: #DED7BE;
+@bar-height: 30px;
+@icon-size: @bar-height - 10px;
 
 .gradient-bar(@base-color) {
     background: linear-gradient(to right, fadeout(@base-color, 50%) 0%, fadeout(darken(@base-color, 10%), 50%) 100%);
@@ -44,12 +46,12 @@ html {
     position: absolute;
     width: 100%;
     display: block;
-    height: 29px;
+    height: @bar-height;
     
     .progBar {
         .gradient-bar(rgb(255, 255, 255));
         display: block;
-        height: 29px;
+        height: @bar-height;
         box-shadow: inset 0px 2px 0px rgba(255, 255, 255, 0.2), inset 0px -2px 0px rgba(255, 255, 255, 0.2);
         
         &.Acn, &.Smn {
@@ -132,11 +134,7 @@ small {
 
 #combatantTableBody > tr > td {
     padding: 0px;
-}
-
-#combatantTableBody img {
-    height: 20px;
-    display: block;
+    height: @bar-height;
 }
 
 #encounter, #status, #encounterDetail {
@@ -190,24 +188,6 @@ small {
     }
 }
 
-.arrow-right {
-    width: 0; 
-    height: 0; 
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 5px solid #DED7BE;
-    display: inline-block;
-}
-
-.arrow-left {
-    width: 0; 
-    height: 0; 
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-right: 5px solid #DED7BE;
-    display: inline-block;
-}
-
 #subWrapper {
     margin: 0px 40px;
     height: 100%;
@@ -225,7 +205,8 @@ small {
 }
 
 #tableWrapper {
-    height: ~"calc(100% - var(--footerHeight) - var(--headerHeight))";
+    height: ~"calc(100% - var(--footerHeight) - var(--headerHeight) - 8px)";
+    margin: 4px 0px;
     overflow: hidden;
 }
 
@@ -258,6 +239,7 @@ small {
 .inner-left-table {
     width: 100%;
     border-collapse: collapse;
+    height: @bar-height;
     
     .sub-data {
         font-size: 11px;
@@ -276,8 +258,8 @@ small {
         div {
             margin-left: auto;
             margin-right: auto;
-            width: 20px;
-            height: 20px;
+            width: @icon-size;
+            height: @icon-size;
             display: block;
             border: 1px solid #ffde9d;
             border-radius: 3px;
@@ -299,14 +281,14 @@ small {
 .inner-right-table {
     width: 100%;
     border-collapse: collapse;
-    /*position: relative;*/
     .inner-wrapper {
         position: relative;
         width: 100%;
-        height: 100%;
+        height: @bar-height;
     }
     & > tbody > tr > td {
-        height: 28px;
+        height: @bar-height;
+        padding: 0px;
     }
 }
 

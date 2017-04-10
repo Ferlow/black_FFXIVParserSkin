@@ -62,9 +62,9 @@ function updateCombatantList(data) {
         var leftTableMain = $("<div>").addClass("main-data gold-text").html(parseActFormat(parseDefine[currentParse].data.primary.text, combatant)).appendTo(leftTableCol);
         
         if (parseActFormat(parseDefine[currentParse].data.divider.img, combatant) != "") {
-            var leftTableDivider = $("<td>").addClass("image")/*.attr("rowspan", 2)*/.html("<div class=\"" + parseActFormat(parseDefine[currentParse].data.divider.img, combatant) + "\" style=\"background-image: url('./icons/" + parseActFormat(parseDefine[currentParse].data.divider.img, combatant) + ".png'); background-size: cover;\"></div>").appendTo(leftTableTopRow);
+            var leftTableDivider = $("<td>").addClass("image")/*.attr("rowspan", 2)*/.html("<div class=\"" + parseActFormat(parseDefine[currentParse].data.divider.img, combatant) + "\" style=\"background-image: url('./icons/" + parseActFormat(parseDefine[currentParse].data.divider.img, combatant).toLowerCase() + ".png'); background-size: cover;\"></div>").appendTo(leftTableTopRow);
         } else if (parseActFormat(parseDefine[currentParse].data.divider.altImg, combatant) != "") {
-            var leftTableDivider = $("<td>").addClass("image")/*.attr("rowspan", 2)*/.html("<div class=\"" + parseActFormat(parseDefine[currentParse].data.divider.img, combatant) + "\" style=\"background-image: url('./icons/" + parseActFormat(parseDefine[currentParse].data.divider.altImg, combatant) + ".png'); background-size: cover;\"></div>").appendTo(leftTableTopRow);
+            var leftTableDivider = $("<td>").addClass("image")/*.attr("rowspan", 2)*/.html("<div class=\"" + parseActFormat(parseDefine[currentParse].data.divider.img, combatant) + "\" style=\"background-image: url('./icons/" + parseActFormat(parseDefine[currentParse].data.divider.altImg, combatant).toLowerCase() + ".png'); background-size: cover;\"></div>").appendTo(leftTableTopRow);
         }
         else {
             leftTableCol.css({ "width": "108px" });
