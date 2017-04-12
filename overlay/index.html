@@ -5,18 +5,29 @@
     <title>Ihm's Overlay Plugin Skin</title>
     <link type="text/css" rel="stylesheet" href="css/style.css" />
 </head>
-<body class="minimised-top">
+<body>
     <div id="popupMenu">
-        <p>
-            Menu
-        </p>
-        <ul id="popupMenuList">
-            <li id="minimiseTop">Show Detailed Top</li>
-            <li id="reducedSize">Reduced Size</li>
-            <li id="load4Man">4 Man Test</li>
-            <li id="load8Man">8 Man Test</li>
-            <li id="load24Man">24 Man Test</li>
-        </ul>
+        <div class="menu-section">
+            <p>
+                Menu
+            </p>
+        </div>
+        <div class="menu-section">
+            <ul class="popup-menu-list">
+                <li class="has-checkbox" data-id="minimiseTop">Detailed header</li>
+                <li class="has-checkbox" data-id="reducedSize">Reduced bar size</li>
+                <li class="has-checkbox" data-id="autoHide">Audo hide after battle</li>
+                <li class="has-checkbox disabled" data-id="customName">Custom name</li>
+                <li class="has-checkbox disabled" data-id="useJobNames">Use job names</li>
+            </ul>
+        </div>
+        <div class="menu-section debug-list">
+            <ul class="popup-menu-list">
+                <li data-id="load4Man">4 Man Test</li>
+                <li data-id="load8Man">8 Man Test</li>
+                <li data-id="load24Man">24 Man Test</li>
+            </ul>
+        </div>
     </div>
 	<div id="combatantWrapper" class="inactive">
         <div id="subWrapper">

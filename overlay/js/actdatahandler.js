@@ -1,5 +1,4 @@
 var lastData = null;
-var currentParse = 0;
 
 document.addEventListener("onOverlayDataUpdate", function (e) {
     update(e.detail);
@@ -9,11 +8,12 @@ function update(data) {
     lastData = data;
     updateEncounter(data);
     updateCombatantList(data);
+    updateAutoHide();
 }
 
 function updateEncounter(data) {
-    $("#encounter").html(parseActFormat(parseDefine[currentParse].encounter, data.Encounter));
-    $("#encounterDetail").html(parseActFormat(parseDefine[currentParse].detail, data.Encounter));
+    $("#encounter").html(parseActFormat(pSettings.current.title, data.Encounter));
+    $("#encounterDetail").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].detail, data.Encounter));
     if(parseActFormat("{isActive}", data) == "true") {
         $("#status").html("In Combat").addClass("active blue-text").removeClass("gold-text");
         $("#combatantWrapper").removeClass("inactive").addClass("active");
@@ -26,9 +26,9 @@ function updateEncounter(data) {
 
 function updateCombatantList(data) {
     filteredData = _.sortBy(_.filter(data.Combatant, function (d) {
-        return parseInt(d[parseDefine[currentParse].sort], 10) > 0;
+        return parseInt(d[pSettings.current.dataSets[pSettings.current.activeDataSet].sort], 10) > 0;
     }), function(d)  {
-        return -parseInt(d[parseDefine[currentParse].sort], 10);
+        return -parseInt(d[pSettings.current.dataSets[pSettings.current.activeDataSet].sort], 10);
     }.bind(this));
     
     var table = $("#combatantTable");
@@ -45,12 +45,17 @@ function updateCombatantList(data) {
     for (var combatantName in filteredData) {
         var combatant = filteredData[combatantName];
         
-        var curBarBaseVal = parseFloat(parseActFormat(parseDefine[currentParse].bar, combatant));
+        var curBarBaseVal = parseFloat(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].bar, combatant));
 
         if (curBarBaseVal > maxBarBaseVal) maxBarBaseVal = curBarBaseVal;
         
         var tableRow = $("<tr>").appendTo(tableBody);
-        var tableCellLeft = $("<td>").css({ "width": "110px" }).appendTo(tableRow);
+        var tableCellLeft;
+        if (!pSettings.current.config.useReducedBarSize) {
+            tableCellLeft = $("<td>").css({ "width": "110px" }).appendTo(tableRow);
+        } else {
+            tableCellLeft = $("<td>").css({ "width": "130px" }).appendTo(tableRow);
+        }
         var tableCellRight = $("<td>").css({ "width": "100%" }).appendTo(tableRow);
 
         var leftTable = $("<table>").addClass("inner-left-table").appendTo(tableCellLeft);
@@ -58,13 +63,17 @@ function updateCombatantList(data) {
 
         var leftTableTopRow = $("<tr>").appendTo(leftTableBody);
         var leftTableCol = $("<td>").appendTo(leftTableTopRow);
-        var leftTableSub = $("<div>").addClass("sub-data gold-text").html(parseActFormat(parseDefine[currentParse].data.sub.text, combatant)).appendTo(leftTableCol);
-        var leftTableMain = $("<div>").addClass("main-data gold-text").html(parseActFormat(parseDefine[currentParse].data.primary.text, combatant)).appendTo(leftTableCol);
+        if (!pSettings.current.config.useReducedBarSize) {
+            var leftTableSub = $("<div>").addClass("sub-data gold-text").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.info.sub, combatant)).appendTo(leftTableCol);
+            var leftTableMain = $("<div>").addClass("main-data gold-text").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.info.main, combatant)).appendTo(leftTableCol);
+        } else {
+            var leftTableMain = $("<div>").addClass("main-data gold-text").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.info.simple, combatant)).appendTo(leftTableCol);
+        }
         
-        if (parseActFormat(parseDefine[currentParse].data.divider.img, combatant) != "") {
-            var leftTableDivider = $("<td>").addClass("image")/*.attr("rowspan", 2)*/.html("<div class=\"" + parseActFormat(parseDefine[currentParse].data.divider.img, combatant) + "\" style=\"background-image: url('./icons/" + parseActFormat(parseDefine[currentParse].data.divider.img, combatant).toLowerCase() + ".png'); background-size: cover;\"></div>").appendTo(leftTableTopRow);
-        } else if (parseActFormat(parseDefine[currentParse].data.divider.altImg, combatant) != "") {
-            var leftTableDivider = $("<td>").addClass("image")/*.attr("rowspan", 2)*/.html("<div class=\"" + parseActFormat(parseDefine[currentParse].data.divider.img, combatant) + "\" style=\"background-image: url('./icons/" + parseActFormat(parseDefine[currentParse].data.divider.altImg, combatant).toLowerCase() + ".png'); background-size: cover;\"></div>").appendTo(leftTableTopRow);
+        if (parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon.main, combatant) != "") {
+            var leftTableDivider = $("<td>").addClass("image")/*.attr("rowspan", 2)*/.html("<div class=\"" + parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon.main, combatant) + "\" style=\"background-image: url('./icons/" + parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon.main, combatant).toLowerCase() + ".png'); background-size: cover;\"></div>").appendTo(leftTableTopRow);
+        } else if (parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon.alt, combatant) != "") {
+            var leftTableDivider = $("<td>").addClass("image")/*.attr("rowspan", 2)*/.html("<div class=\"" + parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon.alt, combatant) + "\" style=\"background-image: url('./icons/" + parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon.alt, combatant).toLowerCase() + ".png'); background-size: cover;\"></div>").appendTo(leftTableTopRow);
         }
         else {
             leftTableCol.css({ "width": "108px" });
@@ -84,12 +93,17 @@ function updateCombatantList(data) {
         
         var innerTable = $("<table>").addClass("info-table").appendTo(rightTableWrapper);
         var innerTbody = $("<tbody>").appendTo(innerTable);
-        var innerRow = $("<tr>").appendTo(innerTbody);
-        $("<td>").addClass("info-data tl blue-text").html(parseActFormat(parseDefine[currentParse].data.barTL.text, combatant)).appendTo(innerRow);
-        $("<td>").addClass("info-data tr gold-text").html(parseActFormat(parseDefine[currentParse].data.barTR.text, combatant)).appendTo(innerRow);
-        var innerRow = $("<tr>").appendTo(innerTbody);
-        $("<td>").addClass("info-data bl gold-text").html(parseActFormat(parseDefine[currentParse].data.barBL.text, combatant)).appendTo(innerRow);
-        $("<td>").addClass("info-data br gold-text").html(parseActFormat(parseDefine[currentParse].data.barBR.text, combatant)).appendTo(innerRow);
+        if (!pSettings.current.config.useReducedBarSize) {
+            var innerRow = $("<tr>").appendTo(innerTbody);
+            $("<td>").addClass("info-data").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.tl, combatant)).appendTo(innerRow);
+            $("<td>").addClass("info-data").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.tr, combatant)).appendTo(innerRow);
+            innerRow = $("<tr>").appendTo(innerTbody);
+            $("<td>").addClass("info-data").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.bl, combatant)).appendTo(innerRow);
+            $("<td>").addClass("info-data").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.br, combatant)).appendTo(innerRow);
+        } else {
+            var innerRow = $("<tr>").appendTo(innerTbody);
+            $("<td>").addClass("info-data").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.simple, combatant)).appendTo(innerRow);
+        }
         
         combatantIndex++;
     }
@@ -127,4 +141,24 @@ function parseActFormat(str, dictionary) {
     } while (currentIndex < str.length);
     
     return result;
+}
+
+var autoHideTimeout = 0;
+function updateAutoHide() {
+    if (!pSettings.current.config.autoHideAfterBattle) {
+        clearTimeout(autoHideTimeout);
+        autoHideTimeout = 0;
+    } else if (parseActFormat("{isActive}", lastData) == "false") {
+        if (autoHideTimeout == 0) {
+            autoHideTimeout = setTimeout(function () {
+                $("#combatantWrapper").addClass('auto-hidden');
+            }, 30000);
+        }
+    } else {
+        clearTimeout(autoHideTimeout);
+        autoHideTimeout = 0;
+        if ($("#combatantWrapper").hasClass('auto-hidden')) {
+            $("#combatantWrapper").removeClass('auto-hidden');
+        }
+    }
 }

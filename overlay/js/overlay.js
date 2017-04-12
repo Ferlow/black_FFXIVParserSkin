@@ -1,5 +1,5 @@
 $("#parse-tabs").on("click", "li", function (e) {
-    currentParse = parseInt($(e.currentTarget).attr("data-index"));
+    pSettings.current.activeDataSet = parseInt($(e.currentTarget).attr("data-index"));
     $("#parse-tabs li").removeClass("active");
     $("#parse-tabs li[data-index='" + $(e.currentTarget).attr("data-index") + "']").addClass("active");
     if (lastData !== null) {
@@ -9,15 +9,21 @@ $("#parse-tabs").on("click", "li", function (e) {
 });
 
 $(document).ready(function () {
-    $.each(parseDefine, function (index, def) {
+    pSettings.load();
+    
+    $.each(pSettings.current.dataSets, function (index, def) {
         $("<li>")
             .addClass(index == 0 ? "active" : "")
             .attr({
                 "data-index": index
             })
-            .html(def.title)
+            .html(def.label)
             .appendTo("#parse-tabs");
     });
+    
+    _menuDetailedHeader($(".popup-menu-list li[data-id='minimiseTop']"));
+    _menuReducedSize($(".popup-menu-list li[data-id='reducedSize']"));
+    _menuToggleCheckbox(pSettings.current.config.autoHideAfterBattle, $(".popup-menu-list li[data-id='autoHide']"));
 });
 
 $("#menu-button").on("click", function (e) {
@@ -28,44 +34,60 @@ $("#menu-button").on("click", function (e) {
     }
 });
 
-$("#popupMenu").on("click", "#minimiseTop", function (e) {
-    if ($("body").hasClass("minimised-top")) {
-        $("body").removeClass("minimised-top");
-        $(e.currentTarget).html("Hide Detailed Top");
-    } else {
-        $("body").addClass("minimised-top");
-        $(e.currentTarget).html("Show Detailed Top");
-    }
-    $("#popupMenu").fadeOut('fast');
+$("#popupMenu").on("click", "li", function (e) {
+    if ($(e.currentTarget).hasClass("disabled")) return;
+    $("#popupMenu").fadeOut('fast', function () {
+        switch ($(e.currentTarget).attr("data-id")) {
+            case "minimiseTop":
+                pSettings.current.config.showDetailedHeader = !pSettings.current.config.showDetailedHeader;
+                _menuDetailedHeader($(e.currentTarget));
+                pSettings.save();
+                break;
+            case "reducedSize":
+                pSettings.current.config.useReducedBarSize = !pSettings.current.config.useReducedBarSize;
+                _menuReducedSize($(e.currentTarget));
+                pSettings.save();
+                if (lastData !== null) {
+                    updateEncounter(lastData);
+                    updateCombatantList(lastData);
+                }
+                break;
+            case "autoHide":
+                pSettings.current.config.autoHideAfterBattle = !pSettings.current.config.autoHideAfterBattle;
+                _menuToggleCheckbox(pSettings.current.config.autoHideAfterBattle, $(e.currentTarget));
+                pSettings.save();
+                updateAutoHide();
+                break;
+            case "load4Man":
+                document.dispatchEvent(new CustomEvent('onOverlayDataUpdate', {
+                    detail: ActFakeData4
+                }));
+                break;
+            case "load8Man":
+                document.dispatchEvent(new CustomEvent('onOverlayDataUpdate', {
+                    detail: ActFakeData8
+                }));
+                break;
+            case "load24Man":
+                document.dispatchEvent(new CustomEvent('onOverlayDataUpdate', {
+                    detail: ActFakeData24
+                }));
+                break;
+        }
+    });
 });
-$("#popupMenu").on("click", "#reducedSize", function (e) {
-    if ($("body").hasClass("reduced-size")) {
-        $("body").removeClass("reduced-size");
-        $(e.currentTarget).html("Reduced Size");
-    } else {
-        $("body").addClass("reduced-size");
-        $(e.currentTarget).html("Full Size");
-    }
-    $("#popupMenu").fadeOut('fast');
-});
-$("#popupMenu").on("click", "#load4Man", function (e) {
-    document.dispatchEvent(new CustomEvent('onOverlayDataUpdate', {
-        detail: ActFakeData4
-    }));
-    
-    $("#popupMenu").fadeOut('fast');
-});
-$("#popupMenu").on("click", "#load8Man", function (e) {
-    document.dispatchEvent(new CustomEvent('onOverlayDataUpdate', {
-        detail: ActFakeData8
-    }));
-    
-    $("#popupMenu").fadeOut('fast');
-});
-$("#popupMenu").on("click", "#load24Man", function (e) {
-    document.dispatchEvent(new CustomEvent('onOverlayDataUpdate', {
-        detail: ActFakeData24
-    }));
-    
-    $("#popupMenu").fadeOut('fast');
-});
+
+function _menuToggleCheckbox(setting, obj) {
+    if (setting) obj.addClass("active");
+    else obj.removeClass("active");
+}
+function _menuDetailedHeader(obj) {
+    _menuToggleCheckbox(pSettings.current.config.showDetailedHeader, obj);
+    if (pSettings.current.config.showDetailedHeader) $("body").addClass("detailed-header");
+    else $("body").removeClass("detailed-header");
+}
+function _menuReducedSize(obj) {
+    _menuToggleCheckbox(pSettings.current.config.useReducedBarSize, obj);
+    if (pSettings.current.config.useReducedBarSize) $("body").addClass("reduced-size");
+    else $("body").removeClass("reduced-size");
+}
