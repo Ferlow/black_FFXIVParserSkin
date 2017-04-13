@@ -4,6 +4,10 @@
 @short-bar-height: 20px;
 @icon-size: @bar-height - 10px;
 
+@header-height-small: 31px;
+@header-height-large: 52px;
+@footer-height: 29px;
+
 .gradient-bar(@base-color) {
     background: linear-gradient(to right, fadeout(@base-color, 50%) 0%, fadeout(darken(@base-color, 10%), 50%) 100%);
 }
@@ -23,14 +27,6 @@
 
 body, html {
     margin: 0;
-}
-
-body {
-    --headerHeight: 31px;
-    --footerHeight: 29px;
-    &.detailed-header {
-        --headerHeight: 52px;
-    }
 }
 
 html {
@@ -139,7 +135,15 @@ small {
     position: relative;
     transition: all 0.5s;
     &.auto-hidden {
-        height: var(--headerHeight);
+        height: @header-height-small;
+    }
+}
+
+.detailed-header {
+    #combatantWrapper {
+        &.auto-hidden {
+            height: @header-height-large;
+        }
     }
 }
 
@@ -229,10 +233,16 @@ small {
 }
 
 #tableWrapper {
-    height: ~"calc(100% - var(--footerHeight) - var(--headerHeight) - 8px)";
+    height: ~"calc(100% - @footer-height - @header-height-small - 8px)";
     margin: 4px 0px;
     overflow: hidden;
     transition: all 0.4s;
+}
+
+&.detailed-header {
+    #tableWrapper {
+        height: ~"calc(100% - @footer-height - @header-height-large - 8px)";
+    }
 }
 
 .auto-hidden {
