@@ -70,12 +70,18 @@ function updateCombatantList(data) {
             var leftTableMain = $("<div>").addClass("main-data gold-text").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.info.simple, combatant)).appendTo(leftTableCol);
         }
         
+        var icon = "";
         if (parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon.main, combatant) != "") {
-            var leftTableDivider = $("<td>").addClass("image")/*.attr("rowspan", 2)*/.html("<div class=\"" + parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon.main, combatant) + "\" style=\"background-image: url('./icons/" + parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon.main, combatant).toLowerCase() + ".png'); background-size: cover;\"></div>").appendTo(leftTableTopRow);
+            icon = parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon.main, combatant);
+        } else if (parseActFormat("{name}", combatant).indexOf("(") != -1) {
+            icon = "chocobo";
         } else if (parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon.alt, combatant) != "") {
-            var leftTableDivider = $("<td>").addClass("image")/*.attr("rowspan", 2)*/.html("<div class=\"" + parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon.alt, combatant) + "\" style=\"background-image: url('./icons/" + parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon.alt, combatant).toLowerCase() + ".png'); background-size: cover;\"></div>").appendTo(leftTableTopRow);
+            icon = parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon.alt, combatant);
         }
-        else {
+        
+        if (icon !== "") {
+            var leftTableDivider = $("<td>").addClass("image").html("<div class=\"" + icon + "\" style=\"background-image: url('./icons/" + icon + ".png'); background-size: cover;\"></div>").appendTo(leftTableTopRow);
+        } else {
             leftTableCol.css({ "width": "108px" });
         }
 
@@ -148,7 +154,7 @@ function updateAutoHide() {
     if (!pSettings.current.config.autoHideAfterBattle) {
         clearTimeout(autoHideTimeout);
         autoHideTimeout = 0;
-    } else if (parseActFormat("{isActive}", lastData) == "false") {
+    } else if (lastData != null && parseActFormat("{isActive}", lastData) == "false") {
         if (autoHideTimeout == 0) {
             autoHideTimeout = setTimeout(function () {
                 $("#combatantWrapper").addClass('auto-hidden');
