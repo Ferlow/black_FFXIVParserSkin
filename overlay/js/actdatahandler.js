@@ -80,7 +80,7 @@ function updateCombatantList(data) {
         }
         
         if (icon !== "") {
-            var leftTableDivider = $("<td>").addClass("image").html("<div class=\"" + icon + "\" style=\"background-image: url('./icons/" + icon + ".png'); background-size: cover;\"></div>").appendTo(leftTableTopRow);
+            var leftTableDivider = $("<td>").addClass("image").html("<div class=\"" + icon.toLowerCase() + "\" style=\"background-image: url('./icons/" + icon + ".png'); background-size: cover;\"></div>").appendTo(leftTableTopRow);
         } else {
             leftTableCol.css({ "width": "108px" });
         }

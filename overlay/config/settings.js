@@ -80,7 +80,8 @@ var ParserDefaultSettings = {
         useReducedBarSize: false,
         autoHideAfterBattle: false,
         customName: "",
-        useJobNames: false
+        useJobNames: false,
+        discordWebHook: ""
     }
 };
 

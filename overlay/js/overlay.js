@@ -52,6 +52,57 @@ $("#popupMenu").on("click", "li", function (e) {
                     updateCombatantList(lastData);
                 }
                 break;
+            case "customName":
+                break;
+            case "useJobNames":
+                break;
+            case "pushToDiscord":
+                if (pSettings.current.config.discordWebHook == "") return;
+                var output = "";
+                output += "```MD\n";
+                output += "Encounter          [" + parseActFormat("{title}", lastData.Encounter) + "][" + parseActFormat("{duration}", lastData.Encounter) + "]\n";
+                output += "Encounter DPS      <" + parseActFormat("{dps}", lastData.Encounter) + ">\n";
+                output += "#Name           dps    dmg%  crit% acc%      max hit\n";
+                
+                var tab = " ";
+                
+                filteredData = _.sortBy(_.filter(lastData.Combatant, function (d) {
+                    return parseInt(d[pSettings.current.dataSets[pSettings.current.activeDataSet].sort], 10) > 0;
+                }), function(d)  {
+                    return -parseInt(d[pSettings.current.dataSets[pSettings.current.activeDataSet].sort], 10);
+                }.bind(this));
+
+                for (var combatantName in filteredData) {
+                    var combatant = filteredData[combatantName];
+                    
+                    output += (parseActFormat("{NAME15}", combatant) + "               ").slice(0, 15);
+                    output += tab;
+                    output += "<" + ("    " + parseActFormat("{DPS}", combatant)).slice(-4) + ">";
+                    output += tab;
+                    output += "<" + ("   " + parseActFormat("{damage%}", combatant).slice(0, -1)).slice(-3) + ">";
+                    output += tab;
+                    output += "<" + ("   " + parseActFormat("{crithit%}", combatant).slice(0, -1)).slice(-3) + ">";
+                    output += tab;
+                    output += "<" + ("       " + parseActFormat("{tohit}", combatant).slice(0, -1)).slice(-7) + ">";
+                    output += tab;
+                    output += "[" + parseActFormat("{maxhit}", combatant).replace("-", "][") + "]";
+                    output += "\n";
+                }
+    
+                output += "```";
+                
+                $.ajax({
+                    url: pSettings.current.config.discordWebHook,
+                    type: "POST",
+                    contentType: 'multipart/form-data',
+                    data: JSON.stringify({
+                        "content": output
+                    }),
+                    error: function (i,j,k) {
+                        console.log(i,j,k);
+                    }
+                })
+                break;
             case "autoHide":
                 pSettings.current.config.autoHideAfterBattle = !pSettings.current.config.autoHideAfterBattle;
                 _menuToggleCheckbox(pSettings.current.config.autoHideAfterBattle, $(e.currentTarget));
@@ -90,4 +141,10 @@ function _menuReducedSize(obj) {
     _menuToggleCheckbox(pSettings.current.config.useReducedBarSize, obj);
     if (pSettings.current.config.useReducedBarSize) $("body").addClass("reduced-size");
     else $("body").removeClass("reduced-size");
+}
+
+function webhook(str) {
+    if (str.indexOf("discordapp.com/api/webhooks/") == -1) return;
+    pSettings.current.config.discordWebHook = str;
+    pSettings.save();
 }
