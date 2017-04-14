@@ -233,7 +233,7 @@ small {
 }
 
 #tableWrapper {
-    height: ~"calc(100% - @footer-height - @header-height-small - 8px)";
+    height: ~"calc(100% - "@footer-height~" - "@header-height-small~" - 8px)";
     margin: 4px 0px;
     overflow: hidden;
     transition: all 0.4s;
@@ -241,7 +241,7 @@ small {
 
 &.detailed-header {
     #tableWrapper {
-        height: ~"calc(100% - @footer-height - @header-height-large - 8px)";
+        height: ~"calc(100% - "@footer-height~" - "@header-height-large~" - 8px)";
     }
 }
 
