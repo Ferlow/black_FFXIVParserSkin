@@ -1,5 +1,5 @@
 var ParserDefaultSettings = {
-    title: "{title} &middot; {duration}",
+    title: "{CurrentZoneName} {title} &middot; {duration}",
     activeDataSet: 0,
     dataSets: [
         {

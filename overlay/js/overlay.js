@@ -64,7 +64,7 @@ $("#popupMenu").on("click", "li", function (e) {
                 var fullDetail = Object.keys(lastData.Combatant).length <= 17;
                 var output = "";
                 output += "```MD\n";
-                output += "Encounter       [" + parseActFormat("{title}", lastData.Encounter) + "][" + parseActFormat("{duration}", lastData.Encounter) + "]\n";
+                output += "Encounter       [" + parseActFormat("{CurrentZoneName}", lastData.Encounter) + "][" + parseActFormat("{title}", lastData.Encounter) + "]<" + parseActFormat("{duration}", lastData.Encounter) + ">\n";
                 output += "Encounter DPS   <" + parseActFormat("{dps}", lastData.Encounter) + ">\n";
                 if (fullDetail) {
                     output += "#Name           dps    dmg%  crit% acc%      max hit\n";

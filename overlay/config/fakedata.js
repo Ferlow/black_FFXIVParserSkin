@@ -43,6 +43,7 @@ var ActFakeData24 = {
         "powerheal": "18483",
         "kills": "10",
         "deaths": "4",
+        "CurrentZoneName": "Dun Scaith",
         "Last10DPS": "2095",
         "Last30DPS": "1922",
         "Last60DPS": "2347"
@@ -1846,6 +1847,7 @@ var ActFakeData8 = {
         "powerheal": "18483",
         "kills": "10",
         "deaths": "4",
+        "CurrentZoneName": "Dun Scaith",
         "Last10DPS": "2095",
         "Last30DPS": "1922",
         "Last60DPS": "2347"
@@ -2529,6 +2531,7 @@ var ActFakeData4 = {
         "powerheal": "18483",
         "kills": "10",
         "deaths": "4",
+        "CurrentZoneName": "Dun Scaith",
         "Last10DPS": "2095",
         "Last30DPS": "1922",
         "Last60DPS": "2347"
