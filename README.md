@@ -6,7 +6,7 @@ The design for this is made to closely resemble the in-game interface.
 
 ## Warning
 
-### **OverlayPlugin 0.3.3.11** Required!!!
+### **OverlayPlugin 0.3.3.11** Required!
 
 If you're using an older version, your settings will not be saved. To easily identify if you're on this version, just check the overlay configuration window in ACT, you should see 3 buttons labeled `Copy`, `Open DevTools` and, `Reload`, if you do then you're fine, if not then get the [latest version here](https://github.com/hibiyasleep/OverlayPlugin/releases/tag/0.3.3.11).
 
@@ -30,7 +30,7 @@ To use the skin, no download is needed. Simply use the url below as your parsers
 
 * Tabs for different configurations (DPS, Healing, Tanking)
 * Different layout modes for smaller displays
-* Configurable layout
+* ~Configurable layout~
 * Auto-hiding parser for when you're not fighting
 * ~Role and job colours available for bars~
 * ~Override player names with job names~
