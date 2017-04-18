@@ -67,9 +67,9 @@ $("#popupMenu").on("click", "li", function (e) {
                 output += "Encounter       [" + parseActFormat("{CurrentZoneName}", lastData.Encounter) + "][" + parseActFormat("{title}", lastData.Encounter) + "]<" + parseActFormat("{duration}", lastData.Encounter) + ">\n";
                 output += "Encounter DPS   <" + parseActFormat("{dps}", lastData.Encounter) + ">\n";
                 if (fullDetail) {
-                    output += "#Name           dps    dmg%  crit% acc%      max hit\n";
+                    output += "#Name                dps    dmg%  crit% acc%      max hit\n";
                 } else {
-                    output += "#Name           dps    dmg%  crit% acc%\n";
+                    output += "#Name                dps    dmg%  crit% acc%\n";
                 }
                                 
                 filteredData = _.sortBy(_.filter(lastData.Combatant, function (d) {
@@ -83,8 +83,11 @@ $("#popupMenu").on("click", "li", function (e) {
                 for (var combatantName in filteredData) {
                     var combatant = filteredData[combatantName];
                     var currentLine = "";
+                    var job = parseActFormat("{Job}", combatant);
                     
+                    currentLine += job.length > 0 ? "[" + job + "]" : "";
                     currentLine += (parseActFormat("{NAME15}", combatant) + "               ").slice(0, 15);
+                    currentLine += job.length > 0 ? "" : "     ";
                     currentLine += tab;
                     currentLine += "<" + ("    " + parseActFormat("{ENCDPS}", combatant)).slice(-4) + ">";
                     currentLine += tab;
@@ -113,7 +116,7 @@ $("#popupMenu").on("click", "li", function (e) {
                     data: JSON.stringify({
                         "content": output
                     })
-                })
+                });
                 break;
             case "autoHide":
                 pSettings.current.config.autoHideAfterBattle = !pSettings.current.config.autoHideAfterBattle;
@@ -157,6 +160,18 @@ function _menuReducedSize(obj) {
 
 function webhook(str) {
     if (str.indexOf("discordapp.com/api/webhooks/") == -1) return;
-    pSettings.current.config.discordWebHook = str;
-    pSettings.save();
+    
+    $.ajax({
+        url: pSettings.current.config.discordWebHook,
+        type: "GET",
+        success: function (e) (
+            if (typeof e.id !== "undefined") {
+                console.log("Webhook validated");
+                pSettings.current.config.discordWebHook = str;
+                pSettings.save();
+            } else {
+                console.log("Webhook invalid");
+            }
+        )
+    })
 }
