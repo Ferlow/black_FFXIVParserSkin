@@ -79,8 +79,11 @@ var ParserDefaultSettings = {
         showDetailedHeader: false,
         useReducedBarSize: false,
         autoHideAfterBattle: false,
+        autoHideTimer: 5,
+        useCustomName: false,
         customName: "",
         useJobNames: false,
+        useRoleColors: false,
         discordWebHook: ""
     }
 };

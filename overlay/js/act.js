@@ -49,7 +49,17 @@ function updateCombatantList(data) {
 
         if (curBarBaseVal > maxBarBaseVal) maxBarBaseVal = curBarBaseVal;
         
-        var tableRow = $("<tr>").appendTo(tableBody);
+        var tableRow = $("<tr>")
+            .appendTo(tableBody);
+            
+        if (parseActFormat("{Job}", combatant) != "") {
+            tableRow.addClass(parseActFormat("{Job}", combatant));
+        } else if (parseActFormat("{name}", combatant).indexOf("(") != -1) {
+            tableRow.addClass("chocobo");
+        } else if (parseActFormat("{name}", combatant) != "") {
+            tableRow.addClass(parseActFormat("{name}", combatant).replace(" ", ""));
+        }
+            
         var tableCellLeft;
         if (!pSettings.current.config.useReducedBarSize) {
             tableCellLeft = $("<td>").css({ "width": "110px" }).appendTo(tableRow);
@@ -80,7 +90,7 @@ function updateCombatantList(data) {
         }
         
         if (icon !== "") {
-            var leftTableDivider = $("<td>").addClass("image").html("<div class=\"" + icon.toLowerCase() + "\" style=\"background-image: url('./icons/" + icon.toLowerCase() + ".png'); background-size: cover;\"></div>").appendTo(leftTableTopRow);
+            var leftTableDivider = $("<td>").addClass("image").html("<div class=\"" + icon.toLowerCase() + "\" style=\"background-image: url('../general/icons/" + icon.toLowerCase() + ".png'); background-size: cover;\"></div>").appendTo(leftTableTopRow);
         } else {
             leftTableCol.css({ "width": "108px" });
         }
@@ -92,7 +102,7 @@ function updateCombatantList(data) {
         var rightTableWrapper = $("<div>").addClass("inner-wrapper").appendTo(rightTableContainer);
         
         var bgProg = $("<div>").addClass("progBarOutside").appendTo(rightTableWrapper);
-        var progBar = $("<div>").addClass("progBar " + combatant["Job"]).appendTo(bgProg);
+        var progBar = $("<div>").addClass("progBar").appendTo(bgProg);
         var percent = ((curBarBaseVal / maxBarBaseVal) * 100);
 
         progBar.css({"width": percent + "%", "max-width": percent + "%"});
@@ -147,24 +157,4 @@ function parseActFormat(str, dictionary) {
     } while (currentIndex < str.length);
     
     return result;
-}
-
-var autoHideTimeout = 0;
-function updateAutoHide() {
-    if (!pSettings.current.config.autoHideAfterBattle) {
-        clearTimeout(autoHideTimeout);
-        autoHideTimeout = 0;
-    } else if (lastData != null && parseActFormat("{isActive}", lastData) == "false") {
-        if (autoHideTimeout == 0) {
-            autoHideTimeout = setTimeout(function () {
-                $("#combatantWrapper").addClass('auto-hidden');
-            }, 30000);
-        }
-    } else {
-        clearTimeout(autoHideTimeout);
-        autoHideTimeout = 0;
-        if ($("#combatantWrapper").hasClass('auto-hidden')) {
-            $("#combatantWrapper").removeClass('auto-hidden');
-        }
-    }
 }

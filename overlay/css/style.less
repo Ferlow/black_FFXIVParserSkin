@@ -1,12 +1,33 @@
+/* Base settings */
 @blue-text: #E2EBF5;
 @gold-text: #DED7BE;
 @bar-height: 30px;
 @short-bar-height: 20px;
 @icon-size: @bar-height - 10px;
-
 @header-height-small: 31px;
 @header-height-large: 52px;
 @footer-height: 29px;
+
+/* Job colors */
+@job-color-smn: rgb(70, 141, 25);
+@job-color-brd: rgb(128, 128, 62);
+@job-color-ast: rgb(250, 220, 112);
+@job-color-blm: rgb(117, 80, 150);
+@job-color-whm: rgb(187, 171, 126);
+@job-color-drg: rgb(68, 83, 170);
+@job-color-drk: rgb(109, 78, 83);
+@job-color-mnk: rgb(174, 144, 24);
+@job-color-mch: rgb(114, 218, 206);
+@job-color-war: rgb(107, 12, 8);
+@job-color-nin: rgb(81, 72, 82);
+@job-color-pld: rgb(145, 173, 178);
+@job-color-sch: rgb(68, 61, 157);
+@job-color-chocobo: rgb(254, 227, 110);
+
+/* Role colors */
+@role-color-dps: rgb(74, 38, 38);
+@role-color-healer: rgb(60, 104, 41);
+@role-color-tank: rgb(41, 57, 118);
 
 .gradient-bar(@base-color) {
     background: linear-gradient(to right, fadeout(@base-color, 50%) 0%, fadeout(darken(@base-color, 10%), 50%) 100%);
@@ -22,7 +43,6 @@
 
 * {
     font-family: "Meiryo";
-    font-size: 14px;
 }
 
 body, html {
@@ -30,7 +50,7 @@ body, html {
 }
 
 html {
-    background-image: url('../icons/handle.png');
+    background-image: url('../../general/icons/handle.png');
     background-position: bottom right;
     background-repeat: no-repeat;
     box-sizing: border-box;
@@ -55,46 +75,6 @@ b {
         display: block;
         height: @bar-height;
         box-shadow: inset 0px 2px 0px rgba(255, 255, 255, 0.2), inset 0px -2px 0px rgba(255, 255, 255, 0.2);
-        
-        &.Acn, &.Smn {
-            .gradient-bar(rgb(70, 141, 25));
-        }
-        &.Arc, &.Brd {
-            .gradient-bar(rgb(128, 128, 62));
-        }
-        &.Ast {
-            .gradient-bar(rgb(250, 220, 112));
-        }
-        &.Blm, &.Thm {
-            .gradient-bar(rgb(117, 80, 150));
-        }
-        &.Cnj, &.Whm{
-            .gradient-bar(rgb(187, 171, 126));
-        }
-        &.Drg, &.Lnc{
-            .gradient-bar(rgb(68, 83, 170));
-        }
-        &.Drk {
-            .gradient-bar(rgb(109, 78, 83));
-        }
-        &.Pgl, &.Mnk {
-            .gradient-bar(rgb(174, 144, 24));
-        }
-        &.Mch {
-            .gradient-bar(rgb(114, 218, 206));
-        }
-        &.Mrd, &.War {
-            .gradient-bar(rgb(107, 12, 8));
-        }
-        &.Rog, &.Nin {
-            .gradient-bar(rgb(81, 72, 82));
-        }
-        &.Gld, &.Pld {
-            .gradient-bar(rgb(145, 173, 178));
-        }
-        &.Sch {
-            .gradient-bar(rgb(68, 61, 157));
-        }
     }
 }
 
@@ -173,15 +153,16 @@ small {
 
 #encounter {
     padding: 4px 0px;
+    font-size: 14px;
 }
 
 #encounterDetail {
     display: none;
-    font-size: 80%;
+    font-size: 12px;
     .gold-text();
     b {
         font-style: normal;
-        font-size: 125%;
+        font-size: 14px;
     }
 }
 
@@ -315,16 +296,6 @@ small {
             border-radius: 3px;
             box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75), inset 0px -8px 4px 0px rgba(0,0,0,0.3), inset 0px 0px 2px 0px rgba(255,255,255,0.3);
         }
-        
-        .Acn,  .Smn, .Arc, .Brd, .Blm, .Thm, .Drg, .Lnc, .Pgl, .Mnk, .Mch, .Rog, .Nin {
-            background-color: #4a2626;
-        }
-        .Ast, .Cnj, .Whm, .Sch {
-            background-color: #3c6829
-        }
-        .Drk, .Mrd, .War, .Gld, .Pld {
-            background-color: #293976
-        }
     }
 }
 
@@ -364,7 +335,7 @@ small {
     table-layout: fixed;
     border-collapse: collapse;
     position: absolute;
-    /*margin-top: -30px;*/
+    margin-top: 1px;
     td.info-data {
         width: 50%;
         text-align: left;
@@ -433,9 +404,9 @@ small {
             border-bottom: 0px;
         }
         
-        /*&.debug-list {
-            display: none;
-        }*/
+        &.debug-list {
+            //display: none;
+        }
     }
     
     p {
@@ -489,6 +460,105 @@ small {
                         right: 9px;
                     }
                 }
+            }
+        }
+    }
+}
+
+.Acn, .Smn {
+    .progBar {
+        .gradient-bar(@job-color-smn);
+    }
+}
+.Arc, .Brd {
+    .progBar {
+        .gradient-bar(@job-color-brd);
+    }
+}
+.Ast {
+    .progBar {
+        .gradient-bar(@job-color-ast);
+    }
+}
+.Blm, .Thm {
+    .progBar {
+        .gradient-bar(@job-color-blm);
+    }
+}
+.Cnj, .Whm {
+    .progBar {
+        .gradient-bar(@job-color-whm);
+    }
+}
+.Drg, .Lnc {
+    .progBar {
+        .gradient-bar(@job-color-drg);
+    }
+}
+.Drk {
+    .progBar {
+        .gradient-bar(@job-color-drk);
+    }
+}
+.Pgl, .Mnk {
+    .progBar {
+        .gradient-bar(@job-color-mnk);
+    }
+}
+.Mch {
+    .progBar {
+        .gradient-bar(@job-color-mch);
+    }
+}
+.Mrd, .War {
+    .progBar {
+        .gradient-bar(@job-color-war);
+    }
+}
+.Rog, .Nin {
+    .progBar {
+        .gradient-bar(@job-color-nin);
+    }
+}
+.Gld, .Pld {
+    .progBar {
+        .gradient-bar(@job-color-pld);
+    }
+}
+.Sch {
+    .progBar {
+        .gradient-bar(@job-color-sch);
+    }
+}
+.chocobo {
+    .progBar {
+        .gradient-bar(@job-color-chocobo);
+    }
+}
+
+.Acn,  .Smn, .Arc, .Brd, .Blm, .Thm, .Drg, .Lnc, .Pgl, .Mnk, .Mch, .Rog, .Nin {
+    .inner-left-table {
+        .image {
+            div {
+                background-color: @role-color-dps;
+            }
+        }
+    }
+}
+.Ast, .Cnj, .Whm, .Sch {
+    .inner-left-table {
+        .image {
+            div {
+                background-color: @role-color-healer;
+            }
+        }
+    }
+}
+.Drk, .Mrd, .War, .Gld, .Pld {
+    .inner-left-table {
+        .image {
+            div {
+                background-color: @role-color-tank;
             }
         }
     }

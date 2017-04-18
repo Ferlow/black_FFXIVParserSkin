@@ -24,6 +24,9 @@ $(document).ready(function () {
     _menuDetailedHeader($(".popup-menu-list li[data-id='minimiseTop']"));
     _menuReducedSize($(".popup-menu-list li[data-id='reducedSize']"));
     _menuToggleCheckbox(pSettings.current.config.autoHideAfterBattle, $(".popup-menu-list li[data-id='autoHide']"));
+    _menuToggleCheckbox(pSettings.current.config.useCustomName, $(".popup-menu-list li[data-id='useCustomName']"));
+    _menuToggleCheckbox(pSettings.current.config.useJobNames, $(".popup-menu-list li[data-id='useJobNames']"));
+    _menuToggleCheckbox(pSettings.current.config.useRoleColors, $(".popup-menu-list li[data-id='useRoleColors']"));
 });
 
 $("#menu-button").on("click", function (e) {
@@ -52,9 +55,26 @@ $("#popupMenu").on("click", "li", function (e) {
                     updateCombatantList(lastData);
                 }
                 break;
-            case "customName":
+            case "autoHide":
+                pSettings.current.config.autoHideAfterBattle = !pSettings.current.config.autoHideAfterBattle;
+                _menuToggleCheckbox(pSettings.current.config.autoHideAfterBattle, $(e.currentTarget));
+                pSettings.save();
+                updateAutoHide();
+                break;
+            case "useCustomName":
+                pSettings.current.config.useCustomName = !pSettings.current.config.useCustomName;
+                _menuToggleCheckbox(pSettings.current.config.useCustomName, $(e.currentTarget));
+                pSettings.save();
                 break;
             case "useJobNames":
+                pSettings.current.config.useJobNames = !pSettings.current.config.useJobNames;
+                _menuToggleCheckbox(pSettings.current.config.useJobNames, $(e.currentTarget));
+                pSettings.save();
+                break;
+            case "useRoleColors":
+                pSettings.current.config.useRoleColors = !pSettings.current.config.useRoleColors;
+                _menuUseRoleColors($(e.currentTarget));
+                pSettings.save();
                 break;
             case "pushToDiscord":
                 if (pSettings.current.config.discordWebHook == "") return;
@@ -118,12 +138,6 @@ $("#popupMenu").on("click", "li", function (e) {
                     })
                 });
                 break;
-            case "autoHide":
-                pSettings.current.config.autoHideAfterBattle = !pSettings.current.config.autoHideAfterBattle;
-                _menuToggleCheckbox(pSettings.current.config.autoHideAfterBattle, $(e.currentTarget));
-                pSettings.save();
-                updateAutoHide();
-                break;
             case "load4Man":
                 document.dispatchEvent(new CustomEvent('onOverlayDataUpdate', {
                     detail: ActFakeData4
@@ -157,6 +171,31 @@ function _menuReducedSize(obj) {
     if (pSettings.current.config.useReducedBarSize) $("body").addClass("reduced-size");
     else $("body").removeClass("reduced-size");
 }
+function _menuUseRoleColors(obj) {
+    _menuToggleCheckbox(pSettings.current.config.useRoleColors, obj);
+    if (pSettings.current.config.useReducedBarSize) $("body").addClass("role-colors");
+    else $("body").removeClass("role-colors");
+}
+
+var autoHideTimeout = 0;
+function updateAutoHide() {
+    if (!pSettings.current.config.autoHideAfterBattle) {
+        clearTimeout(autoHideTimeout);
+        autoHideTimeout = 0;
+    } else if (lastData != null && parseActFormat("{isActive}", lastData) == "false") {
+        if (autoHideTimeout == 0) {
+            autoHideTimeout = setTimeout(function () {
+                $("#combatantWrapper").addClass('auto-hidden');
+            }, pSettings.current.config.autoHideTimer * 1000);
+        }
+    } else {
+        clearTimeout(autoHideTimeout);
+        autoHideTimeout = 0;
+        if ($("#combatantWrapper").hasClass('auto-hidden')) {
+            $("#combatantWrapper").removeClass('auto-hidden');
+        }
+    }
+}
 
 function webhook(str) {
     if (str.indexOf("discordapp.com/api/webhooks/") == -1) return;
@@ -164,7 +203,7 @@ function webhook(str) {
     $.ajax({
         url: pSettings.current.config.discordWebHook,
         type: "GET",
-        success: function (e) (
+        success: function (e) {
             if (typeof e.id !== "undefined") {
                 console.log("Webhook validated");
                 pSettings.current.config.discordWebHook = str;
@@ -172,6 +211,6 @@ function webhook(str) {
             } else {
                 console.log("Webhook invalid");
             }
-        )
+        }
     })
 }

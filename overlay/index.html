@@ -1,5 +1,4 @@
-﻿<!-- Ihm made dis twitch.tv/ihellmasker -->
-<html>
+﻿<html>
 <head>
     <meta charset="utf-8" />
     <title>Ihm's Overlay Plugin Skin</title>
@@ -17,9 +16,15 @@
                 <li class="has-checkbox" data-id="minimiseTop">Detailed header</li>
                 <li class="has-checkbox" data-id="reducedSize">Reduced bar size</li>
                 <li class="has-checkbox" data-id="autoHide">Audo hide after battle</li>
-                <li class="has-checkbox disabled" data-id="customName">Custom name</li>
-                <li class="has-checkbox disabled" data-id="useJobNames">Use job names</li>
+                <li class="has-checkbox" data-id="useCustomName">Custom name</li>
+                <li class="has-checkbox" data-id="useJobNames">Use job names</li>
+                <li class="has-checkbox" data-id="useRoleColors">Use role colors</li>
                 <li data-id="pushToDiscord">Push to Discord</li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <ul class="popup-menu-list">
+                <li data-id="config">Configure</li>
             </ul>
         </div>
         <div class="menu-section debug-list">
@@ -56,14 +61,13 @@
         </div>
 	</div>
 	
-	<script src="lib/jquery.min.js" type="text/javascript"></script>
-	<script src="lib/underscore.min.js" type="text/javascript"></script>
+	<script src="../general/lib/jquery.min.js" type="text/javascript"></script>
+	<script src="../general/lib/underscore.min.js" type="text/javascript"></script>
     
     <script src="config/settings.js" type="text/javascript"></script>
     <script src="config/fakedata.js" type="text/javascript"></script>
     
-    <script src="js/actdatahandler.js" type="text/javascript"></script>
+    <script src="js/act.js" type="text/javascript"></script>
     <script src="js/overlay.js" type="text/javascript"></script>
 </body>
 </html>
-<!-- Ihm made dis twitch.tv/ihellmasker -->
