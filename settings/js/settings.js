@@ -77,6 +77,28 @@ $("#apply-settings").on("click", function (e) {
     OverlayPluginApi.broadcastMessage('reload');
     location.reload();
 });
+$("#close-settings").on("click", function (e) {
+    e.preventDefault();
+    window.close();
+});
+$("#default-settings").on("click", function (e) {
+    e.preventDefault();
+    
+    $("#popupNotification").addClass("show");
+});
+
+$("#confirmation-yes").on("click", function (e) {
+    e.preventDefault();
+    
+    pSettings.defaults();
+    $("#popupNotification").removeClass("show");
+    location.reload();
+});
+$("#confirmation-no").on("click", function (e) {
+    e.preventDefault();
+    
+    $("#popupNotification").removeClass("show");
+});
 
 $("#test-webhook").on("click", function (e) {
     e.preventDefault();

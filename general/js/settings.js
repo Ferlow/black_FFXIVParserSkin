@@ -130,6 +130,12 @@ var pSettings = new function () {
     s.save = function () {
         localStorage.setItem('parser_settings', JSON.stringify(s.current));
     };
+    
+    s.defaults = function () {
+        var defaults = JSON.parse(JSON.stringify(ParserDefaultSettings));
+        s.current = defaults;
+        localStorage.setItem('parser_settings', JSON.stringify(s.current));
+    };
 
     /* Constructor */
     s.pSettings = function () {
