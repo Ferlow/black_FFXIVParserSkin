@@ -10,14 +10,6 @@ document.addEventListener("onBroadcastMessageReceive", function (e) {
             break;
     }
 });
-/*window.layer.on('message', function (e) {
-    console.log(e);
-    switch(e.message) {
-        case 'reload':
-            location.reload();
-            break;
-    }
-});*/
 
 function update(data) {
     lastData = data;
@@ -52,11 +44,14 @@ function updateCombatantList(data) {
         tableBody = $("#combatantTableBody");
     else
         tableBody = $("<tbody>").attr("id", "combatantTableBody").appendTo(table);
-        
+    
     tableBody.empty();
         
     var combatantIndex = 0;
     var maxBarBaseVal = 0;
+    var smallBars = (pSettings.current.config.useReducedBarSize && pSettings.current.config.useReducedBarSizeAlways) || (pSettings.current.config.useReducedBarSize && Object.keys(data.Combatant).length > pSettings.current.config.reducedBarSizeMaxEntries);
+    if (smallBars) $("body").addClass("reduced-size");
+    else $("body").removeClass("reduced-size");
     for (var combatantName in filteredData) {
         var combatant = filteredData[combatantName];
         
@@ -76,7 +71,7 @@ function updateCombatantList(data) {
         }
             
         var tableCellLeft;
-        if (!pSettings.current.config.useReducedBarSize) {
+        if (!smallBars) {
             tableCellLeft = $("<td>").css({ "width": "110px" }).appendTo(tableRow);
         } else {
             tableCellLeft = $("<td>").css({ "width": "130px" }).appendTo(tableRow);
@@ -88,7 +83,7 @@ function updateCombatantList(data) {
 
         var leftTableTopRow = $("<tr>").appendTo(leftTableBody);
         var leftTableCol = $("<td>").appendTo(leftTableTopRow);
-        if (!pSettings.current.config.useReducedBarSize) {
+        if (!smallBars) {
             var leftTableSub = $("<div>").addClass("sub-data gold-text").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.info.sub, combatant)).appendTo(leftTableCol);
             var leftTableMain = $("<div>").addClass("main-data gold-text").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.info.main, combatant)).appendTo(leftTableCol);
         } else {
@@ -124,7 +119,7 @@ function updateCombatantList(data) {
         
         var innerTable = $("<table>").addClass("info-table").appendTo(rightTableWrapper);
         var innerTbody = $("<tbody>").appendTo(innerTable);
-        if (!pSettings.current.config.useReducedBarSize) {
+        if (!smallBars) {
             var innerRow = $("<tr>").appendTo(innerTbody);
             $("<td>").addClass("info-data").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.tl, combatant)).appendTo(innerRow);
             $("<td>").addClass("info-data").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.tr, combatant)).appendTo(innerRow);

@@ -76,8 +76,10 @@ var ParserDefaultSettings = {
         }
     ],
     config: {
-        showDetailedHeader: true,
-        useReducedBarSize: false,
+        showDetailedHeader: false,
+        useReducedBarSize: true,
+        reducedBarSizeMaxEntries: 10,
+        useReducedBarSizeAlways: false,
         autoHideAfterBattle: false,
         autoHideTimer: 5,
         useCustomName: false,

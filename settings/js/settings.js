@@ -3,6 +3,9 @@ $(document).ready(function () {
     
     if (pSettings.current.config.showDetailedHeader) $("[data-setting='use-detailed-header']").addClass("active");
     if (pSettings.current.config.useReducedBarSize) $("[data-setting='use-reduced-bar-size']").addClass("active");
+    else $("[data-setting='use-reduced-bar-size-always']").addClass("disabled")
+    $("[data-setting='use-reduced-bar-size'] input").val(pSettings.current.config.reducedBarSizeMaxEntries);
+    if (pSettings.current.config.useReducedBarSizeAlways) $("[data-setting='use-reduced-bar-size-always']").addClass("active");
     if (pSettings.current.config.autoHideAfterBattle) $("[data-setting='use-auto-hide-parser']").addClass("active");
     $("[data-setting='use-auto-hide-parser'] input").val(pSettings.current.config.autoHideTimer);
     if (pSettings.current.config.useRoleColors) $("[data-setting='use-role-colors']").addClass("active");
@@ -25,6 +28,15 @@ $("[data-setting]").on("click", function (e) {
             break;
         case "use-reduced-bar-size":
             pSettings.current.config.useReducedBarSize = !pSettings.current.config.useReducedBarSize;
+            if (!pSettings.current.config.useReducedBarSize) {
+                $("[data-setting='use-reduced-bar-size-always']").addClass("disabled");
+            } else {
+                $("[data-setting='use-reduced-bar-size-always']").removeClass("disabled");
+            }
+            $("#apply-settings").removeClass("disabled");
+            break;
+        case "use-reduced-bar-size-always":
+            pSettings.current.config.useReducedBarSizeAlways = !pSettings.current.config.useReducedBarSizeAlways;
             $("#apply-settings").removeClass("disabled");
             break;
         case "use-auto-hide-parser":

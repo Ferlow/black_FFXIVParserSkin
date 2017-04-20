@@ -22,8 +22,7 @@ $(document).ready(function () {
     });
     
     if (pSettings.current.config.showDetailedHeader) $("body").addClass("detailed-header");
-    if (pSettings.current.config.useReducedBarSize) $("body").addClass("reduced-size");
-    if (pSettings.current.config.useReducedBarSize) $("body").addClass("role-colors");
+    if (pSettings.current.config.useRoleColors) $("body").addClass("role-colors");
 });
 
 $("#menu-button").on("click", function (e) {

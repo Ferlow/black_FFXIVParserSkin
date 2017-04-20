@@ -236,12 +236,12 @@ small {
     }
     
     .image {
-        width: 26px;
+        width: @bar-height;
         div {
             margin-left: auto;
             margin-right: auto;
-            width: @icon-size;
-            height: @icon-size;
+            width: @bar-height - 4px;
+            height: @bar-height - 4px;
             display: block;
             border: 1px solid #ffde9d;
             border-radius: 3px;
@@ -253,6 +253,13 @@ small {
 .reduced-size {
     .inner-left-table {
         height: @short-bar-height;
+        .image {
+            width: @short-bar-height;
+            div {
+                width: @short-bar-height - 4px;
+                height: @short-bar-height - 4px;
+            }
+        }
     }
 }
 
