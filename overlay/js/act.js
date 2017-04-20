@@ -3,6 +3,21 @@ var lastData = null;
 document.addEventListener("onOverlayDataUpdate", function (e) {
     update(e.detail);
 });
+document.addEventListener("onBroadcastMessageReceive", function (e) {
+    switch(e.detail.message) {
+        case 'reload':
+            location.reload();
+            break;
+    }
+});
+/*window.layer.on('message', function (e) {
+    console.log(e);
+    switch(e.message) {
+        case 'reload':
+            location.reload();
+            break;
+    }
+});*/
 
 function update(data) {
     lastData = data;

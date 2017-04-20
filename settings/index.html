@@ -1,0 +1,57 @@
+﻿<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Settings</title>
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <div class="windowContainer">
+        <h1>
+            Parser Settings
+        </h1>
+        <div class="divider"></div>
+        <div class="window-body">
+            <h2>
+                General
+            </h2>
+            <ul class="settings">
+                <li class="checkbox" data-setting="use-detailed-header">Show detailed header</li>
+                <li class="checkbox" data-setting="use-reduced-bar-size">Use single line bar style</li>
+                <li class="checkbox" data-setting="use-auto-hide-parser">Auto hide after battle <input type="number" /></li>
+            </ul>
+            <h2>
+                Bars
+            </h2>
+            <ul class="settings">
+                <li class="checkbox disabled" data-setting="use-role-colors">Use role based colors</li>
+            </ul>
+            <h2>
+                Names
+            </h2>
+            <ul class="settings">
+                <li class="checkbox disabled" data-setting="use-custom-name">Use custom name for yourself <input type="text" disabled /></li>
+                <li class="checkbox disabled" data-setting="use-job-names">Use job names</li>
+            </ul>
+            <h2>
+                Discord Integration
+            </h2>
+            <ul class="settings">
+                <li data-setting="discord-webhook">Discord Webhook url <a class="info-text" href="" target="_blank">More info</a> <input type="text" /> <a href="#" id="test-webhook" class="button">Test</a></li>
+            </ul>
+        </div>
+        <div class="divider"></div>
+        <div class="window-footer">
+            <a href="#" id="apply-settings" class="button disabled">Apply</a>
+            <a href="#" id="close-settings" class="button">Close</a>
+        </div>
+    </div>
+	
+	<script src="../general/lib/jquery.min.js" type="text/javascript"></script>
+	<script src="../general/lib/underscore.min.js" type="text/javascript"></script>
+    
+    <script src="../general/js/settings.js" type="text/javascript"></script>
+    <script src="../general/js/fakedata.js" type="text/javascript"></script>
+    
+    <script src="js/settings.js" type="text/javascript"></script>
+</body>
+</html>

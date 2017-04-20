@@ -1,0 +1,54 @@
+/* Base settings */
+@blue-text: #E2EBF5;
+@gold-text: #DED7BE;
+@bar-height: 30px;
+@short-bar-height: 20px;
+@icon-size: @bar-height - 10px;
+@header-height-small: 31px;
+@header-height-large: 52px;
+@footer-height: 29px;
+
+/* Job colors */
+@job-color-smn: rgb(70, 141, 25);
+@job-color-brd: rgb(128, 128, 62);
+@job-color-ast: rgb(250, 220, 112);
+@job-color-blm: rgb(117, 80, 150);
+@job-color-whm: rgb(187, 171, 126);
+@job-color-drg: rgb(68, 83, 170);
+@job-color-drk: rgb(109, 78, 83);
+@job-color-mnk: rgb(174, 144, 24);
+@job-color-mch: rgb(114, 218, 206);
+@job-color-war: rgb(107, 12, 8);
+@job-color-nin: rgb(81, 72, 82);
+@job-color-pld: rgb(145, 173, 178);
+@job-color-sch: rgb(68, 61, 157);
+@job-color-lb: rgb(89, 89, 89);
+@job-color-chocobo: rgb(254, 227, 110);
+
+/* Role colors */
+@role-color-dps: rgb(74, 38, 38);
+@role-color-healer: rgb(60, 104, 41);
+@role-color-tank: rgb(41, 57, 118);
+
+/* Settings UI */
+@settings-ui-item-indent: 7px;
+
+.gradient-bar(@base-color) {
+    background: linear-gradient(to right, fadeout(@base-color, 50%) 0%, fadeout(darken(@base-color, 10%), 50%) 100%);
+}
+.blue-text() {
+    color: @blue-text;
+    text-shadow: -1px 0 3px darken(@blue-text, 50%), 0 1px 3px darken(@blue-text, 50%), 1px 0 3px darken(@blue-text, 50%), 0 -1px 3px darken(@blue-text, 50%);
+}
+.gold-text() {
+    color: @gold-text;
+    text-shadow: -1px 0 2px darken(@gold-text, 50%), 0 1px 2px darken(@gold-text, 50%), 1px 0 2px darken(@gold-text, 50%), 0 -1px 2px darken(@gold-text, 50%);
+}
+
+* {
+    font-family: "Meiryo";
+}
+
+body, html {
+    margin: 0;
+}

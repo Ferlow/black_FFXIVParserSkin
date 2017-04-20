@@ -1,53 +1,4 @@
-/* Base settings */
-@blue-text: #E2EBF5;
-@gold-text: #DED7BE;
-@bar-height: 30px;
-@short-bar-height: 20px;
-@icon-size: @bar-height - 10px;
-@header-height-small: 31px;
-@header-height-large: 52px;
-@footer-height: 29px;
-
-/* Job colors */
-@job-color-smn: rgb(70, 141, 25);
-@job-color-brd: rgb(128, 128, 62);
-@job-color-ast: rgb(250, 220, 112);
-@job-color-blm: rgb(117, 80, 150);
-@job-color-whm: rgb(187, 171, 126);
-@job-color-drg: rgb(68, 83, 170);
-@job-color-drk: rgb(109, 78, 83);
-@job-color-mnk: rgb(174, 144, 24);
-@job-color-mch: rgb(114, 218, 206);
-@job-color-war: rgb(107, 12, 8);
-@job-color-nin: rgb(81, 72, 82);
-@job-color-pld: rgb(145, 173, 178);
-@job-color-sch: rgb(68, 61, 157);
-@job-color-chocobo: rgb(254, 227, 110);
-
-/* Role colors */
-@role-color-dps: rgb(74, 38, 38);
-@role-color-healer: rgb(60, 104, 41);
-@role-color-tank: rgb(41, 57, 118);
-
-.gradient-bar(@base-color) {
-    background: linear-gradient(to right, fadeout(@base-color, 50%) 0%, fadeout(darken(@base-color, 10%), 50%) 100%);
-}
-.blue-text() {
-    color: @blue-text;
-    text-shadow: -1px 0 3px darken(@blue-text, 50%), 0 1px 3px darken(@blue-text, 50%), 1px 0 3px darken(@blue-text, 50%), 0 -1px 3px darken(@blue-text, 50%);
-}
-.gold-text() {
-    color: @gold-text;
-    text-shadow: -1px 0 2px darken(@gold-text, 50%), 0 1px 2px darken(@gold-text, 50%), 1px 0 2px darken(@gold-text, 50%), 0 -1px 2px darken(@gold-text, 50%);
-}
-
-* {
-    font-family: "Meiryo";
-}
-
-body, html {
-    margin: 0;
-}
+@import "../../general/css/shared.less";
 
 html {
     background-image: url('../../general/icons/handle.png');
@@ -377,7 +328,7 @@ small {
     display: none;
     position: absolute;
     z-index: 50;
-    top: 28px;
+    top: 24px;
     right: 40px;
     border-top: 1px solid rgb(174, 172, 172);
     border-bottom: 1px solid rgb(44, 47, 41);
@@ -393,6 +344,11 @@ small {
         border-top: 1px solid rgb(99, 97, 100);
         background: rgb(65, 65, 65);
         
+        p {
+            margin: 0px;
+            padding: 4px 8px;
+        }
+        
         &:first-child {
             border-top-left-radius: 6px;
             border-top-right-radius: 6px;
@@ -407,57 +363,23 @@ small {
         &.debug-list {
             //display: none;
         }
-    }
-    
-    p {
-        margin: 0px;
-        padding: 4px 8px;
-    }
-    
-    .popup-menu-list {
-        list-style-type: none;
-        color: rgb(230, 227, 217);
-        margin: 0px;
-        padding: 4px 8px;
-        
-        li {
-            padding: 1px 5px;
-            &:hover {
-                background: linear-gradient(to right, rgb(38, 33, 35) 0%, rgb(65, 65, 65) 100%);
-                border-radius: 12px;
-            }
-            &.disabled {
-                opacity: 0.6;
-                &:hover {
-                    background: transparent;
-                }
-            }
+
+        .popup-menu-list {
+            list-style-type: none;
+            color: rgb(230, 227, 217);
+            margin: 0px;
+            padding: 4px 8px;
             
-            &.has-checkbox {
-                &:before {
-                    content: ' ';
-                    display: inline-block;
-                    width: 10px;
-                    height: 10px;
-                    border-radius: 3px;
-                    border: 2px solid @gold-text;
-                    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6), inset 1px 1px 2px rgba(0, 0, 0, 0.6);
-                    margin-top: 3px;
-                    position: absolute;
-                    right: 5px;
+            li {
+                padding: 1px 5px;
+                &:hover {
+                    background: linear-gradient(to right, rgb(38, 33, 35) 0%, rgb(65, 65, 65) 100%);
+                    border-radius: 12px;
                 }
-                
-                &.active {
-                    &:after {
-                        content: ' ';
-                        display: inline-block;
-                        width: 6px;
-                        height: 6px;
-                        border-radius: 1px;
-                        background: #ded7be;
-                        margin-top: 7px;
-                        position: absolute;
-                        right: 9px;
+                &.disabled {
+                    opacity: 0.6;
+                    &:hover {
+                        background: transparent;
                     }
                 }
             }
@@ -530,9 +452,28 @@ small {
         .gradient-bar(@job-color-sch);
     }
 }
+.LimitBreak {
+    .progBar {
+        .gradient-bar(@job-color-lb);
+    }
+    .inner-left-table {
+        .image {
+            div {
+                background-color: @job-color-lb;
+            }
+        }
+    }
+}
 .chocobo {
     .progBar {
         .gradient-bar(@job-color-chocobo);
+    }
+    .inner-left-table {
+        .image {
+            div {
+                background-color: @job-color-chocobo;
+            }
+        }
     }
 }
 

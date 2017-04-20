@@ -21,12 +21,9 @@ $(document).ready(function () {
             .appendTo("#parse-tabs");
     });
     
-    _menuDetailedHeader($(".popup-menu-list li[data-id='minimiseTop']"));
-    _menuReducedSize($(".popup-menu-list li[data-id='reducedSize']"));
-    _menuToggleCheckbox(pSettings.current.config.autoHideAfterBattle, $(".popup-menu-list li[data-id='autoHide']"));
-    _menuToggleCheckbox(pSettings.current.config.useCustomName, $(".popup-menu-list li[data-id='useCustomName']"));
-    _menuToggleCheckbox(pSettings.current.config.useJobNames, $(".popup-menu-list li[data-id='useJobNames']"));
-    _menuToggleCheckbox(pSettings.current.config.useRoleColors, $(".popup-menu-list li[data-id='useRoleColors']"));
+    if (pSettings.current.config.showDetailedHeader) $("body").addClass("detailed-header");
+    if (pSettings.current.config.useReducedBarSize) $("body").addClass("reduced-size");
+    if (pSettings.current.config.useReducedBarSize) $("body").addClass("role-colors");
 });
 
 $("#menu-button").on("click", function (e) {
@@ -41,41 +38,6 @@ $("#popupMenu").on("click", "li", function (e) {
     if ($(e.currentTarget).hasClass("disabled")) return;
     $("#popupMenu").fadeOut('fast', function () {
         switch ($(e.currentTarget).attr("data-id")) {
-            case "minimiseTop":
-                pSettings.current.config.showDetailedHeader = !pSettings.current.config.showDetailedHeader;
-                _menuDetailedHeader($(e.currentTarget));
-                pSettings.save();
-                break;
-            case "reducedSize":
-                pSettings.current.config.useReducedBarSize = !pSettings.current.config.useReducedBarSize;
-                _menuReducedSize($(e.currentTarget));
-                pSettings.save();
-                if (lastData !== null) {
-                    updateEncounter(lastData);
-                    updateCombatantList(lastData);
-                }
-                break;
-            case "autoHide":
-                pSettings.current.config.autoHideAfterBattle = !pSettings.current.config.autoHideAfterBattle;
-                _menuToggleCheckbox(pSettings.current.config.autoHideAfterBattle, $(e.currentTarget));
-                pSettings.save();
-                updateAutoHide();
-                break;
-            case "useCustomName":
-                pSettings.current.config.useCustomName = !pSettings.current.config.useCustomName;
-                _menuToggleCheckbox(pSettings.current.config.useCustomName, $(e.currentTarget));
-                pSettings.save();
-                break;
-            case "useJobNames":
-                pSettings.current.config.useJobNames = !pSettings.current.config.useJobNames;
-                _menuToggleCheckbox(pSettings.current.config.useJobNames, $(e.currentTarget));
-                pSettings.save();
-                break;
-            case "useRoleColors":
-                pSettings.current.config.useRoleColors = !pSettings.current.config.useRoleColors;
-                _menuUseRoleColors($(e.currentTarget));
-                pSettings.save();
-                break;
             case "pushToDiscord":
                 if (pSettings.current.config.discordWebHook == "") return;
                 if (lastData == null) return;
@@ -87,7 +49,7 @@ $("#popupMenu").on("click", "li", function (e) {
                 output += "Encounter       [" + parseActFormat("{CurrentZoneName}", lastData.Encounter) + "][" + parseActFormat("{title}", lastData.Encounter) + "]<" + parseActFormat("{duration}", lastData.Encounter) + ">\n";
                 output += "Encounter DPS   <" + parseActFormat("{dps}", lastData.Encounter) + ">\n";
                 if (fullDetail) {
-                    output += "#Name                dps    dmg%  crit% acc%      max hit\n";
+                    output += "#Name                dps    dmg%  crit% acc%     max hit\n";
                 } else {
                     output += "#Name                dps    dmg%  crit% acc%\n";
                 }
@@ -138,6 +100,9 @@ $("#popupMenu").on("click", "li", function (e) {
                     })
                 });
                 break;
+            case "settings":
+                window.open('../settings/','Parser - Settings','width=800,height=600');
+                break;
             case "load4Man":
                 document.dispatchEvent(new CustomEvent('onOverlayDataUpdate', {
                     detail: ActFakeData4
@@ -157,26 +122,6 @@ $("#popupMenu").on("click", "li", function (e) {
     });
 });
 
-function _menuToggleCheckbox(setting, obj) {
-    if (setting) obj.addClass("active");
-    else obj.removeClass("active");
-}
-function _menuDetailedHeader(obj) {
-    _menuToggleCheckbox(pSettings.current.config.showDetailedHeader, obj);
-    if (pSettings.current.config.showDetailedHeader) $("body").addClass("detailed-header");
-    else $("body").removeClass("detailed-header");
-}
-function _menuReducedSize(obj) {
-    _menuToggleCheckbox(pSettings.current.config.useReducedBarSize, obj);
-    if (pSettings.current.config.useReducedBarSize) $("body").addClass("reduced-size");
-    else $("body").removeClass("reduced-size");
-}
-function _menuUseRoleColors(obj) {
-    _menuToggleCheckbox(pSettings.current.config.useRoleColors, obj);
-    if (pSettings.current.config.useReducedBarSize) $("body").addClass("role-colors");
-    else $("body").removeClass("role-colors");
-}
-
 var autoHideTimeout = 0;
 function updateAutoHide() {
     if (!pSettings.current.config.autoHideAfterBattle) {
@@ -195,22 +140,4 @@ function updateAutoHide() {
             $("#combatantWrapper").removeClass('auto-hidden');
         }
     }
-}
-
-function webhook(str) {
-    if (str.indexOf("discordapp.com/api/webhooks/") == -1) return;
-    
-    $.ajax({
-        url: pSettings.current.config.discordWebHook,
-        type: "GET",
-        success: function (e) {
-            if (typeof e.id !== "undefined") {
-                console.log("Webhook validated");
-                pSettings.current.config.discordWebHook = str;
-                pSettings.save();
-            } else {
-                console.log("Webhook invalid");
-            }
-        }
-    })
 }
