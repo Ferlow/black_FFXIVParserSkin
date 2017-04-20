@@ -104,6 +104,7 @@ $("#confirmation-yes").on("click", function (e) {
     
     pSettings.defaults();
     $("#popupNotification").removeClass("show");
+    OverlayPluginApi.broadcastMessage('reload');
     location.reload();
 });
 $("#confirmation-no").on("click", function (e) {
