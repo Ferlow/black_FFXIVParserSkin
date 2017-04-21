@@ -26,7 +26,7 @@ If you really want to, you can download a copy of the layout completely or clone
 
 ## Features
 
-![Parser skin screenshot](https://cloud.githubusercontent.com/assets/3030516/25254732/0cd3a150-261f-11e7-81e7-5a5a33db3763.png)
+![Parser skin screenshot](http://pub.andysthings.com/parser/parse.png)
 
 *Things that are striked out are coming soon*
 
@@ -44,4 +44,4 @@ If you really want to, you can download a copy of the layout completely or clone
 
 Fully integrated configuration allows you to configure the overlay without editing anything externally.
 
-![Parser config](https://cloud.githubusercontent.com/assets/3030516/25255107/fcd53f28-2620-11e7-8c2d-b6f18ff66688.png)
+![Parser config](http://pub.andysthings.com/parser/settings.png)
