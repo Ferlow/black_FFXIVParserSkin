@@ -25,7 +25,7 @@ b {
         .gradient-bar(rgb(255, 255, 255));
         display: block;
         height: @bar-height;
-        box-shadow: inset 0px 2px 0px rgba(255, 255, 255, 0.2), inset 0px -2px 0px rgba(255, 255, 255, 0.2);
+        //box-shadow: inset 0px 2px 0px rgba(255, 255, 255, 0.2), inset 0px -2px 0px rgba(255, 255, 255, 0.2);
     }
 }
 
@@ -67,6 +67,12 @@ small {
     transition: all 0.5s;
     &.auto-hidden {
         height: @header-height-small;
+    }
+}
+
+.stream-mode {
+    #combatantWrapper {
+        background: rgb(0, 255, 0);
     }
 }
 
@@ -244,7 +250,7 @@ small {
             height: @bar-height - 4px;
             display: block;
             border: 1px solid #ffde9d;
-            border-radius: 3px;
+            border-radius: 8px;
             box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75), inset 0px -8px 4px 0px rgba(0,0,0,0.3), inset 0px 0px 2px 0px rgba(255,255,255,0.3);
         }
     }
@@ -258,6 +264,7 @@ small {
             div {
                 width: @short-bar-height - 4px;
                 height: @short-bar-height - 4px;
+                border-radius: 3px;
             }
         }
     }
@@ -484,7 +491,25 @@ small {
     }
 }
 
-.Acn,  .Smn, .Arc, .Brd, .Blm, .Thm, .Drg, .Lnc, .Pgl, .Mnk, .Mch, .Rog, .Nin {
+.role-colors {
+    .dps {
+        .progBar {
+            .gradient-bar(@role-color-dps);
+        }
+    }
+    .heal {
+        .progBar {
+            .gradient-bar(@role-color-healer);
+        }
+    }
+    .tank {
+        .progBar {
+            .gradient-bar(@role-color-tank);
+        }
+    }
+}
+
+.dps {
     .inner-left-table {
         .image {
             div {
@@ -493,7 +518,7 @@ small {
         }
     }
 }
-.Ast, .Cnj, .Whm, .Sch {
+.heal {
     .inner-left-table {
         .image {
             div {
@@ -502,7 +527,7 @@ small {
         }
     }
 }
-.Drk, .Mrd, .War, .Gld, .Pld {
+.tank {
     .inner-left-table {
         .image {
             div {

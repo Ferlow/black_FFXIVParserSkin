@@ -23,6 +23,8 @@ $(document).ready(function () {
     
     if (pSettings.current.config.showDetailedHeader) $("body").addClass("detailed-header");
     if (pSettings.current.config.useRoleColors) $("body").addClass("role-colors");
+    if (!pSettings.current.config.allowStreamMode) $(".stream-mode").hide();
+    if (getParameterByName("stream") == "true") $("body").addClass("stream-mode");
 });
 
 $("#menu-button").on("click", function (e) {
@@ -102,6 +104,9 @@ $("#popupMenu").on("click", "li", function (e) {
             case "settings":
                 window.open('../settings/','Parser - Settings','width=800,height=600');
                 break;
+            case "openStreamMode":
+                window.open('./index.html?stream=true','Stream Mode','width=800,height=600');
+                break;
             case "load4Man":
                 document.dispatchEvent(new CustomEvent('onOverlayDataUpdate', {
                     detail: ActFakeData4
@@ -139,4 +144,11 @@ function updateAutoHide() {
             $("#combatantWrapper").removeClass('auto-hidden');
         }
     }
+}
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }

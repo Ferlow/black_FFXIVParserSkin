@@ -9,10 +9,13 @@ $(document).ready(function () {
     if (pSettings.current.config.autoHideAfterBattle) $("[data-setting='use-auto-hide-parser']").addClass("active");
     $("[data-setting='use-auto-hide-parser'] input").val(pSettings.current.config.autoHideTimer);
     if (pSettings.current.config.useRoleColors) $("[data-setting='use-role-colors']").addClass("active");
-    if (pSettings.current.config.useCustomName) $("[data-setting='use-custom-names']").addClass("active");
-    $("[data-setting='use-custom-names'] input").val(pSettings.current.config.customName);
+    if (pSettings.current.config.useCustomName) $("[data-setting='use-custom-name']").addClass("active");
+    $("[data-setting='use-custom-name'] input").val(pSettings.current.config.customName);
     if (pSettings.current.config.useJobNames) $("[data-setting='use-job-names']").addClass("active");
+    else $("[data-setting='use-job-names-self']").addClass("disabled");
+    if (pSettings.current.config.useJobNamesSelf) $("[data-setting='use-job-names-self']").addClass("active");
     $("[data-setting='discord-webhook'] input").val(pSettings.current.config.discordWebHook);
+    if (pSettings.current.config.allowStreamMode) $("[data-setting='use-stream-mode']").addClass("active");
 });
 
 $("[data-setting]").on("click", function (e) {
@@ -53,8 +56,20 @@ $("[data-setting]").on("click", function (e) {
             break;
         case "use-job-names":
             pSettings.current.config.useJobNames = !pSettings.current.config.useJobNames;
+            if (!pSettings.current.config.useJobNames) {
+                $("[data-setting='use-job-names-self']").addClass("disabled");
+            } else {
+                $("[data-setting='use-job-names-self']").removeClass("disabled");
+            }
             $("#apply-settings").removeClass("disabled");
             break;
+        case "use-job-names-self":
+            pSettings.current.config.useJobNamesSelf = !pSettings.current.config.useJobNamesSelf;
+            $("#apply-settings").removeClass("disabled");
+        case "use-stream-mode":
+            pSettings.current.config.allowStreamMode = !pSettings.current.config.allowStreamMode;
+            $("#apply-settings").removeClass("disabled");
+            break
     }
 });
 $("[data-setting]").on("click", "input", function (e) {

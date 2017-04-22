@@ -1,76 +1,67 @@
 var ParserDefaultSettings = {
-    title: "{CurrentZoneName} {title} &middot; {duration}",
+    title: "{currentZone}: {title} &middot; {f.b}{duration}{f./b}",
     activeDataSet: 0,
     dataSets: [
         {
             label: "Damage",
-            detail: "Damage <b>{damage}</b> &middot; Group DPS <b>{dps}</b> &middot; Deaths <b>{deaths}</b>",
-            bar: "{damage}",
+            detail: "Damage {f.b}{damage.total}{f./b} &middot; Group DPS {f.b}{damage.ps}{f./b} &middot; Deaths {f.b}{deaths}{f./b}",
+            bar: "{damage.total}",
             sort: "damage",
             data: {
                 info: {
-                    main: "{encdps}",
-                    sub: "{damage%}",
-                    simple: "{encdps} {damage%}"
+                    main: "{damage.ps}",
+                    sub: "{damage.percent}",
+                    simple: "{damage.ps} {damage.percent}"
                 },
-                icon: {
-                    main: "{Job}",
-                    alt: "{name}"
-                },
+                icon: "{job}",
                 bar: {
-                    tl: "<b>{name}</b>",
-                    tr: "{maxhit}",
-                    bl: "{crithit%} Crit &middot; {tohit}% Acc",
+                    tl: "{f.b}{name}{f./b}",
+                    tr: "{damage.highest.full}",
+                    bl: "{damage.criticals.percent} Crit &middot; {damage.accuracy.percent}% Acc",
                     br: "",
-                    simple: "<b>{name}</b> &middot; {crithit%} Crit &middot; {tohit}% Acc &middot; {maxhit}"
+                    simple: "{f.b}{name}{f./b} &middot; {damage.criticals.percent} Crit &middot; {damage.accuracy.percent}% Acc &middot; {damage.highest.full}"
                 }
             }
         },
         {
             label: "Healing",
-            detail: "<em>Heals</em> {healed} &middot; <em>Group HPS</em> {enchps} &middot; <em>Deaths</em> {deaths}",
-            bar: "{enchps}",
+            detail: "Heals {f.b}{healing.total}{f./b} &middot; Group HPS {f.b}{healing.ps}{f./b} &middot; Deaths {f.b}{deaths}{f./b}",
+            bar: "{healing.ps}",
             sort: "enchps",
             data: {
                 info: {
-                    main: "{enchps}",
-                    sub: "{OverHealPct} OVER",
-                    simple: "{enchps}"
+                    main: "{healing.ps}",
+                    sub: "{healing.over} OVER",
+                    simple: "{healing.ps}"
                 },
-                icon: {
-                    main: "{Job}",
-                    alt: "{name}"
-                },
+                icon: "{job}",
                 bar: {
-                    tl: "<b>{name}</b>",
-                    tr: "{maxheal}",
-                    bl: "{critheal%} Crit",
+                    tl: "{f.b}{name}{f./b}",
+                    tr: "{healing.highest.full}",
+                    bl: "{healing.criticals.percent} Crit",
                     br: "",
-                    simple: "<b>{name}</b> &middot; {maxheal} &middot; {critheal%} Crit"
+                    simple: "{f.b}{name}{f./b} &middot; {healing.highest.full} &middot; {healing.criticals.percent} Crit"
                 }
             }
         },
         {
             label: "Tanking",
-            detail: "<em>Damage Taken</em> {damagetaken} &middot; <em>Deaths</em> {deaths}",
-            bar: "{damagetaken}",
+            detail: "Damage Taken {f.b}{tanking.total}{f./b} &middot; Deaths {f.b}{deaths}{f./b}",
+            bar: "{tanking.total}",
             sort: "damagetaken",
             data: {
                 info: {
-                    main: "{damagetaken}",
+                    main: "{tanking.total}",
                     sub: "",
                     simple: ""
                 },
-                icon: {
-                    main: "{Job}",
-                    alt: "{name}"
-                },
+                icon: "{job}",
                 bar: {
-                    tl: "<b>{name}</b>",
-                    tr: "{ParryPct} Parry",
+                    tl: "{f.b}{name}{f./b}",
+                    tr: "{tanking.parry} Parry",
                     bl: "",
-                    br: "{BlockPct} Block",
-                    simple: "<b>{name}</b> &middot; {ParryPct} Parry &middot; {BlockPct} Block"
+                    br: "{tanking.block} Block",
+                    simple: "{f.b}{name}{f./b} &middot; {tanking.parry} Parry &middot; {tanking.block} Block"
                 }
             }
         }
@@ -85,7 +76,9 @@ var ParserDefaultSettings = {
         useCustomName: false,
         customName: "",
         useJobNames: false,
+        useJobNamesSelf: false,
         useRoleColors: false,
+        allowStreamMode: false,
         discordWebHook: ""
     }
 };

@@ -19,8 +19,8 @@ function update(data) {
 }
 
 function updateEncounter(data) {
-    $("#encounter").html(parseActFormat(pSettings.current.title, data.Encounter));
-    $("#encounterDetail").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].detail, data.Encounter));
+    $("#encounter").html(parseData(pSettings.current.title, data.Encounter));
+    $("#encounterDetail").html(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].detail, data.Encounter));
     if(parseActFormat("{isActive}", data) == "true") {
         $("#status").html("In Combat").addClass("active blue-text").removeClass("gold-text");
         $("#combatantWrapper").removeClass("inactive").addClass("active");
@@ -55,20 +55,15 @@ function updateCombatantList(data) {
     for (var combatantName in filteredData) {
         var combatant = filteredData[combatantName];
         
-        var curBarBaseVal = parseFloat(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].bar, combatant));
+        var curBarBaseVal = parseFloat(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].bar, combatant));
 
         if (curBarBaseVal > maxBarBaseVal) maxBarBaseVal = curBarBaseVal;
         
         var tableRow = $("<tr>")
             .appendTo(tableBody);
             
-        if (parseActFormat("{Job}", combatant) != "") {
-            tableRow.addClass(parseActFormat("{Job}", combatant));
-        } else if (parseActFormat("{name}", combatant).indexOf("(") != -1) {
-            tableRow.addClass("chocobo");
-        } else if (parseActFormat("{name}", combatant) != "") {
-            tableRow.addClass(parseActFormat("{name}", combatant).replace(" ", ""));
-        }
+        tableRow.addClass(parseData("{job}", combatant));
+        tableRow.addClass(parseData("{role}", combatant));
             
         var tableCellLeft;
         if (!smallBars) {
@@ -84,23 +79,16 @@ function updateCombatantList(data) {
         var leftTableTopRow = $("<tr>").appendTo(leftTableBody);
         var leftTableCol = $("<td>").appendTo(leftTableTopRow);
         if (!smallBars) {
-            var leftTableSub = $("<div>").addClass("sub-data gold-text").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.info.sub, combatant)).appendTo(leftTableCol);
-            var leftTableMain = $("<div>").addClass("main-data gold-text").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.info.main, combatant)).appendTo(leftTableCol);
+            var leftTableSub = $("<div>").addClass("sub-data gold-text").html(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].data.info.sub, combatant)).appendTo(leftTableCol);
+            var leftTableMain = $("<div>").addClass("main-data gold-text").html(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].data.info.main, combatant)).appendTo(leftTableCol);
         } else {
-            var leftTableMain = $("<div>").addClass("main-data gold-text").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.info.simple, combatant)).appendTo(leftTableCol);
+            var leftTableMain = $("<div>").addClass("main-data gold-text").html(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].data.info.simple, combatant)).appendTo(leftTableCol);
         }
         
-        var icon = "";
-        if (parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon.main, combatant) != "") {
-            icon = parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon.main, combatant);
-        } else if (parseActFormat("{name}", combatant).indexOf("(") != -1) {
-            icon = "chocobo";
-        } else if (parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon.alt, combatant) != "") {
-            icon = parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon.alt, combatant);
-        }
+        var icon = parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon, combatant);
         
         if (icon !== "") {
-            var leftTableDivider = $("<td>").addClass("image").html("<div class=\"" + icon.toLowerCase() + "\" style=\"background-image: url('../general/icons/" + icon.toLowerCase() + ".png'); background-size: cover;\"></div>").appendTo(leftTableTopRow);
+            var leftTableDivider = $("<td>").addClass("image").html("<div class=\"" + icon + "\" style=\"background-image: url('../general/icons/" + icon + ".png'); background-size: cover;\"></div>").appendTo(leftTableTopRow);
         } else {
             leftTableCol.css({ "width": "108px" });
         }
@@ -121,14 +109,14 @@ function updateCombatantList(data) {
         var innerTbody = $("<tbody>").appendTo(innerTable);
         if (!smallBars) {
             var innerRow = $("<tr>").appendTo(innerTbody);
-            $("<td>").addClass("info-data").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.tl, combatant)).appendTo(innerRow);
-            $("<td>").addClass("info-data").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.tr, combatant)).appendTo(innerRow);
+            $("<td>").addClass("info-data").html(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.tl, combatant)).appendTo(innerRow);
+            $("<td>").addClass("info-data").html(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.tr, combatant)).appendTo(innerRow);
             innerRow = $("<tr>").appendTo(innerTbody);
-            $("<td>").addClass("info-data").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.bl, combatant)).appendTo(innerRow);
-            $("<td>").addClass("info-data").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.br, combatant)).appendTo(innerRow);
+            $("<td>").addClass("info-data").html(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.bl, combatant)).appendTo(innerRow);
+            $("<td>").addClass("info-data").html(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.br, combatant)).appendTo(innerRow);
         } else {
             var innerRow = $("<tr>").appendTo(innerTbody);
-            $("<td>").addClass("info-data").html(parseActFormat(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.simple, combatant)).appendTo(innerRow);
+            $("<td>").addClass("info-data").html(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.simple, combatant)).appendTo(innerRow);
         }
         
         combatantIndex++;
@@ -137,7 +125,7 @@ function updateCombatantList(data) {
 
 function parseActFormat(str, dictionary) {
     var result = "";
-
+    
     var currentIndex = 0;
     do {
         var openBraceIndex = str.indexOf('{', currentIndex);
