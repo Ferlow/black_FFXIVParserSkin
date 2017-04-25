@@ -5,7 +5,7 @@ var ParserDefaultSettings = {
         {
             label: "Damage",
             detail: "Damage {f.b}{damage.total}{f./b} &middot; Group DPS {f.b}{damage.ps}{f./b} &middot; Deaths {f.b}{deaths}{f./b}",
-            bar: "{damage.total}",
+            bar: "{damage.raw}",
             sort: "damage",
             data: {
                 info: {
@@ -26,7 +26,7 @@ var ParserDefaultSettings = {
         {
             label: "Healing",
             detail: "Heals {f.b}{healing.total}{f./b} &middot; Group HPS {f.b}{healing.ps}{f./b} &middot; Deaths {f.b}{deaths}{f./b}",
-            bar: "{healing.ps}",
+            bar: "{healing.raw}",
             sort: "enchps",
             data: {
                 info: {
@@ -47,7 +47,7 @@ var ParserDefaultSettings = {
         {
             label: "Tanking",
             detail: "Damage Taken {f.b}{tanking.total}{f./b} &middot; Deaths {f.b}{deaths}{f./b}",
-            bar: "{tanking.total}",
+            bar: "{tanking.raw}",
             sort: "damagetaken",
             data: {
                 info: {

@@ -140,6 +140,9 @@ var dataMapping = {
     duration: "duration",
     currentZone: "CurrentZoneName",
     damage: {
+        raw: function (db) {
+            return parseFloat(db["damage"]);
+        },
         total: function (db) {
             return parseFloat(db["damage"]).toLocaleString();
         },
@@ -183,6 +186,9 @@ var dataMapping = {
         }
     },
     healing: {
+        raw: function (db) {
+            return parseFloat(db["healed"]);
+        },
         total: function (db) {
             return parseFloat(db["healed"]).toLocaleString();
         },
@@ -219,6 +225,9 @@ var dataMapping = {
         }
     },
     tanking: {
+        raw: function (db) {
+            return parseFloat(db["damagetaken"]);
+        },
         total: function (db) {
             return parseFloat(db["damagetaken"]).toLocaleString();
         },
