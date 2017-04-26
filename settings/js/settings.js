@@ -174,7 +174,7 @@ $("#test-webhook").on("click", function (e) {
     }
     
     $.ajax({
-        url: pSettings.current.config.discordWebHook,
+        url: url,
         type: "GET",
         success: function (e) {
             if (typeof e.id !== "undefined") {
