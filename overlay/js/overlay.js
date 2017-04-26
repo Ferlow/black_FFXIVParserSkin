@@ -1,3 +1,5 @@
+var streamPopup = null;
+
 $("#parse-tabs").on("click", "li", function (e) {
     pSettings.current.activeDataSet = parseInt($(e.currentTarget).attr("data-index"));
     $("#parse-tabs li").removeClass("active");
@@ -105,7 +107,13 @@ $("#popupMenu").on("click", "li", function (e) {
                 window.open('../settings/','Parser - Settings','width=800,height=600');
                 break;
             case "openStreamMode":
-                window.open('./index.html?stream=true','Stream Mode','width=800,height=600');
+                streamPopup = window.open('./index.html?stream=true','Stream Mode','width=' + pSettings.current.config.streamModeWidth + ',height=' + pSettings.current.config.streamModeHeight);
+                streamPopup.onbeforeunload = function () {
+                    streamPopup = null;
+                }
+                streamPopup.onresize = function () {
+                    
+                }
                 break;
             case "load4Man":
                 document.dispatchEvent(new CustomEvent('onOverlayDataUpdate', {

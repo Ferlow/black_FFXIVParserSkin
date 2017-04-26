@@ -119,7 +119,7 @@ var dataMapping = {
         } else if (typeof db["name"] !== "undefined" && db["name"].indexOf("(") != -1) {
             return "chocobo";
         } else {
-            return db["name"];
+            return db["name"].replace(" ", "").toLowerCase();
         }
     },
     longjob: function (db) {

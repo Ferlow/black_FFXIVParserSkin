@@ -16,6 +16,22 @@ $(document).ready(function () {
     if (pSettings.current.config.useJobNamesSelf) $("[data-setting='use-job-names-self']").addClass("active");
     $("[data-setting='discord-webhook'] input").val(pSettings.current.config.discordWebHook);
     if (pSettings.current.config.allowStreamMode) $("[data-setting='use-stream-mode']").addClass("active");
+    else {
+        $("[data-setting='stream-mode-size-width']").addClass("disabled");
+        $("[data-setting='stream-mode-size-height']").addClass("disabled");
+    }
+    $("[data-setting='stream-mode-size-width'] input").val(pSettings.current.config.streamModeWidth);
+    $("[data-setting='stream-mode-size-height'] input").val(pSettings.current.config.streamModeHeight);
+    
+    setInterval(function () {
+        var w, h;
+        if (window.opener.streamPopup != null) {
+            w = window.opener.streamPopup.innerWidth;
+            h = window.opener.streamPopup.innerHeight;
+        }
+        $("[data-setting='stream-mode-current-size'] [data-param='width']").html(w);
+        $("[data-setting='stream-mode-current-size'] [data-param='height']").html(h);
+    }, 2000);
 });
 
 $("[data-setting]").on("click", function (e) {
@@ -69,6 +85,13 @@ $("[data-setting]").on("click", function (e) {
         case "use-stream-mode":
             pSettings.current.config.allowStreamMode = !pSettings.current.config.allowStreamMode;
             $("#apply-settings").removeClass("disabled");
+            if (!pSettings.current.config.allowStreamMode) {
+                $("[data-setting='stream-mode-size-width']").addClass("disabled");
+                $("[data-setting='stream-mode-size-height']").addClass("disabled");
+            } else {
+                $("[data-setting='stream-mode-size-width']").removeClass("disabled");
+                $("[data-setting='stream-mode-size-height']").removeClass("disabled");
+            }
             break
     }
 });
@@ -92,6 +115,14 @@ $("[data-setting]").on("input", "input", function (e) {
             break;
         case "discord-webhook":
             $("#test-webhook").text("Test");
+            break;
+        case "stream-mode-size-width":
+            pSettings.current.config.streamModeWidth = input.val();
+            $("#apply-settings").removeClass("disabled");
+            break;
+        case "stream-mode-size-height":
+            pSettings.current.config.streamModeHeight = input.val();
+            $("#apply-settings").removeClass("disabled");
             break;
     }
 });

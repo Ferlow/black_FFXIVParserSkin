@@ -79,6 +79,8 @@ var ParserDefaultSettings = {
         useJobNamesSelf: false,
         useRoleColors: false,
         allowStreamMode: false,
+        streamModeWidth: 800,
+        streamModeHeight: 600,
         discordWebHook: ""
     }
 };
