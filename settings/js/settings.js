@@ -185,8 +185,9 @@ $("#test-webhook").on("click", function (e) {
                 $("#test-webhook").text("Failed");
             }
         },
-        error: function () {
+        error: function (i,j,k) {
             $("#test-webhook").text("Failed");
+            console.log(i,j,k);
         }
     })
 });
