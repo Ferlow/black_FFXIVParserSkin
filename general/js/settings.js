@@ -19,7 +19,7 @@ var ParserDefaultSettings = {
                     tr: "{damage.highest.full}",
                     bl: "{damage.criticals.percent} Crit &middot; {damage.accuracy.percent}% Acc",
                     br: "",
-                    simple: "{f.b}{name}{f./b} &middot; {damage.criticals.percent} Crit &middot; {damage.accuracy.percent}% Acc &middot; {damage.highest.full}"
+                    simple: "{f.b}{name}{f./b} &middot; {damage.criticals.percent} Crit &middot; {damage.accuracy.percent}% Acc"
                 }
             }
         },
@@ -40,7 +40,7 @@ var ParserDefaultSettings = {
                     tr: "{healing.highest.full}",
                     bl: "{healing.criticals.percent} Crit",
                     br: "",
-                    simple: "{f.b}{name}{f./b} &middot; {healing.highest.full} &middot; {healing.criticals.percent} Crit"
+                    simple: "{f.b}{name}{f./b} &middot; {healing.criticals.percent} Crit"
                 }
             }
         },
