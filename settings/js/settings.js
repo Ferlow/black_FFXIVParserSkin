@@ -26,8 +26,8 @@ $(document).ready(function () {
     setInterval(function () {
         var w, h;
         if (window.opener.streamPopup != null) {
-            w = window.opener.streamPopup.innerWidth;
-            h = window.opener.streamPopup.innerHeight;
+            w = window.opener.streamPopup.outerWidth;
+            h = window.opener.streamPopup.outerHeight;
         }
         $("[data-setting='stream-mode-current-size'] [data-param='width']").html(w);
         $("[data-setting='stream-mode-current-size'] [data-param='height']").html(h);

@@ -27,6 +27,8 @@ $(document).ready(function () {
     if (pSettings.current.config.useRoleColors) $("body").addClass("role-colors");
     if (!pSettings.current.config.allowStreamMode) $(".stream-mode").hide();
     if (getParameterByName("stream") == "true") $("body").addClass("stream-mode");
+    
+    updateAutoHide();
 });
 
 $("#menu-button").on("click", function (e) {
@@ -140,6 +142,12 @@ function updateAutoHide() {
         clearTimeout(autoHideTimeout);
         autoHideTimeout = 0;
     } else if (lastData != null && parseActFormat("{isActive}", lastData) == "false") {
+        if (autoHideTimeout == 0) {
+            autoHideTimeout = setTimeout(function () {
+                $("#combatantWrapper").addClass('auto-hidden');
+            }, pSettings.current.config.autoHideTimer * 1000);
+        }
+    } else if (lastData == null) {
         if (autoHideTimeout == 0) {
             autoHideTimeout = setTimeout(function () {
                 $("#combatantWrapper").addClass('auto-hidden');

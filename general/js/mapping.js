@@ -155,25 +155,8 @@ var dataMapping = {
         count: "swings",
         percent: "damage%",
         highest: {
-            full: function (db) {
-                if (typeof db["maxhit"] !== "undefined") {
-                    var values = db["maxhit"].split("-");
-                    values[values.length - 1] = parseFloat(values[values.length - 1]).toLocaleString();
-                    return values.join("-");
-                }
-            },
-            name: function (db) {
-                if (typeof db["maxhit"] !== "undefined") {
-                    var values = db["maxhit"].split("-");
-                    return (values.length > 2) ? values[1] : values[0];
-                }
-            },
-            value: function (db) {
-                if (typeof db["maxhit"] !== "undefined") {
-                    var values = db["maxhit"].split("-");
-                    return parseFloat(values[values.length - 1]).toLocaleString();
-                }
-            }
+            full: "maxhit",
+            value: "MAXHIT"
         },
         accuracy: {
             hits: "hits",
@@ -199,25 +182,8 @@ var dataMapping = {
         percent: "healed%",
         over: "OverHealPct",
         highest: {
-            full: function (db) {
-                if (typeof db["maxheal"] !== "undefined") {
-                    var values = db["maxheal"].split("-");
-                    values[values.length - 1] = parseFloat(values[values.length - 1]).toLocaleString();
-                    return values.join("-");
-                }
-            },
-            name: function (db) {
-                if (typeof db["maxheal"] !== "undefined") {
-                    var values = db["maxheal"].split("-");
-                    return (values.length > 2) ? values[1] : values[0];
-                }
-            },
-            value: function (db) {
-                if (typeof db["maxheal"] !== "undefined") {
-                    var values = db["maxheal"].split("-");
-                    return parseFloat(values[values.length - 1]).toLocaleString();
-                }
-            }
+            full: "maxheal",
+            value: "MAXHEAL"
         },
         criticals: {
             count: "critheals",
