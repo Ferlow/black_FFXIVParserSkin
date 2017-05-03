@@ -101,6 +101,8 @@ $("#popupMenu").on("click", "li", function (e) {
                     type: "POST",
                     contentType: 'multipart/form-data',
                     data: JSON.stringify({
+                        "username": "FFXIV Parse",
+                        "avatar_url": "https://ihellmasker.github.io/FFXIVParserSkin/general/icons/webhook.png",
                         "content": output
                     })
                 });
