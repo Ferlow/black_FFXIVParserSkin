@@ -110,6 +110,12 @@ $("#popupMenu").on("click", "li", function (e) {
             case "settings":
                 window.open('../settings/','Parser - Settings','width=800,height=600');
                 break;
+            case "hideOverlay":
+                hideOverlay();
+                break;
+            case "showOverlay":
+                showOverlay();
+                break;
             case "openStreamMode":
                 streamPopup = window.open('./index.html?stream=true','Stream Mode','width=' + pSettings.current.config.streamModeWidth + ',height=' + pSettings.current.config.streamModeHeight);
                 streamPopup.onbeforeunload = function () {
@@ -162,6 +168,18 @@ function updateAutoHide() {
             $("#combatantWrapper").removeClass('auto-hidden');
         }
     }
+}
+function showOverlay() {
+    $("#combatantWrapper").removeClass('auto-hidden');
+    autoHideTimeout = setTimeout(function () {
+        autoHideTimeout = 0;
+        updateAutoHide();
+    }, 15 * 1000);
+}
+function hideOverlay() {
+    clearTimeout(autoHideTimeout);
+    autoHideTimeout = 0;
+    $("#combatantWrapper").addClass('auto-hidden');
 }
 
 function getParameterByName(name) {
