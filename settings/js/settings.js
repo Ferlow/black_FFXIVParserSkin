@@ -25,13 +25,15 @@ $(document).ready(function () {
     
     setInterval(function () {
         var w, h;
-        if (window.opener.streamPopup != null) {
+        if (window.opener != null && window.opener.streamPopup != null) {
             w = window.opener.streamPopup.outerWidth;
             h = window.opener.streamPopup.outerHeight;
         }
         $("[data-setting='stream-mode-current-size'] [data-param='width']").html(w);
         $("[data-setting='stream-mode-current-size'] [data-param='height']").html(h);
     }, 2000);
+    
+    $(".windowContainer .window-body").perfectScrollbar();
 });
 
 $("[data-setting]").on("click", function (e) {

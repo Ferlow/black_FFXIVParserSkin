@@ -3,6 +3,7 @@
     <meta charset="utf-8" />
     <title>Settings</title>
     <link type="text/css" rel="stylesheet" href="css/style.css?v=100" />
+    <link rel='stylesheet' href='../general/lib/perfect-scrollbar.min.css' />
 </head>
 <body>
     <div class="windowContainer">
@@ -11,44 +12,46 @@
         </h1>
         <div class="divider"></div>
         <div class="window-body">
-            <h2>
-                General
-            </h2>
-            <ul class="settings">
-                <li class="checkbox" data-setting="use-detailed-header">Show detailed header</li>
-                <li class="checkbox" data-setting="use-reduced-bar-size">Auto shrink bars when more entries than <input type="number" /></li>
-                <li class="checkbox next-tier" data-setting="use-reduced-bar-size-always">Always use small bars</li>
-                <li class="checkbox" data-setting="use-auto-hide-parser">Auto hide after battle <input type="number" /></li>
-            </ul>
-            <h2>
-                Bars
-            </h2>
-            <ul class="settings">
-                <li class="checkbox" data-setting="use-role-colors">Use role based colors</li>
-            </ul>
-            <h2>
-                Names
-            </h2>
-            <ul class="settings">
-                <li class="checkbox" data-setting="use-custom-name">Use custom name for yourself <input type="text" /></li>
-                <li class="checkbox" data-setting="use-job-names">Use job names</li>
-                <li class="checkbox next-tier" data-setting="use-job-names-self">Including yourself</li>
-            </ul>
-            <h2>
-                Discord Integration
-            </h2>
-            <ul class="settings">
-                <li data-setting="discord-webhook">Discord Webhook url <a class="info-text" href="" target="_blank">More info</a> <input type="text" /> <a href="#" id="test-webhook" class="button">Test</a></li>
-            </ul>
-            <h2>
-                Streaming
-            </h2>
-            <ul class="settings">
-                <li class="checkbox" data-setting="use-stream-mode">Enable Stream mode option</li>
-                <li class="next-tier" data-setting="stream-mode-size-width">Width: <input type="number" /></li>
-                <li class="next-tier" data-setting="stream-mode-size-height">Height: <input type="number" /></li>
-                <li class="next-tier" data-setting="stream-mode-current-size"><span class="info-text">Current Stream Window sizes - width: <strong data-param="width">0</strong> - height: <strong data-param="height">0</strong></span></li>
-            </ul>
+            <div class="window-body-content">
+                <h2>
+                    General
+                </h2>
+                <ul class="settings">
+                    <li class="checkbox" data-setting="use-detailed-header">Show detailed header</li>
+                    <li class="checkbox" data-setting="use-reduced-bar-size">Auto shrink bars when more entries than <input type="number" /></li>
+                    <li class="checkbox next-tier" data-setting="use-reduced-bar-size-always">Always use small bars</li>
+                    <li class="checkbox" data-setting="use-auto-hide-parser">Auto hide after battle <input type="number" /></li>
+                </ul>
+                <h2>
+                    Bars
+                </h2>
+                <ul class="settings">
+                    <li class="checkbox" data-setting="use-role-colors">Use role based colors</li>
+                </ul>
+                <h2>
+                    Names
+                </h2>
+                <ul class="settings">
+                    <li class="checkbox" data-setting="use-custom-name">Use custom name for yourself <input type="text" /></li>
+                    <li class="checkbox" data-setting="use-job-names">Use job names</li>
+                    <li class="checkbox next-tier" data-setting="use-job-names-self">Including yourself</li>
+                </ul>
+                <h2>
+                    Discord Integration
+                </h2>
+                <ul class="settings">
+                    <li data-setting="discord-webhook">Discord Webhook url <a class="info-text" href="" target="_blank">More info</a> <input type="text" /> <a href="#" id="test-webhook" class="button">Test</a></li>
+                </ul>
+                <h2>
+                    Streaming
+                </h2>
+                <ul class="settings">
+                    <li class="checkbox" data-setting="use-stream-mode">Enable Stream mode option</li>
+                    <li class="next-tier" data-setting="stream-mode-size-width">Width: <input type="number" /></li>
+                    <li class="next-tier" data-setting="stream-mode-size-height">Height: <input type="number" /></li>
+                    <li class="next-tier" data-setting="stream-mode-current-size"><span class="info-text">Current Stream Window sizes - width: <strong data-param="width">0</strong> - height: <strong data-param="height">0</strong></span></li>
+                </ul>
+            </div>
         </div>
         <div class="divider"></div>
         <div class="window-footer">
@@ -80,6 +83,7 @@
 	
 	<script src="../general/lib/jquery.min.js" type="text/javascript"></script>
 	<script src="../general/lib/underscore.min.js" type="text/javascript"></script>
+    <script src="../general/lib/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
     
     <script src="../general/js/settings.js?v=100" type="text/javascript"></script>
     <script src="../general/js/fakedata.js?v=100" type="text/javascript"></script>

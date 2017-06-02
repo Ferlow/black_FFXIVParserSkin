@@ -29,6 +29,8 @@ $(document).ready(function () {
     if (getParameterByName("stream") == "true") $("body").addClass("stream-mode");
     
     updateAutoHide();
+    
+    $("#combatantWrapper #tableWrapper").perfectScrollbar();
 });
 
 $("#menu-button").on("click", function (e) {
@@ -145,6 +147,7 @@ $("#popupMenu").on("click", "li", function (e) {
 });
 
 var autoHideTimeout = 0;
+var autoHideStopped = false;
 function updateAutoHide() {
     if (!pSettings.current.config.autoHideAfterBattle) {
         clearTimeout(autoHideTimeout);
@@ -161,7 +164,7 @@ function updateAutoHide() {
                 $("#combatantWrapper").addClass('auto-hidden');
             }, pSettings.current.config.autoHideTimer * 1000);
         }
-    } else {
+    } else if (!autoHideStopped) {
         clearTimeout(autoHideTimeout);
         autoHideTimeout = 0;
         if ($("#combatantWrapper").hasClass('auto-hidden')) {
@@ -180,6 +183,10 @@ function hideOverlay() {
     clearTimeout(autoHideTimeout);
     autoHideTimeout = 0;
     $("#combatantWrapper").addClass('auto-hidden');
+    autoHideStopped = true;
+    setTimeout(function () {
+        autoHideStopped = false;
+    }, 15 * 1000);
 }
 
 function getParameterByName(name) {
