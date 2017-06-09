@@ -43,7 +43,7 @@ var job_details = {
         role: "dps",
         name: "Machinist"
     },
-    "Rrog": {
+    "rog": {
         role: "dps",
         name: "Rogue"
     },
