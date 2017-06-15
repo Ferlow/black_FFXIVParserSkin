@@ -380,7 +380,7 @@ small {
         }
         
         &.debug-list {
-            //display: none;
+            display: none;
         }
 
         .popup-menu-list {
@@ -401,6 +401,33 @@ small {
                         background: transparent;
                     }
                 }
+            }
+        }
+    }
+}
+
+#updateNotes {
+    margin: 0px 10%;
+    ul.list {
+        margin: 0px;
+        padding: 0px;
+        list-style-type: none;
+        font-size: 12px;
+        
+        li {
+            border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
+            padding-bottom: 3px;
+            padding-top: 3px;
+            &:last-child {
+                border-bottom: 0px;
+            }
+            .date {
+                .gold-text();
+                float: left;
+            }
+            .message {
+                .blue-text();
+                margin-left: 100px;
             }
         }
     }

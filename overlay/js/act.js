@@ -12,6 +12,7 @@ document.addEventListener("onBroadcastMessageReceive", function (e) {
 });
 
 function update(data) {
+    if ($("#updateNotes").is(":visible")) $("#updateNotes").hide();
     lastData = data;
     updateEncounter(data);
     updateCombatantList(data);
