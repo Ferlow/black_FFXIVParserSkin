@@ -1,7 +1,7 @@
 var lastData = null;
 
 document.addEventListener("onOverlayDataUpdate", function (e) {
-    update(e.detail);
+    if (Object.keys(e.detail.Combatant).length > 0) update(e.detail);
 });
 document.addEventListener("onBroadcastMessageReceive", function (e) {
     switch(e.detail.message) {
