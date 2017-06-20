@@ -51,6 +51,14 @@ var job_details = {
         role: "dps",
         name: "Ninja"
     },
+    "rdm": {
+        role: "dps",
+        name: "Red Mage"
+    },
+    "sam": {
+        role: "dps",
+        name: "Samurai"
+    },
     "ast": {
         role: "heal",
         name: "Astrologian"
@@ -86,7 +94,7 @@ var job_details = {
     "pld": {
         role: "tank",
         name: "Paladin"
-    },
+    }
 };
 var dataMapping = {
     f: {
