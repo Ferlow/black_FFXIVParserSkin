@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Settings</title>
-    <link type="text/css" rel="stylesheet" href="css/style.css?v=100" />
+    <link type="text/css" rel="stylesheet" href="css/style.css?v=103" />
     <link rel='stylesheet' href='../general/lib/perfect-scrollbar.min.css' />
 </head>
 <body>
@@ -11,53 +11,98 @@
             Parser Settings
         </h1>
         <div class="divider"></div>
-        <div class="window-body">
-            <div class="window-body-content">
-                <h2>
-                    General
-                </h2>
-                <ul class="settings">
-                    <li class="checkbox" data-setting="use-detailed-header">Show detailed header</li>
-                    <li class="checkbox" data-setting="use-reduced-bar-size">Auto shrink bars when more entries than <input type="number" /></li>
-                    <li class="checkbox next-tier" data-setting="use-reduced-bar-size-always">Always use small bars</li>
-                    <li class="checkbox" data-setting="use-auto-hide-parser">Auto hide after battle <input type="number" /></li>
-                </ul>
-                <h2>
-                    Bars
-                </h2>
-                <ul class="settings">
-                    <li class="checkbox" data-setting="use-role-colors">Use role based colors</li>
-                </ul>
-                <h2>
-                    Names
-                </h2>
-                <ul class="settings">
-                    <li class="checkbox" data-setting="use-custom-name">Use custom name for yourself <input type="text" /></li>
-                    <li class="checkbox" data-setting="use-job-names">Use job names</li>
-                    <li class="checkbox next-tier" data-setting="use-job-names-self">Including yourself</li>
-                </ul>
-                <h2>
-                    Discord Integration
-                </h2>
-                <ul class="settings">
-                    <li data-setting="discord-webhook">Discord Webhook url <a class="info-text" href="" target="_blank">More info</a> <input type="text" /> <a href="#" id="test-webhook" class="button">Test</a></li>
-                </ul>
-                <h2>
-                    Streaming
-                </h2>
-                <ul class="settings">
-                    <li class="checkbox" data-setting="use-stream-mode">Enable Stream mode option</li>
-                    <li class="next-tier" data-setting="stream-mode-size-width">Width: <input type="number" /></li>
-                    <li class="next-tier" data-setting="stream-mode-size-height">Height: <input type="number" /></li>
-                    <li class="next-tier" data-setting="stream-mode-current-size"><span class="info-text">Current Stream Window sizes - width: <strong data-param="width">0</strong> - height: <strong data-param="height">0</strong></span></li>
-                </ul>
-            </div>
+        <div class="settings-left">
+            <ul class="setting-tabs">
+                <li class="main active" data-tab="config-general">&nbsp;</li>
+                <li class="datasets" data-tab="parserData">&nbsp;</li>
+                <li class="stream" data-tab="config-stream">&nbsp;</li>
+                <li class="discord" data-tab="config-discord">&nbsp;</li>
+                <li class="about">&nbsp;</li>
+            </ul>
         </div>
-        <div class="divider"></div>
-        <div class="window-footer">
-            <a href="#" id="default-settings" class="button">Default</a>
-            <a href="#" id="close-settings" class="button right">Close</a>
-            <a href="#" id="apply-settings" class="button right disabled">Apply</a>
+        <div class="settings-right">
+            <div class="window-body">
+                <div class="window-body-content">
+                    <div class="settings-panel active">
+                        <h2>
+                            General
+                        </h2>
+                        <ul class="settings">
+                            <li class="checkbox" data-setting="use-detailed-header">Show detailed header</li>
+                            <li class="checkbox" data-setting="use-reduced-bar-size">Auto shrink bars when more entries than <input type="number" /></li>
+                            <li class="checkbox next-tier" data-setting="use-reduced-bar-size-always">Always use small bars</li>
+                            <li class="checkbox" data-setting="use-auto-hide-parser">Auto hide after battle <input type="number" /></li>
+                        </ul>
+                        <h2>
+                            Bars
+                        </h2>
+                        <ul class="settings">
+                            <li class="checkbox" data-setting="use-role-colors">Use role based colors</li>
+                        </ul>
+                        <h2>
+                            Names
+                        </h2>
+                        <ul class="settings">
+                            <li class="checkbox" data-setting="use-custom-name">Use custom name for yourself <input type="text" /></li>
+                            <li class="checkbox" data-setting="use-job-names">Use job names</li>
+                            <li class="checkbox next-tier" data-setting="use-job-names-self">Including yourself</li>
+                        </ul>
+                    </div>
+                    <div class="settings-panel">
+                        <h2>
+                            Data Sets
+                        </h2>
+                        <ul class="settings">
+                            <li>No Settings yet.</li>
+                        </ul>
+                    </div>
+                    <div class="settings-panel">
+                        <h2>
+                            Streaming
+                        </h2>
+                        <ul class="settings">
+                            <li class="checkbox" data-setting="use-stream-mode">Enable Stream mode option</li>
+                            <li class="next-tier" data-setting="stream-mode-size-width">Width: <input type="number" /></li>
+                            <li class="next-tier" data-setting="stream-mode-size-height">Height: <input type="number" /></li>
+                            <li class="next-tier" data-setting="stream-mode-current-size"><span class="info-text">Current Stream Window sizes - width: <strong data-param="width">0</strong> - height: <strong data-param="height">0</strong></span></li>
+                        </ul>
+                    </div>
+                    <div class="settings-panel">
+                        <h2>
+                            Discord Integration
+                        </h2>
+                        <ul class="settings">
+                            <li data-setting="discord-webhook">Discord Webhook url <a class="info-text" href="https://github.com/Ihellmasker/FFXIVParserSkin/wiki/Discord-Output" target="_blank">More info</a> <input type="text" /></li>
+                            <li class="next-tier"><a href="#" id="test-webhook" class="button">Verify</a></li>
+                            <li class="checkbox" data-setting="discord-auto-posting">Enable auto-posting at the end of Combat</li>
+                            <li class="checkbox next-tier" data-setting="discord-min-party-size">Minimum party size <input type="number" /></li>
+                            <li class="checkbox next-tier" data-setting="discord-max-party-size">Maximum party size <input type="number" /></li>
+                            <li class="checkbox next-tier" data-setting="discord-min-dps">Minimum DPS <input type="number" /></li>
+                            <li class="checkbox next-tier" data-setting="discord-min-duration">Minimum combat duration <input type="number" /></li>
+                        </ul>
+                    </div>
+                    <div class="settings-panel">
+                        <h2>
+                            About
+                        </h2>
+                        <p>
+                            Made by Ihm Kasukabe (Ragnarok).
+                        </p>
+                        <p>
+                            If you need any help or have any problems, please post an issue at <a href="https://github.com/Ihellmasker/FFXIVParserSkin/issues" target="_blank">https://github.com/Ihellmasker/FFXIVParserSkin/issues</a>.
+                        </p>
+                        <p>
+                            You could also hit me up on <a href="https://twitter.com/ihellmasker" target="_blank">Twitter @IHellMasker</a> or <a href="https://twitch.tv/ihellmasker" target="_blank">Twitch IHellMasker</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="window-footer">
+                <a href="#" id="default-settings" class="button">Default</a>
+                <a href="#" id="close-settings" class="button right">Close</a>
+                <a href="#" id="apply-settings" class="button right disabled">Apply</a>
+            </div>
         </div>
     </div>
     <div id="popupNotification">
@@ -69,7 +114,7 @@
                 <div class="divider"></div>
                 <div class="window-body">
                     <h2>
-                        Are you sure you wish to return the settings to default?
+                        Are you sure you wish to return the settings for this tab to default?
                     </h2>
                 </div>
                 <div class="divider"></div>
@@ -85,9 +130,9 @@
 	<script src="../general/lib/underscore.min.js" type="text/javascript"></script>
     <script src="../general/lib/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
     
-    <script src="../general/js/settings.js?v=100" type="text/javascript"></script>
-    <script src="../general/js/fakedata.js?v=100" type="text/javascript"></script>
+    <script src="../general/js/settings.js?v=103" type="text/javascript"></script>
+    <script src="../general/js/fakedata.js?v=103" type="text/javascript"></script>
     
-    <script src="js/settings.js?v=100" type="text/javascript"></script>
+    <script src="js/settings.js?v=103" type="text/javascript"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 var lastData = null;
+var parseActive = false;
 
 document.addEventListener("onOverlayDataUpdate", function (e) {
     if (Object.keys(e.detail.Combatant).length > 0) update(e.detail);
@@ -10,6 +11,14 @@ document.addEventListener("onBroadcastMessageReceive", function (e) {
             break;
     }
 });
+/*document.addEventListener("onLogLine", function (e) {
+    console.log(e);
+    switch(e) {
+        case 'discord':
+            pushToDiscord();
+            break;
+    }
+});*/
 
 function update(data) {
     if ($("#updateNotes").is(":visible")) $("#updateNotes").hide();
@@ -20,9 +29,13 @@ function update(data) {
 }
 
 function updateEncounter(data) {
-    $("#encounter").html(parseData(pSettings.current.title, data.Encounter));
-    $("#encounterDetail").html(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].detail, data.Encounter));
-    if(parseActFormat("{isActive}", data) == "true") {
+    if (parseActive && parseActFormat("{isActive}", data) == "false") {
+        encounterEnd(data);
+    }
+    $("#encounter").html(parseData(pSettings.current.parserData.title, data.Encounter));
+    $("#encounterDetail").html(parseData(pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].detail, data.Encounter));
+    parseActive = parseActFormat("{isActive}", data) == "true";
+    if(parseActive) {
         $("#status").html("In Combat").addClass("active blue-text").removeClass("gold-text");
         $("#combatantWrapper").removeClass("inactive").addClass("active");
     }
@@ -30,13 +43,43 @@ function updateEncounter(data) {
         $("#status").html("Idle").removeClass("active blue-text").addClass("gold-text");
         $("#combatantWrapper").removeClass("active").addClass("inactive");
     }
+    
+}
+
+function encounterEnd(data) {
+    if (pSettings.current.config.discord.autoPost.enable) {
+        var post = true;
+        if (post && pSettings.current.config.discord.autoPost.minParty.enable) {
+            if (Object.keys(data.Combatant).length < parseInt(pSettings.current.config.discord.autoPost.minParty.value)) {
+                post = false;
+            }
+        }
+        if (post && pSettings.current.config.discord.autoPost.maxParty.enable) {
+            if (Object.keys(data.Combatant).length < parseInt(pSettings.current.config.discord.autoPost.maxParty.value)) {
+                post = false;
+            }
+        }
+        if (post && pSettings.current.config.discord.autoPost.minDPS.enable) {
+            if (data.Encounter["encdps"] < parseFloat(pSettings.current.config.discord.autoPost.minDPS.value)) {
+                post = false;
+            }
+        }
+        if (post && pSettings.current.config.discord.autoPost.minDur.enable) {
+            if (data.Encounter["DURATION"] < parseFloat(pSettings.current.config.discord.autoPost.minDur.value)) {
+                post = false;
+            }
+        }
+        if (post) {
+            pushToDiscord();
+        }
+    }
 }
 
 function updateCombatantList(data) {
     filteredData = _.sortBy(_.filter(data.Combatant, function (d) {
-        return parseInt(d[pSettings.current.dataSets[pSettings.current.activeDataSet].sort], 10) > 0;
+        return parseInt(d[pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].sort], 10) > 0;
     }), function(d)  {
-        return -parseInt(d[pSettings.current.dataSets[pSettings.current.activeDataSet].sort], 10);
+        return -parseInt(d[pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].sort], 10);
     }.bind(this));
     
     var table = $("#combatantTable");
@@ -50,13 +93,13 @@ function updateCombatantList(data) {
         
     var combatantIndex = 0;
     var maxBarBaseVal = 0;
-    var smallBars = (pSettings.current.config.useReducedBarSize && pSettings.current.config.useReducedBarSizeAlways) || (pSettings.current.config.useReducedBarSize && Object.keys(data.Combatant).length > pSettings.current.config.reducedBarSizeMaxEntries);
+    var smallBars = (pSettings.current.config.general.reducedBarSize.enable && pSettings.current.config.general.reducedBarSize.alwaysEnable) || (pSettings.current.config.general.reducedBarSize.enable && Object.keys(data.Combatant).length > pSettings.current.config.general.reducedBarSize.maxEntries);
     if (smallBars) $("body").addClass("reduced-size");
     else $("body").removeClass("reduced-size");
     for (var combatantName in filteredData) {
         var combatant = filteredData[combatantName];
         
-        var curBarBaseVal = parseFloat(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].bar, combatant));
+        var curBarBaseVal = parseFloat(parseData(pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].bar, combatant));
 
         if (curBarBaseVal > maxBarBaseVal) maxBarBaseVal = curBarBaseVal;
         
@@ -80,13 +123,13 @@ function updateCombatantList(data) {
         var leftTableTopRow = $("<tr>").appendTo(leftTableBody);
         var leftTableCol = $("<td>").appendTo(leftTableTopRow);
         if (!smallBars) {
-            var leftTableSub = $("<div>").addClass("sub-data gold-text").html(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].data.info.sub, combatant)).appendTo(leftTableCol);
-            var leftTableMain = $("<div>").addClass("main-data gold-text").html(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].data.info.main, combatant)).appendTo(leftTableCol);
+            var leftTableSub = $("<div>").addClass("sub-data gold-text").html(parseData(pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].data.info.sub, combatant)).appendTo(leftTableCol);
+            var leftTableMain = $("<div>").addClass("main-data gold-text").html(parseData(pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].data.info.main, combatant)).appendTo(leftTableCol);
         } else {
-            var leftTableMain = $("<div>").addClass("main-data gold-text").html(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].data.info.simple, combatant)).appendTo(leftTableCol);
+            var leftTableMain = $("<div>").addClass("main-data gold-text").html(parseData(pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].data.info.simple, combatant)).appendTo(leftTableCol);
         }
         
-        var icon = parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].data.icon, combatant);
+        var icon = parseData(pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].data.icon, combatant);
         
         if (icon !== "") {
             var leftTableDivider = $("<td>").addClass("image").html("<div class=\"" + icon + "\" style=\"background-image: url('../general/icons/" + icon + ".png'); background-size: cover;\"></div>").appendTo(leftTableTopRow);
@@ -110,14 +153,14 @@ function updateCombatantList(data) {
         var innerTbody = $("<tbody>").appendTo(innerTable);
         if (!smallBars) {
             var innerRow = $("<tr>").appendTo(innerTbody);
-            $("<td>").addClass("info-data").html(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.tl, combatant)).appendTo(innerRow);
-            $("<td>").addClass("info-data").html(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.tr, combatant)).appendTo(innerRow);
+            $("<td>").addClass("info-data").html(parseData(pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].data.bar.tl, combatant)).appendTo(innerRow);
+            $("<td>").addClass("info-data").html(parseData(pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].data.bar.tr, combatant)).appendTo(innerRow);
             innerRow = $("<tr>").appendTo(innerTbody);
-            $("<td>").addClass("info-data").html(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.bl, combatant)).appendTo(innerRow);
-            $("<td>").addClass("info-data").html(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.br, combatant)).appendTo(innerRow);
+            $("<td>").addClass("info-data").html(parseData(pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].data.bar.bl, combatant)).appendTo(innerRow);
+            $("<td>").addClass("info-data").html(parseData(pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].data.bar.br, combatant)).appendTo(innerRow);
         } else {
             var innerRow = $("<tr>").appendTo(innerTbody);
-            $("<td>").addClass("info-data").html(parseData(pSettings.current.dataSets[pSettings.current.activeDataSet].data.bar.simple, combatant)).appendTo(innerRow);
+            $("<td>").addClass("info-data").html(parseData(pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].data.bar.simple, combatant)).appendTo(innerRow);
         }
         
         combatantIndex++;

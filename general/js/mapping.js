@@ -174,6 +174,13 @@ var dataMapping = {
         criticals: {
             count: "crithits",
             percent: "crithit%"
+        },
+        directhit: {
+            count: "DirectHitCount",
+            percent: "DirectHitPct"
+        },
+        critdirecthit: {
+            percent: "CritDirectHitPct"
         }
     },
     healing: {

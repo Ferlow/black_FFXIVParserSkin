@@ -1,7 +1,7 @@
 var streamPopup = null;
 
 $("#parse-tabs").on("click", "li", function (e) {
-    pSettings.current.activeDataSet = parseInt($(e.currentTarget).attr("data-index"));
+    pSettings.current.parserData.activeDataSet = parseInt($(e.currentTarget).attr("data-index"));
     $("#parse-tabs li").removeClass("active");
     $("#parse-tabs li[data-index='" + $(e.currentTarget).attr("data-index") + "']").addClass("active");
     if (lastData !== null) {
@@ -13,7 +13,7 @@ $("#parse-tabs").on("click", "li", function (e) {
 $(document).ready(function () {
     pSettings.load();
     
-    $.each(pSettings.current.dataSets, function (index, def) {
+    $.each(pSettings.current.parserData.dataSets, function (index, def) {
         $("<li>")
             .addClass(index == 0 ? "active" : "")
             .attr({
@@ -23,9 +23,9 @@ $(document).ready(function () {
             .appendTo("#parse-tabs");
     });
     
-    if (pSettings.current.config.showDetailedHeader) $("body").addClass("detailed-header");
-    if (pSettings.current.config.useRoleColors) $("body").addClass("role-colors");
-    if (!pSettings.current.config.allowStreamMode) $(".stream-mode").hide();
+    if (pSettings.current.config.general.showDetailedHeader) $("body").addClass("detailed-header");
+    if (pSettings.current.config.general.roleBasedColors) $("body").addClass("role-colors");
+    if (!pSettings.current.config.stream.enable) $(".stream-mode").hide();
     if (getParameterByName("stream") == "true") $("body").addClass("stream-mode");
     
     updateAutoHide();
@@ -46,68 +46,7 @@ $("#popupMenu").on("click", "li", function (e) {
     $("#popupMenu").fadeOut('fast', function () {
         switch ($(e.currentTarget).attr("data-id")) {
             case "pushToDiscord":
-                if (pSettings.current.config.discordWebHook == "") return;
-                if (lastData == null) return;
-                var tab = " ";
-                var lastLength = 0;
-                var fullDetail = Object.keys(lastData.Combatant).length <= 17;
-                var output = "";
-                output += "```MD\n";
-                output += "Encounter       [" + parseActFormat("{CurrentZoneName}", lastData.Encounter) + "][" + parseActFormat("{title}", lastData.Encounter) + "]<" + parseActFormat("{duration}", lastData.Encounter) + ">\n";
-                output += "Encounter DPS   <" + parseActFormat("{dps}", lastData.Encounter) + ">\n";
-                if (fullDetail) {
-                    output += "#Name                dps    dmg%  crit% acc%     max hit\n";
-                } else {
-                    output += "#Name                dps    dmg%  crit% acc%\n";
-                }
-                                
-                filteredData = _.sortBy(_.filter(lastData.Combatant, function (d) {
-                    return parseInt(d[pSettings.current.dataSets[pSettings.current.activeDataSet].sort], 10) > 0;
-                }), function(d)  {
-                    return -parseInt(d[pSettings.current.dataSets[pSettings.current.activeDataSet].sort], 10);
-                }.bind(this));
-                
-                lastLength = output.length;
-
-                for (var combatantName in filteredData) {
-                    var combatant = filteredData[combatantName];
-                    var currentLine = "";
-                    var job = parseActFormat("{Job}", combatant);
-                    
-                    currentLine += job.length > 0 ? "[" + job + "]" : "";
-                    currentLine += (parseActFormat("{NAME15}", combatant) + "               ").slice(0, 15);
-                    currentLine += job.length > 0 ? "" : "     ";
-                    currentLine += tab;
-                    currentLine += "<" + ("    " + parseActFormat("{ENCDPS}", combatant)).slice(-4) + ">";
-                    currentLine += tab;
-                    currentLine += "<" + ("   " + parseActFormat("{damage%}", combatant).slice(0, -1)).slice(-3) + ">";
-                    currentLine += tab;
-                    currentLine += "<" + ("   " + parseActFormat("{crithit%}", combatant).slice(0, -1)).slice(-3) + ">";
-                    currentLine += tab;
-                    currentLine += "<" + ("      " + parseActFormat("{tohit}", combatant)).slice(-6) + ">";
-                    if (fullDetail) {
-                        currentLine += tab;
-                        currentLine += "[" + parseActFormat("{maxhit}", combatant).replace("-", "][") + "]";
-                    }
-                    currentLine += "\n";
-                    
-                    if (currentLine.length + lastLength < 1996) {
-                        output += currentLine;
-                    }
-                }
-    
-                output += "```";
-                
-                $.ajax({
-                    url: pSettings.current.config.discordWebHook,
-                    type: "POST",
-                    contentType: 'multipart/form-data',
-                    data: JSON.stringify({
-                        "username": "FFXIV Parse",
-                        "avatar_url": "https://ihellmasker.github.io/FFXIVParserSkin/general/icons/webhook.png",
-                        "content": output
-                    })
-                });
+                pushToDiscord();
                 break;
             case "settings":
                 window.open('../settings/','Parser - Settings','width=800,height=600');
@@ -119,7 +58,7 @@ $("#popupMenu").on("click", "li", function (e) {
                 showOverlay();
                 break;
             case "openStreamMode":
-                streamPopup = window.open('./index.html?stream=true','Stream Mode','width=' + pSettings.current.config.streamModeWidth + ',height=' + pSettings.current.config.streamModeHeight);
+                streamPopup = window.open('./index.html?stream=true','Stream Mode','width=' + pSettings.current.config.stream.size.width + ',height=' + pSettings.current.config.stream.size.width);
                 streamPopup.onbeforeunload = function () {
                     streamPopup = null;
                 }
@@ -149,20 +88,20 @@ $("#popupMenu").on("click", "li", function (e) {
 var autoHideTimeout = 0;
 var autoHideStopped = false;
 function updateAutoHide() {
-    if (!pSettings.current.config.autoHideAfterBattle) {
+    if (!pSettings.current.config.general.autoHide.enable) {
         clearTimeout(autoHideTimeout);
         autoHideTimeout = 0;
     } else if (lastData != null && parseActFormat("{isActive}", lastData) == "false") {
         if (autoHideTimeout == 0) {
             autoHideTimeout = setTimeout(function () {
                 $("#combatantWrapper").addClass('auto-hidden');
-            }, pSettings.current.config.autoHideTimer * 1000);
+            }, pSettings.current.config.general.autoHide.timer * 1000);
         }
     } else if (lastData == null) {
         if (autoHideTimeout == 0) {
             autoHideTimeout = setTimeout(function () {
                 $("#combatantWrapper").addClass('auto-hidden');
-            }, pSettings.current.config.autoHideTimer * 1000);
+            }, pSettings.current.config.general.autoHide.timer * 1000);
         }
     } else if (!autoHideStopped) {
         clearTimeout(autoHideTimeout);
@@ -194,4 +133,69 @@ function getParameterByName(name) {
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
     results = regex.exec(location.search);
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function pushToDiscord() {
+    if (pSettings.current.config.discord.webhook == "") return;
+    if (lastData == null) return;
+    var tab = " ";
+    var lastLength = 0;
+    var fullDetail = Object.keys(lastData.Combatant).length <= 17;
+    var output = "";
+    output += "```MD\n";
+    output += "Encounter       [" + parseActFormat("{CurrentZoneName}", lastData.Encounter) + "][" + parseActFormat("{title}", lastData.Encounter) + "]<" + parseActFormat("{duration}", lastData.Encounter) + ">\n";
+    output += "Encounter DPS   <" + parseActFormat("{dps}", lastData.Encounter) + ">\n";
+    if (fullDetail) {
+        output += "#Name                dps    dmg%  crit% acc%     max hit\n";
+    } else {
+        output += "#Name                dps    dmg%  crit% acc%\n";
+    }
+                    
+    filteredData = _.sortBy(_.filter(lastData.Combatant, function (d) {
+        return parseInt(d[pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].sort], 10) > 0;
+    }), function(d)  {
+        return -parseInt(d[pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].sort], 10);
+    }.bind(this));
+    
+    lastLength = output.length;
+
+    for (var combatantName in filteredData) {
+        var combatant = filteredData[combatantName];
+        var currentLine = "";
+        var job = parseActFormat("{Job}", combatant);
+        
+        currentLine += job.length > 0 ? "[" + job + "]" : "";
+        currentLine += (parseActFormat("{NAME15}", combatant) + "               ").slice(0, 15);
+        currentLine += job.length > 0 ? "" : "     ";
+        currentLine += tab;
+        currentLine += "<" + ("    " + parseActFormat("{ENCDPS}", combatant)).slice(-4) + ">";
+        currentLine += tab;
+        currentLine += "<" + ("   " + parseActFormat("{damage%}", combatant).slice(0, -1)).slice(-3) + ">";
+        currentLine += tab;
+        currentLine += "<" + ("   " + parseActFormat("{crithit%}", combatant).slice(0, -1)).slice(-3) + ">";
+        currentLine += tab;
+        currentLine += "<" + ("      " + parseActFormat("{tohit}", combatant)).slice(-6) + ">";
+        if (fullDetail) {
+            currentLine += tab;
+            currentLine += "[" + parseActFormat("{maxhit}", combatant).replace("-", "][") + "]";
+        }
+        currentLine += "\n";
+        
+        if (currentLine.length + lastLength < 1996) {
+            output += currentLine;
+        }
+    }
+
+    output += "```";
+    
+    $.ajax({
+        url: pSettings.current.config.discord.webhook,
+        type: "POST",
+        contentType: 'multipart/form-data',
+        data: JSON.stringify({
+            "username": "FFXIV Parse",
+            "avatar_url": "https://ihellmasker.github.io/FFXIVParserSkin/general/icons/webhook.png",
+            "content": output
+        })
+    });
 }

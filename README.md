@@ -34,8 +34,8 @@ If you really want to, you can download a copy of the layout completely or clone
 * Auto resizing of bars for larger parses
 * ~Configurable layout~
 * Auto-hiding parser for when you're not fighting
-* ~Role and job colours available for bars~
-* ~Override player names with job names~
+* Role and job colours available for bars
+* Override player names with job names
 * Output parse to Discord
 
 ---
