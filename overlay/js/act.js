@@ -11,14 +11,13 @@ document.addEventListener("onBroadcastMessageReceive", function (e) {
             break;
     }
 });
-/*document.addEventListener("onLogLine", function (e) {
-    console.log(e);
-    switch(e) {
+document.addEventListener("onLogLine", function (e) {
+    switch(e.detail.message) {
         case 'discord':
             pushToDiscord();
             break;
     }
-});*/
+});
 
 function update(data) {
     if ($("#updateNotes").is(":visible")) $("#updateNotes").hide();
@@ -77,9 +76,9 @@ function encounterEnd(data) {
 
 function updateCombatantList(data) {
     filteredData = _.sortBy(_.filter(data.Combatant, function (d) {
-        return parseInt(d[pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].sort], 10) > 0;
+        return parseInt(parseData(pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].bar, d), 10) > 0;
     }), function(d)  {
-        return -parseInt(d[pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].sort], 10);
+        return -parseInt(parseData(pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].bar, d), 10);
     }.bind(this));
     
     var table = $("#combatantTable");
