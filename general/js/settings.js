@@ -2,7 +2,7 @@ var ParserDefaultSettings = {
     version: {
         major: 1,
         minor: 3,
-        revision: 0
+        revision: 1
     },
     parserData: {
         title: "{currentZone}: {title} &middot; {f.b}{duration}{f./b}",
