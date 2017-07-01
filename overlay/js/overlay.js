@@ -88,7 +88,7 @@ $("#popupMenu").on("click", "li", function (e) {
 var autoHideTimeout = 0;
 var autoHideStopped = false;
 function updateAutoHide() {
-    if (!pSettings.current.config.general.autoHide.enable || $("body").hasclass("stream-mode")) {
+    if (!pSettings.current.config.general.autoHide.enable || $("body").hasClass("stream-mode")) {
         clearTimeout(autoHideTimeout);
         autoHideTimeout = 0;
     } else if (lastData != null && parseActFormat("{isActive}", lastData) == "false") {
