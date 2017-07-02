@@ -87,7 +87,7 @@ var job_details = {
         role: "tank",
         name: "Warrior"
     },
-    "gld": {
+    "gla": {
         role: "tank",
         name: "Gladiator"
     },
