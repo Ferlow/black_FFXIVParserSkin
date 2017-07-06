@@ -146,9 +146,9 @@ function pushToDiscord() {
     output += "Encounter       [" + parseActFormat("{CurrentZoneName}", lastData.Encounter) + "][" + parseActFormat("{title}", lastData.Encounter) + "]<" + parseActFormat("{duration}", lastData.Encounter) + ">\n";
     output += "Encounter DPS   <" + parseActFormat("{dps}", lastData.Encounter) + ">\n";
     if (fullDetail) {
-        output += "#Name                dps    dmg%  crit% acc%     max hit\n";
+        output += "#Name                dps    dmg%  crit%  dh%  dhcrit%     max hit\n";
     } else {
-        output += "#Name                dps    dmg%  crit% acc%\n";
+        output += "#Name                dps    dmg%  crit%  dh%  dhcrit\n";
     }
                     
     filteredData = _.sortBy(_.filter(lastData.Combatant, function (d) {
@@ -174,8 +174,11 @@ function pushToDiscord() {
         currentLine += tab;
         currentLine += "<" + ("   " + parseActFormat("{crithit%}", combatant).slice(0, -1)).slice(-3) + ">";
         currentLine += tab;
-        currentLine += "<" + ("      " + parseActFormat("{tohit}", combatant)).slice(-6) + ">";
+        currentLine += "<" + ("   " + parseActFormat("{DirectHitPct}", combatant).slice(0, -1)).slice(-3) + ">";
+        currentLine += tab;
+        currentLine += "<" + ("   " + parseActFormat("{CritDirectHitPct}", combatant).slice(0, -1)).slice(-3) + ">";
         if (fullDetail) {
+            currentLine += tab;
             currentLine += tab;
             currentLine += "[" + parseActFormat("{maxhit}", combatant).replace("-", "][") + "]";
         }
