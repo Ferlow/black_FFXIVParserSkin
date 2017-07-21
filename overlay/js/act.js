@@ -54,7 +54,7 @@ function encounterEnd(data) {
             }
         }
         if (post && pSettings.current.config.discord.autoPost.maxParty.enable) {
-            if (Object.keys(data.Combatant).length < parseInt(pSettings.current.config.discord.autoPost.maxParty.value)) {
+            if (Object.keys(data.Combatant).length > parseInt(pSettings.current.config.discord.autoPost.maxParty.value)) {
                 post = false;
             }
         }
@@ -75,7 +75,7 @@ function encounterEnd(data) {
 }
 
 function updateCombatantList(data) {
-    filteredData = _.sortBy(_.filter(data.Combatant, function (d) {
+    var filteredData = _.sortBy(_.filter(data.Combatant, function (d) {
         return parseInt(parseData(pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].bar, d), 10) > 0;
     }), function(d)  {
         return -parseInt(parseData(pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].bar, d), 10);
