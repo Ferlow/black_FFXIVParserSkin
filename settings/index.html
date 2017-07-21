@@ -2,8 +2,9 @@
 <head>
     <meta charset="utf-8" />
     <title>Settings</title>
-    <link type="text/css" rel="stylesheet" href="css/style.css?v=103" />
+    <link type="text/css" rel="stylesheet" href="css/style.css?v=140" />
     <link rel='stylesheet' href='../general/lib/perfect-scrollbar.min.css' />
+    <link rel='stylesheet' href='../general/lib/jquery.atwho.min.css' />
 </head>
 <body>
     <div class="windowContainer">
@@ -52,9 +53,76 @@
                         <h2>
                             Data Sets
                         </h2>
-                        <ul class="settings">
-                            <li>No Settings yet.</li>
-                        </ul>
+                        <p>
+                            For more info on how to use this, <a href="https://github.com/Ihellmasker/FFXIVParserSkin/wiki/" target="_blank">click here</a>.
+                        </p>
+                        <h3>
+                            Parser Title
+                        </h3>
+                        <div class="textarea" contenteditable="true" data-setting="parserTab-title"></div>
+                        <h3>
+                            Tabs
+                        </h3>
+                        <div class="parser-tabs-wrapper">
+                            <ul class="parser-tabs sub-settings-tabs">
+                                <li id="add-new-tab">+</li>
+                            </ul>
+                        </div>
+                        <div class="parser-tab-data-container sub-settings-tab-data-container">
+                            <h4>
+                                Label
+                            </h4>
+                            <div class="textarea padded" contenteditable="true" data-setting="parserTab-data-label"></div>
+                            <h4>
+                                Detail. head.
+                            </h4>
+                            <div class="textarea padded" contenteditable="true" data-setting="parserTab-data-detail"></div>
+                            <h4>
+                                Bar data
+                            </h4>
+                            <div class="textarea padded" contenteditable="true" data-setting="parserTab-data-bar"></div>
+                            <h4>
+                                Main info
+                            </h4>
+                            <div class="textarea padded" contenteditable="true" data-setting="parserTab-data-info-main"></div>
+                            <h4>
+                                Sub info
+                            </h4>
+                            <div class="textarea padded" contenteditable="true" data-setting="parserTab-data-info-sub"></div>
+                            <h4>
+                                Simple info
+                            </h4>
+                            <div class="textarea padded" contenteditable="true" data-setting="parserTab-data-info-simple"></div>
+                            <h4>
+                                Icon
+                            </h4>
+                            <div class="textarea padded" contenteditable="true" data-setting="parserTab-data-icon"></div>
+                            <h4>
+                                TopLeft Bar
+                            </h4>
+                            <div class="textarea padded" contenteditable="true" data-setting="parserTab-data-bar-tl"></div>
+                            <h4>
+                                TopRight Bar
+                            </h4>
+                            <div class="textarea padded" contenteditable="true" data-setting="parserTab-data-bar-tr"></div>
+                            <h4>
+                                BtmLeft Bar
+                            </h4>
+                            <div class="textarea padded" contenteditable="true" data-setting="parserTab-data-bar-bl"></div>
+                            <h4>
+                                BtmRight Bar
+                            </h4>
+                            <div class="textarea padded" contenteditable="true" data-setting="parserTab-data-bar-br"></div>
+                            <h4>
+                                Simple Bar
+                            </h4>
+                            <div class="textarea padded" contenteditable="true" data-setting="parserTab-data-bar-simple"></div>
+                            <div class="parserTab-buttons">
+                                <a href="#" id="delete-current-parserTab" class="button">Delete Tab</a>
+                                <a href="#" id="cancel-current-parserTab" class="button right">Cancel</a>
+                                <a href="#" id="save-current-parserTab" class="button right">Save</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="settings-panel">
                         <h2>
@@ -71,8 +139,11 @@
                         <h2>
                             Discord Integration
                         </h2>
+                        <p>
+                            For more info on how to use this, <a href="https://github.com/Ihellmasker/FFXIVParserSkin/wiki/Discord-Output" target="_blank">click here</a>.</a>
+                        </p>
                         <ul class="settings">
-                            <li data-setting="discord-webhook">Discord Webhook url <a class="info-text" href="https://github.com/Ihellmasker/FFXIVParserSkin/wiki/Discord-Output" target="_blank">More info</a> <input type="text" /></li>
+                            <li data-setting="discord-webhook">Discord Webhook url <input type="text" /></li>
                             <li class="next-tier"><a href="#" id="test-webhook" class="button">Verify</a></li>
                             <li class="checkbox" data-setting="discord-auto-posting">Enable auto-posting at the end of Combat</li>
                             <li class="checkbox next-tier" data-setting="discord-min-party-size">Minimum party size <input type="number" /></li>
@@ -80,6 +151,51 @@
                             <li class="checkbox next-tier" data-setting="discord-min-dps">Minimum DPS <input type="number" /></li>
                             <li class="checkbox next-tier" data-setting="discord-min-duration">Minimum combat duration <input type="number" /></li>
                         </ul>
+                        <h3>
+                            Output
+                        </h3>
+                        <div class="discord-tabs-wrapper">
+                            <h4>
+                                Opening Line
+                            </h4>
+                            <div class="textarea padded" contenteditable="true" data-setting="discordTab-opening-line"></div>
+                            <h4>
+                                Sorting
+                            </h4>
+                            <div class="textarea padded" contenteditable="true" data-setting="discordTab-sorting"></div>
+                            <ul class="discord-tabs sub-settings-tabs">
+                                <li class="active">Party</li>
+                                <li>Alliance</li>
+                            </ul>
+                        </div>
+                        <div class="discord-tab-data-container sub-settings-tab-data-container">
+                            <div class="column active-columns">
+                                <h3>
+                                    Active Columns
+                                </h3>
+                                <ul>
+                                </ul>
+                            </div>
+                            <div class="column control-buttons">
+                                <a href="#" class="button middle" data-action="left">&larr;</a>
+                                <a href="#" class="button middle" data-action="up">&uarr;</a>
+                                <a href="#" class="button middle" data-action="down">&darr;</a>
+                                <a href="#" class="button middle" data-action="right">&rarr;</a>
+                                <div class="message-length-estimate">
+                                    <h5>Line Length</h5>
+                                    <div class="line-length"></div>
+                                    <h5>Msg. Length</h5>
+                                    <div class="message-length"></div>
+                                </div>
+                            </div>
+                            <div class="column inactive-columns">
+                                <h3>
+                                    Inactive Columns
+                                </h3>
+                                <ul>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <div class="settings-panel">
                         <h2>
@@ -105,7 +221,7 @@
             </div>
         </div>
     </div>
-    <div id="popupNotification">
+    <div class="popupNotification defaultSettings">
         <div class="popupWindow">
             <div class="windowContainer">
                 <h1>
@@ -119,8 +235,28 @@
                 </div>
                 <div class="divider"></div>
                 <div class="window-footer">
-                    <a href="#" id="confirmation-yes" class="button">Yes</a>
-                    <a href="#" id="confirmation-no" class="button right">No</a>
+                    <a href="#" class="confirmation-yes button">Yes</a>
+                    <a href="#" class="confirmation-no button right">No</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="popupNotification dataTabs">
+        <div class="popupWindow">
+            <div class="windowContainer">
+                <h1>
+                    Confirmation
+                </h1>
+                <div class="divider"></div>
+                <div class="window-body">
+                    <h2>
+                        Are you sure you wish to delete this tab?
+                    </h2>
+                </div>
+                <div class="divider"></div>
+                <div class="window-footer">
+                    <a href="#" class="confirmation-yes button">Yes</a>
+                    <a href="#" class="confirmation-no button right">No</a>
                 </div>
             </div>
         </div>
@@ -129,10 +265,13 @@
 	<script src="../general/lib/jquery.min.js" type="text/javascript"></script>
 	<script src="../general/lib/underscore.min.js" type="text/javascript"></script>
     <script src="../general/lib/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+    <script src="../general/lib/jquery.caret.min.js" type="text/javascript"></script>
+    <script src="../general/lib/jquery.atwho.min.js" type="text/javascript"></script>
     
-    <script src="../general/js/settings.js?v=103" type="text/javascript"></script>
-    <script src="../general/js/fakedata.js?v=103" type="text/javascript"></script>
+    <script src="../general/js/settings.js?v=140" type="text/javascript"></script>
+    <script src="../general/js/fakedata.js?v=140" type="text/javascript"></script>
+    <script src="../general/js/dataTags.js?v=140" type="text/javascript"></script>
     
-    <script src="js/settings.js?v=103" type="text/javascript"></script>
+    <script src="js/settings.js?v=140" type="text/javascript"></script>
 </body>
 </html>

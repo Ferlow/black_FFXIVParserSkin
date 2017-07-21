@@ -1,18 +1,37 @@
 var ParserDefaultSettings = {
     version: {
         major: 1,
-        minor: 3,
-        revision: 1
+        minor: 4,
+        revision: 0
     },
     parserData: {
-        title: "{currentZone}: {title} &middot; {f.b}{duration}{f./b}",
+        title: "{currentZone}: {title} &middot; {f.b}{duration}{f.eb}",
         activeDataSet: 0,
+        template: {
+            label: "New Tab",
+            detail: "",
+            bar: "{damage.raw}",
+            data: {
+                info: {
+                    main: "{damage.ps}",
+                    sub: "{damage.percent}",
+                    simple: "{damage.ps} {damage.percent}"
+                },
+                icon: "{job}",
+                bar: {
+                    tl: "{f.b}{name}{f.eb}",
+                    tr: "",
+                    bl: "",
+                    br: "",
+                    simple: "{f.b}{name}{f.eb}"
+                }
+            }
+        },
         dataSets: [
             {
                 label: "Damage",
-                detail: "Damage {f.b}{damage.total}{f./b} &middot; Group DPS {f.b}{damage.ps}{f./b} &middot; Deaths {f.b}{deaths}{f./b}",
+                detail: "Damage {f.b}{damage.total}{f.eb} &middot; Group DPS {f.b}{damage.ps}{f.eb} &middot; Deaths {f.b}{deaths}{f.eb}",
                 bar: "{damage.raw}",
-                sort: "damage",
                 data: {
                     info: {
                         main: "{damage.ps}",
@@ -21,19 +40,18 @@ var ParserDefaultSettings = {
                     },
                     icon: "{job}",
                     bar: {
-                        tl: "{f.b}{name}{f./b}",
+                        tl: "{f.b}{name}{f.eb}",
                         tr: "{damage.highest.full}",
                         bl: "{damage.criticals.percent} Crit &middot; {damage.directhit.percent} Dir Hit",
                         br: "",
-                        simple: "{f.b}{name}{f./b} &middot; {damage.criticals.percent} Crit &middot; {damage.directhit.percent} Dir Hit"
+                        simple: "{f.b}{name}{f.eb} &middot; {damage.criticals.percent} Crit &middot; {damage.directhit.percent} Dir Hit"
                     }
                 }
             },
             {
                 label: "Healing",
-                detail: "Heals {f.b}{healing.total}{f./b} &middot; Group HPS {f.b}{healing.ps}{f./b} &middot; Deaths {f.b}{deaths}{f./b}",
+                detail: "Heals {f.b}{healing.total}{f.eb} &middot; Group HPS {f.b}{healing.ps}{f.eb} &middot; Deaths {f.b}{deaths}{f.eb}",
                 bar: "{healing.raw}",
-                sort: "enchps",
                 data: {
                     info: {
                         main: "{healing.ps}",
@@ -42,19 +60,18 @@ var ParserDefaultSettings = {
                     },
                     icon: "{job}",
                     bar: {
-                        tl: "{f.b}{name}{f./b}",
+                        tl: "{f.b}{name}{f.eb}",
                         tr: "{healing.highest.full}",
                         bl: "{healing.criticals.percent} Crit",
                         br: "",
-                        simple: "{f.b}{name}{f./b} &middot; {healing.criticals.percent} Crit"
+                        simple: "{f.b}{name}{f.eb} &middot; {healing.criticals.percent} Crit"
                     }
                 }
             },
             {
                 label: "Tanking",
-                detail: "Damage Taken {f.b}{tanking.total}{f./b} &middot; Deaths {f.b}{deaths}{f./b}",
+                detail: "Damage Taken {f.b}{tanking.total}{f.eb} &middot; Deaths {f.b}{deaths}{f.eb}",
                 bar: "{tanking.raw}",
-                sort: "damagetaken",
                 data: {
                     info: {
                         main: "{tanking.total}",
@@ -63,11 +80,11 @@ var ParserDefaultSettings = {
                     },
                     icon: "{job}",
                     bar: {
-                        tl: "{f.b}{name}{f./b}",
+                        tl: "{f.b}{name}{f.eb}",
                         tr: "{tanking.parry} Parry",
                         bl: "",
                         br: "{tanking.block} Block",
-                        simple: "{f.b}{name}{f./b} &middot; {tanking.parry} Parry &middot; {tanking.block} Block"
+                        simple: "{f.b}{name}{f.eb} &middot; {tanking.parry} Parry &middot; {tanking.block} Block"
                     }
                 }
             }
@@ -122,6 +139,17 @@ var ParserDefaultSettings = {
                     enable: false,
                     value: 120
                 }
+            },
+            output: {
+                opener: "Encounter       [{currentZone}][{title}]<{duration}>{nl}Encounter DPS   <{damage.ps}>",
+                tabLength: 1,
+                sorting: "{damage.raw}",
+                full: [
+                    "JobAndName", "DPS", "DamagePercent", "CritPercent", "DirectHitPercent", "CritDirectHitPercent", "MaxHit"
+                ],
+                reduced: [
+                    "JobAndName", "DPS", "CritPercent", "DirectHitPercent", "CritDirectHitPercent"
+                ]
             }
         }
     }
@@ -148,42 +176,33 @@ var pSettings = new function () {
         if (!storedData) {
             localStorage.setItem('parser_settings', JSON.stringify(defaults));
             s.current = defaults;
+            console.log("Loaded default");
         } else {
-            /* Simple version upgrading */
-            if (typeof storedData.version == "undefined") {
-                // Super old version
-                s.current = defaults;
-                
-                convertTo130(s.current, storedData);
-                
-                localStorage.setItem('parser_settings', JSON.stringify(s.current));
-            } else {
+            var ver = validateVersion(storedData);
+            if (!handleVersions(ver)) {
                 for (var i in defaults) {
-                    if (i == 'dataSets') {
-                        if (storedData[i].length == 0) {
-                            s.current[i] = defaults[i];
-                        } else {
-                            s.current[i] = storedData[i];
-                        }
-                    } if (typeof storedData[i] !== 'undefined') {
+                    if (typeof storedData[i] !== 'undefined') {
                         s.current[i] = settingsLoading(defaults[i], storedData[i]);
                     } else {
                         s.current[i] = defaults[i];
                     }
                 }
                 localStorage.setItem('parser_settings', JSON.stringify(s.current));
+                console.log("Loaded");
             }
         }
     };
     
     s.save = function () {
         localStorage.setItem('parser_settings', JSON.stringify(s.current));
+        console.log("Saved");
     };
     
     s.defaults = function () {
         var defaults = JSON.parse(JSON.stringify(ParserDefaultSettings));
         s.current = defaults;
         localStorage.setItem('parser_settings', JSON.stringify(s.current));
+        console.log("Defaulted all");
     };
     
     s.defaultArea = function (area) {
@@ -194,6 +213,7 @@ var pSettings = new function () {
             s.current[splitArea[0]][splitArea[1]] = JSON.parse(JSON.stringify(ParserDefaultSettings[splitArea[0]][splitArea[1]]));
         }
         localStorage.setItem('parser_settings', JSON.stringify(s.current));
+        console.log("Defaulted " + area);
     };
 
     /* Constructor */
@@ -210,32 +230,74 @@ function settingsLoading(defaults, storedData) {
             return storedData
         }
     } else {
-        var ret = {};
-        for (var i in defaults) {
-            if (typeof storedData !== 'undefined') {
-                ret[i] = settingsLoading(defaults[i], storedData[i]);
+        if (Array.isArray(defaults)) {
+            if (!Array.isArray(storedData)) {
+                return defaults;
             } else {
-                ret[i] = defaults[i];
+                return storedData;
             }
+        } else {
+            var ret = {};
+            for (var i in defaults) {
+                if (typeof storedData !== 'undefined') {
+                    ret[i] = settingsLoading(defaults[i], storedData[i]);
+                } else {
+                    ret[i] = defaults[i];
+                }
+            }
+            return ret;
         }
-        return ret;
     }
 }
 
-function convertTo130(current, old) {
-    current.config.general.showDetailedHeader = old.config.showDetailedHeader;
-    current.config.general.reducedBarSize.enable = old.config.useReducedBarSize;
-    current.config.general.reducedBarSize.maxEntries = old.config.reducedBarSizeMaxEntries;
-    current.config.general.reducedBarSize.alwaysEnable = old.config.useReducedBarSizeAlways;
-    current.config.general.autoHide.enable = old.config.autoHideAfterBattle;
-    current.config.general.autoHide.timer = old.config.autoHideTimer;
-    current.config.general.customName.enable = old.config.useCustomName;
-    current.config.general.customName.name = old.config.customName;
-    current.config.general.jobNames.enable = old.config.useJobNames;
-    current.config.general.jobNames.self = old.config.useJobNamesSelf;
-    current.config.general.roleBasedColors = old.config.useRoleColors;
-    current.config.stream.enable = old.config.allowStreamMode;
-    current.config.stream.size.width = old.config.streamModeWidth;
-    current.config.stream.size.height = old.config.streamModeHeight;
-    current.config.discord.webhook = old.config.discordWebHook;
+function validateVersion(storedData) {
+    //ParserDefaultSettings.version
+    //pSettings.current.version
+    
+    var ver = {
+        latest: false,
+        version: {
+            major: 0,
+            minor: 0,
+            revision: 0
+        }
+    };
+    if (typeof storedData.version === "undefined") {
+        // No version found, must be pre 1.3
+        ver.version.major = 1;
+    } else {
+        var lat = ParserDefaultSettings.version;
+        var cur = storedData.version;
+        if ((lat.major == cur.major) && (lat.minor == cur.minor) && (lat.revision == cur.revision)) {
+            ver = {
+                latest: true,
+                version: {
+                    major: cur.major,
+                    minor: cur.minor,
+                    revision: cur.revision
+                }
+            }
+        } else {
+            ver = {
+                latest: false,
+                version: {
+                    major: cur.major,
+                    minor: cur.minor,
+                    revision: cur.revision
+                }
+            }
+        }
+    }
+    
+    storedData.version = ParserDefaultSettings.version;
+    
+    return ver;
+}
+
+function handleVersions(ver) {
+    if (ver.version.major <= 1 && ver.version.minor < 4) { // If version is less than 1.4 then reset settings completely
+        pSettings.defaults();
+        return true;
+    }
+    return false; // Version didn't need handling
 }
