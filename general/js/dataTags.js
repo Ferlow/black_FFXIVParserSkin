@@ -10,7 +10,7 @@ var dataTagsGeneral = [
         desc: "Stops a blue text area"
     },
     {
-        tag: "nl",
+        tag: "f.nl",
         name: "New line",
         desc: "Inserts a new line"
     },
