@@ -99,7 +99,8 @@ var job_details = {
 var dataMapping = {
     f: {
         b: "<b>",
-        "/b": "</b>"
+        eb: "</b>",
+        nl: "\n"
     },
     name: function (db) {
         if (typeof db["name"] !== "undefined") {
@@ -120,12 +121,12 @@ var dataMapping = {
             }
         }
     },
-    name15: "name15",
+    name15: "NAME15",
     job: function (db) {
         if (typeof db["Job"] !== "undefined" && db["Job"] != "") {
             return db["Job"].toLowerCase();
         } else if (typeof db["name"] !== "undefined" && db["name"].indexOf("(") != -1) {
-            return "chocobo";
+            return "pet";
         } else {
             return db["name"].replace(" ", "").toLowerCase();
         }
@@ -134,7 +135,7 @@ var dataMapping = {
         if (typeof db["Job"] !== "undefined" && db["Job"] != "") {
             return job_details[db["Job"].toLowerCase()].name;
         } else if (typeof db["name"] !== "undefined" && db["name"].indexOf("(") != -1) {
-            return "chocobo";
+            return "Chocobo";
         } else {
             return db["name"];
         }
@@ -159,6 +160,9 @@ var dataMapping = {
         },
         ps: function (db) {
             return parseFloat(db["encdps"]).toLocaleString();
+        },
+        psraw: function (db) {
+            return parseFloat(db["encdps"]);
         },
         count: "swings",
         percent: "damage%",
@@ -192,6 +196,9 @@ var dataMapping = {
         },
         ps: function (db) {
             return parseFloat(db["enchps"]).toLocaleString();
+        },
+        psraw: function (db) {
+            return parseFloat(db["enchps"]);
         },
         count: "heals",
         percent: "healed%",
