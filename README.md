@@ -26,17 +26,17 @@ If you really want to, you can download a copy of the layout completely or clone
 
 ## Features
 
-![Parser skin screenshot](http://pub.andysthings.com/parser/parse.png)
+![Parser skin screenshot](http://pub.andysthings.com/parser/parser.png)
 
 *Things that are striked out are coming soon*
 
 * Tabs for different configurations (DPS, Healing, Tanking)
 * Auto resizing of bars for larger parses
-* ~Configurable layout~
+* Configurable layout
 * Auto-hiding parser for when you're not fighting
 * Role and job colours available for bars
 * Override player names with job names
-* Output parse to Discord
+* Post parse to Discord with customisable outputs and autoposting
 
 ---
 
@@ -44,4 +44,14 @@ If you really want to, you can download a copy of the layout completely or clone
 
 Fully integrated configuration allows you to configure the overlay without editing anything externally.
 
-![Parser config](http://pub.andysthings.com/parser/settings.png)
+![Parser config](http://pub.andysthings.com/parser/settings-general.png)
+
+---
+
+## Help
+
+For more information on configuring the skin, head over to [the wiki](https://github.com/Ihellmasker/FFXIVParserSkin/wiki).
+
+If you have any problems please create a [new issue ticket](https://github.com/Ihellmasker/FFXIVParserSkin/issues), or hit me up on [Twitter](https://twitter.com/ihellmasker) or over on my [Twitch Stream](https://twitch.tv/ihellmasker).
+
+Please don't message me ingame <3.
