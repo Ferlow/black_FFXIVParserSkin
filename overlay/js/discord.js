@@ -23,7 +23,7 @@ function buildDiscordString() {
     }
     
     var output = "";
-    output += parseData(pSettings.current.config.discord.output.opener, lastData.Encounter);
+    output += parseData(pSettings.current.config.discord.output.opener.replace(/\n/g, "<br />"), lastData.Encounter);
     output += "\n" + _buildDiscordTableHeader(tags);
     
     var filteredData = _.sortBy(_.filter(lastData.Combatant, function (d) {
@@ -69,11 +69,11 @@ function _buildDiscordTableRow(tags, combatant) {
             var value = parseData(dataTagsDiscord[tag].tag, combatant).replace("%", "");
             value = isNaN(value) ? value : value | 0;
             
-            if (typeof dataTagsDiscord[tag].minWidth !== "undefined") {
+            if (typeof dataTagsDiscord[tag].width !== "undefined") {
                 if (typeof dataTagsDiscord[tag].padLeft === "undefined" || !dataTagsDiscord[tag].padLeft) {
-                    value = padRight(value, dataTagsDiscord[tag].minWidth);
+                    value = padRight(value, dataTagsDiscord[tag].width);
                 } else {
-                    value = padLeft(value, dataTagsDiscord[tag].minWidth);
+                    value = padLeft(value, dataTagsDiscord[tag].width);
                 }
             }
             

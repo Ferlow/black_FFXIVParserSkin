@@ -104,7 +104,7 @@ var dataMapping = {
     },
     name: function (db) {
         if (typeof db["name"] !== "undefined") {
-            if (pSettings.current.config.useJobNames && (pSettings.current.config.useJobNamesSelf || db["name"] !== "YOU")) {
+            if (pSettings.current.config.general.jobNames.enable && (pSettings.current.config.general.jobNames.self || db["name"] !== "YOU")) {
                 if (typeof db["Job"] !== "undefined" && db["Job"] != "") {
                     return job_details[db["Job"].toLowerCase()].name;
                 } else if (typeof db["name"] !== "undefined" && db["name"].indexOf("(") != -1) {
@@ -113,8 +113,8 @@ var dataMapping = {
                     return db["name"];
                 }
             } else {
-                if (db["name"] === "YOU" && pSettings.current.config.useCustomName) {
-                    return pSettings.current.config.customName;
+                if (db["name"] === "YOU" && pSettings.current.config.general.customName.enable) {
+                    return pSettings.current.config.general.customName.name;
                 } else {
                     return db["name"];
                 }

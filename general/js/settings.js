@@ -2,7 +2,7 @@ var ParserDefaultSettings = {
     version: {
         major: 1,
         minor: 4,
-        revision: 0
+        revision: 2
     },
     parserData: {
         title: "{currentZone}: {title} &middot; {f.b}{duration}{f.eb}",
@@ -141,7 +141,7 @@ var ParserDefaultSettings = {
                 }
             },
             output: {
-                opener: "Encounter       [{currentZone}][{title}]<{duration}>{nl}Encounter DPS   <{damage.ps}>",
+                opener: "Encounter       [{currentZone}][{title}]<{duration}>{f.nl}Encounter DPS   <{damage.ps}>",
                 tabLength: 1,
                 sorting: "{damage.raw}",
                 full: [
@@ -176,33 +176,28 @@ var pSettings = new function () {
         if (!storedData) {
             localStorage.setItem('parser_settings', JSON.stringify(defaults));
             s.current = defaults;
-            console.log("Loaded default");
         } else {
             var ver = validateVersion(storedData);
-            if (!handleVersions(ver)) {
-                for (var i in defaults) {
-                    if (typeof storedData[i] !== 'undefined') {
-                        s.current[i] = settingsLoading(defaults[i], storedData[i]);
-                    } else {
-                        s.current[i] = defaults[i];
-                    }
+            for (var i in defaults) {
+                if (typeof storedData[i] !== 'undefined') {
+                    s.current[i] = settingsLoading(defaults[i], storedData[i]);
+                } else {
+                    s.current[i] = defaults[i];
                 }
-                localStorage.setItem('parser_settings', JSON.stringify(s.current));
-                console.log("Loaded");
             }
+            handleVersions(ver);
+            localStorage.setItem('parser_settings', JSON.stringify(s.current));
         }
     };
     
     s.save = function () {
         localStorage.setItem('parser_settings', JSON.stringify(s.current));
-        console.log("Saved");
     };
     
     s.defaults = function () {
         var defaults = JSON.parse(JSON.stringify(ParserDefaultSettings));
         s.current = defaults;
         localStorage.setItem('parser_settings', JSON.stringify(s.current));
-        console.log("Defaulted all");
     };
     
     s.defaultArea = function (area) {
@@ -213,7 +208,6 @@ var pSettings = new function () {
             s.current[splitArea[0]][splitArea[1]] = JSON.parse(JSON.stringify(ParserDefaultSettings[splitArea[0]][splitArea[1]]));
         }
         localStorage.setItem('parser_settings', JSON.stringify(s.current));
-        console.log("Defaulted " + area);
     };
 
     /* Constructor */
@@ -294,10 +288,13 @@ function validateVersion(storedData) {
     return ver;
 }
 
-function handleVersions(ver) {
+function handleVersions(ver, storedData) {
     if (ver.version.major <= 1 && ver.version.minor < 4) { // If version is less than 1.4 then reset settings completely
+        console.log("Updating to 1.4");
         pSettings.defaults();
-        return true;
+    } else if (ver.version.major <= 1 && ver.version.minor <= 4 && ver.version.revision < 2) { // If version is less than 1.4.2 then fix newlines
+        console.log("Updating to 1.4.2");
+        pSettings.current.parserData.title = pSettings.current.parserData.title.replace(/{nl}/g, "{f.nl}");
+        pSettings.current.config.discord.output.opener = pSettings.current.config.discord.output.opener.replace(/{nl}/g, "{f.nl}");
     }
-    return false; // Version didn't need handling
 }

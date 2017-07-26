@@ -31,7 +31,7 @@ function updateEncounter(data) {
     if (parseActive && parseActFormat("{isActive}", data) == "false") {
         encounterEnd(data);
     }
-    $("#encounter").html(parseData(pSettings.current.parserData.title, data.Encounter));
+    $("#encounter").html(parseData(pSettings.current.parserData.title.replace(/\n/g, "<br />"), data.Encounter));
     $("#encounterDetail").html(parseData(pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].detail, data.Encounter));
     parseActive = parseActFormat("{isActive}", data) == "true";
     if(parseActive) {
