@@ -1,3 +1,5 @@
+var debugClick = 0;
+
 $(document).ready(function () {
     pSettings.load();
     
@@ -37,6 +39,8 @@ $(document).ready(function () {
     $("[data-setting='discord-min-dps'] input").val(pSettings.current.config.discord.autoPost.minDPS.value);
     if (pSettings.current.config.discord.autoPost.minDur.enable) $("[data-setting='discord-min-duration']").addClass("active");
     $("[data-setting='discord-min-duration'] input").val(pSettings.current.config.discord.autoPost.minDur.value);
+    
+    if (isDebug()) $(".setting-tabs .debug").show();
     
     setInterval(function () {
         var w, h;
@@ -307,6 +311,16 @@ $(".setting-tabs li").on("click", function (e) {
     }
     if ($(e.currentTarget).hasClass("discord")) {
         loadDiscordColumns();
+    }
+    if ($(e.currentTarget).hasClass("about")) {
+        debugClick += 1;
+        if (debugClick >= 10) {
+            pSettings.current.debug = true;
+            pSettings.save();
+            $(".setting-tabs .debug").show();
+        }
+    } else {
+        debugClick = 0;
     }
     
     $(".windowContainer .window-body").scrollTop(0);

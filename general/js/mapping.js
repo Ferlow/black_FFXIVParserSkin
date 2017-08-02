@@ -121,7 +121,27 @@ var dataMapping = {
             }
         }
     },
-    name15: "NAME15",
+    name15: function (db) {
+        if (typeof db["name"] !== "undefined") {
+            var str = "";
+            if (pSettings.current.config.general.jobNames.enable && (pSettings.current.config.general.jobNames.self || db["name"] !== "YOU")) {
+                if (typeof db["Job"] !== "undefined" && db["Job"] != "") {
+                    str = job_details[db["Job"].toLowerCase()].name;
+                } else if (typeof db["name"] !== "undefined" && db["name"].indexOf("(") != -1) {
+                    str = "Chocobo";
+                } else {
+                    str = db["name"];
+                }
+            } else {
+                if (db["name"] === "YOU" && pSettings.current.config.general.customName.enable) {
+                    str = pSettings.current.config.general.customName.name;
+                } else {
+                    str = db["name"];
+                }
+            }
+            return str.substring(0, 15);
+        }
+    },
     job: function (db) {
         if (typeof db["Job"] !== "undefined" && db["Job"] != "") {
             return db["Job"].toLowerCase();

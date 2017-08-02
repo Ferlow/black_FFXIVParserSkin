@@ -1,8 +1,9 @@
 var ParserDefaultSettings = {
+    debug: false,
     version: {
         major: 1,
         minor: 4,
-        revision: 2
+        revision: 3
     },
     parserData: {
         title: "{currentZone}: {title} &middot; {f.b}{duration}{f.eb}",
@@ -297,4 +298,8 @@ function handleVersions(ver, storedData) {
         pSettings.current.parserData.title = pSettings.current.parserData.title.replace(/{nl}/g, "{f.nl}");
         pSettings.current.config.discord.output.opener = pSettings.current.config.discord.output.opener.replace(/{nl}/g, "{f.nl}");
     }
+}
+
+function isDebug() {
+    return pSettings.current.debug;
 }

@@ -28,8 +28,6 @@ If you really want to, you can download a copy of the layout completely or clone
 
 ![Parser skin screenshot](http://pub.andysthings.com/parser/parser.png)
 
-*Things that are striked out are coming soon*
-
 * Tabs for different configurations (DPS, Healing, Tanking)
 * Auto resizing of bars for larger parses
 * Configurable layout

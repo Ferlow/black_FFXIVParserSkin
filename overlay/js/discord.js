@@ -69,15 +69,15 @@ function _buildDiscordTableRow(tags, combatant) {
             var value = parseData(dataTagsDiscord[tag].tag, combatant).replace("%", "");
             value = isNaN(value) ? value : value | 0;
             
-            if (typeof dataTagsDiscord[tag].width !== "undefined") {
+            if (typeof dataTagsDiscord[tag].minWidth !== "undefined") {
                 if (typeof dataTagsDiscord[tag].padLeft === "undefined" || !dataTagsDiscord[tag].padLeft) {
-                    value = padRight(value, dataTagsDiscord[tag].width);
+                    value = padRight(value, dataTagsDiscord[tag].minWidth);
                 } else {
-                    value = padLeft(value, dataTagsDiscord[tag].width);
+                    value = padLeft(value, dataTagsDiscord[tag].minWidth);
                 }
             }
             
-            output += dataTagsDiscord[tag].display.replace("%s", value);
+            output += padRight(dataTagsDiscord[tag].display.replace("%s", value), dataTagsDiscord[tag].width);
         }
         
         output += (new Array(pSettings.current.config.discord.output.tabLength + 1)).join(" ");

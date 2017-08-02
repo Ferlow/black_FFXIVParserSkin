@@ -337,7 +337,7 @@ var dataTagsDiscord = {
         display: function (db) {
             var hit = parseData("{damage.highest.full}", db).split("-");
             if (hit[0].length > 15) {
-                hit[0] = hit[0].slice(0, 7) + "...";
+                hit[0] = hit[0].slice(0, 12) + "...";
             }                       
             return "[" + padRight(hit[0], 15) + "][" + padLeft(hit[1], 6) + "]";
         },

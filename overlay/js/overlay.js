@@ -1,15 +1,5 @@
 var streamPopup = null;
 
-$("#parse-tabs").on("click", "li", function (e) {
-    pSettings.current.parserData.activeDataSet = parseInt($(e.currentTarget).attr("data-index"));
-    $("#parse-tabs li").removeClass("active");
-    $("#parse-tabs li[data-index='" + $(e.currentTarget).attr("data-index") + "']").addClass("active");
-    if (lastData !== null) {
-        updateEncounter(lastData);
-        updateCombatantList(lastData);
-    }
-});
-
 $(document).ready(function () {
     pSettings.load();
     
@@ -26,12 +16,29 @@ $(document).ready(function () {
     if (pSettings.current.config.general.showDetailedHeader) $("body").addClass("detailed-header");
     if (pSettings.current.config.general.roleBasedColors) $("body").addClass("role-colors");
     if (!pSettings.current.config.stream.enable) $(".stream-mode").hide();
-    if (getParameterByName("stream") == "true") $("body").addClass("stream-mode");
+    if (getParameterByName("stream") == "true") {
+        $("body").addClass("stream-mode");
+        if ($("#updateNotes").is(":visible")) $("#updateNotes").hide();
+    }
     if (pSettings.current.config.discord.webhook !== "") $("[data-id='pushToDiscord']").show();
     
     updateAutoHide();
     
     $("#combatantWrapper #tableWrapper").perfectScrollbar();
+    
+    if (isDebug()) {
+        $(".menu-section.debug-list").show();
+    }
+});
+
+$("#parse-tabs").on("click", "li", function (e) {
+    pSettings.current.parserData.activeDataSet = parseInt($(e.currentTarget).attr("data-index"));
+    $("#parse-tabs li").removeClass("active");
+    $("#parse-tabs li[data-index='" + $(e.currentTarget).attr("data-index") + "']").addClass("active");
+    if (lastData !== null) {
+        updateEncounter(lastData);
+        updateCombatantList(lastData);
+    }
 });
 
 $("#menu-button").on("click", function (e) {

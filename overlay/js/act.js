@@ -1,5 +1,6 @@
 var lastData = null;
 var parseActive = false;
+var encounterEndDebounced = _.debounce(encounterEnd, 3000);
 
 document.addEventListener("onOverlayDataUpdate", function (e) {
     if (Object.keys(e.detail.Combatant).length > 0) update(e.detail);
@@ -29,7 +30,8 @@ function update(data) {
 
 function updateEncounter(data) {
     if (parseActive && parseActFormat("{isActive}", data) == "false") {
-        encounterEnd(data);
+        if (isDebug()) console.log("Encounter ended at " + Date.now());
+        encounterEndDebounced(data);
     }
     $("#encounter").html(parseData(pSettings.current.parserData.title.replace(/\n/g, "<br />"), data.Encounter));
     $("#encounterDetail").html(parseData(pSettings.current.parserData.dataSets[pSettings.current.parserData.activeDataSet].detail, data.Encounter));
@@ -42,10 +44,10 @@ function updateEncounter(data) {
         $("#status").html("Idle").removeClass("active blue-text").addClass("gold-text");
         $("#combatantWrapper").removeClass("active").addClass("inactive");
     }
-    
 }
 
 function encounterEnd(data) {
+    if (isDebug()) console.log("Discord posting at " + Date.now());
     if (pSettings.current.config.discord.autoPost.enable) {
         var post = true;
         if (post && pSettings.current.config.discord.autoPost.minParty.enable) {
