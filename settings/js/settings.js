@@ -182,11 +182,11 @@ $("[data-setting]").on("input", "input", function (e) {
             $("#test-webhook").text("Test");
             break;
         case "stream-mode-size-width":
-            pSettings.current.config.general.stream.size.width = input.val();
+            pSettings.current.config.stream.size.width = parseInt(input.val());
             $("#apply-settings").removeClass("disabled");
             break;
         case "stream-mode-size-height":
-            pSettings.current.config.general.stream.size.width = input.val();
+            pSettings.current.config.stream.size.width = parseInt(input.val());
             $("#apply-settings").removeClass("disabled");
             break;
         case "discord-min-party-size":

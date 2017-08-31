@@ -66,7 +66,7 @@ $("#popupMenu").on("click", "li", function (e) {
                 showOverlay();
                 break;
             case "openStreamMode":
-                streamPopup = window.open('./index.html?stream=true','Stream Mode','width=' + pSettings.current.config.stream.size.width + ',height=' + pSettings.current.config.stream.size.width);
+                streamPopup = window.open('./index.html?stream=true','Stream Mode','width=' + parseInt(pSettings.current.config.stream.size.width) + ',height=' + parseInt(pSettings.current.config.stream.size.height));
                 streamPopup.onbeforeunload = function () {
                     streamPopup = null;
                 }
