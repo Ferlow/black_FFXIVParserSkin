@@ -186,7 +186,7 @@ $("[data-setting]").on("input", "input", function (e) {
             $("#apply-settings").removeClass("disabled");
             break;
         case "stream-mode-size-height":
-            pSettings.current.config.stream.size.width = parseInt(input.val());
+            pSettings.current.config.stream.size.height = parseInt(input.val());
             $("#apply-settings").removeClass("disabled");
             break;
         case "discord-min-party-size":
