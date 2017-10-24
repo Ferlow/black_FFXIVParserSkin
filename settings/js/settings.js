@@ -24,6 +24,7 @@ $(document).ready(function () {
     }
     $("[data-setting='stream-mode-size-width'] input").val(pSettings.current.config.stream.size.width);
     $("[data-setting='stream-mode-size-height'] input").val(pSettings.current.config.stream.size.height);
+    if (pSettings.current.config.stream.smallBars) $("[data-setting='stream-use-small-bars']").addClass("active");
     if (pSettings.current.config.discord.autoPost.enable) $("[data-setting='discord-auto-posting']").addClass("active");
     else {
         $("[data-setting='discord-min-party-size']").addClass("disabled");
@@ -122,10 +123,16 @@ $("[data-setting]").on("click", function (e) {
             if (!pSettings.current.config.stream.enable) {
                 $("[data-setting='stream-mode-size-width']").addClass("disabled");
                 $("[data-setting='stream-mode-size-height']").addClass("disabled");
+                $("[data-setting='stream-use-small-bars']").addClass("disabled");
             } else {
                 $("[data-setting='stream-mode-size-width']").removeClass("disabled");
                 $("[data-setting='stream-mode-size-height']").removeClass("disabled");
+                $("[data-setting='stream-use-small-bars']").removeClass("disabled");
             }
+            break;
+        case "stream-use-small-bars":
+            pSettings.current.config.stream.smallBars = !pSettings.current.config.stream.smallBars;
+            $("#apply-settings").removeClass("disabled");
             break;
         case "discord-auto-posting":
             pSettings.current.config.discord.autoPost.enable = !pSettings.current.config.discord.autoPost.enable;

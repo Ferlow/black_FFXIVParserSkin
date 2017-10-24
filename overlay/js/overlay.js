@@ -1,4 +1,5 @@
 var streamPopup = null;
+var streamWindow = false;
 
 $(document).ready(function () {
     pSettings.load();
@@ -18,6 +19,7 @@ $(document).ready(function () {
     if (!pSettings.current.config.stream.enable) $(".stream-mode").hide();
     if (getParameterByName("stream") == "true") {
         $("body").addClass("stream-mode");
+        streamWindow = true;
         if ($("#updateNotes").is(":visible")) $("#updateNotes").hide();
     }
     if (pSettings.current.config.discord.webhook !== "") $("[data-id='pushToDiscord']").show();

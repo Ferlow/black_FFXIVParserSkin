@@ -94,7 +94,7 @@ function updateCombatantList(data) {
         
     var combatantIndex = 0;
     var maxBarBaseVal = 0;
-    var smallBars = (pSettings.current.config.general.reducedBarSize.enable && pSettings.current.config.general.reducedBarSize.alwaysEnable) || (pSettings.current.config.general.reducedBarSize.enable && Object.keys(data.Combatant).length > pSettings.current.config.general.reducedBarSize.maxEntries);
+    var smallBars = (pSettings.current.config.general.reducedBarSize.enable && pSettings.current.config.general.reducedBarSize.alwaysEnable) || (pSettings.current.config.general.reducedBarSize.enable && Object.keys(data.Combatant).length > pSettings.current.config.general.reducedBarSize.maxEntries) || (streamWindow && pSettings.current.config.stream.smallBars);
     if (smallBars) $("body").addClass("reduced-size");
     else $("body").removeClass("reduced-size");
     for (var combatantName in filteredData) {

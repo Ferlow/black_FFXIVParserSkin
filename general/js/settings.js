@@ -118,7 +118,8 @@ var ParserDefaultSettings = {
             size: {
                 width: 800,
                 height: 600
-            }
+            },
+            smallBars: true
         },
         discord: {
             webhook: "",
