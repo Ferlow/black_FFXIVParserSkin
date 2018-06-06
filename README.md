@@ -1,3 +1,5 @@
+# I am currently not able to continue development with this Parser skin due to time issues. If you're interested in helping continue with this then please contact me.
+
 # Ihm's FFXIV Parser Skin
 
 This is a skin for use with RainbowMage's ACT OverlayPlugin, for making your parses look a little more interesting.
