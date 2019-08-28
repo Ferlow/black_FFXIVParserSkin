@@ -131,6 +131,7 @@ var ActFakeData24 = {
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitPct": "5%",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Bard One": {
@@ -204,6 +205,7 @@ var ActFakeData24 = {
             "OverHealPct": "34%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Dragoon One": {
@@ -277,6 +279,7 @@ var ActFakeData24 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "BlackMage One": {
@@ -350,6 +353,7 @@ var ActFakeData24 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Warrior One": {
@@ -423,6 +427,7 @@ var ActFakeData24 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Paladin One": {
@@ -496,6 +501,7 @@ var ActFakeData24 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Scholar One": {
@@ -569,6 +575,7 @@ var ActFakeData24 = {
             "OverHealPct": "42%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Limit Break": {
@@ -642,6 +649,7 @@ var ActFakeData24 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "WhiteMage One": {
@@ -715,6 +723,7 @@ var ActFakeData24 = {
             "OverHealPct": "42%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Monk Two": {
@@ -788,6 +797,7 @@ var ActFakeData24 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Bard Two": {
@@ -861,6 +871,7 @@ var ActFakeData24 = {
             "OverHealPct": "34%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Dragoon Two": {
@@ -934,6 +945,7 @@ var ActFakeData24 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "BlackMage Two": {
@@ -1007,6 +1019,7 @@ var ActFakeData24 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Warrior Two": {
@@ -1080,6 +1093,7 @@ var ActFakeData24 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Paladin Two": {
@@ -1153,6 +1167,7 @@ var ActFakeData24 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Scholar Two": {
@@ -1226,6 +1241,7 @@ var ActFakeData24 = {
             "OverHealPct": "42%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "WhiteMage Two": {
@@ -1299,6 +1315,7 @@ var ActFakeData24 = {
             "OverHealPct": "42%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Monk Three": {
@@ -1372,6 +1389,7 @@ var ActFakeData24 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Bard Three": {
@@ -1445,6 +1463,7 @@ var ActFakeData24 = {
             "OverHealPct": "34%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Dragoon Three": {
@@ -1518,6 +1537,7 @@ var ActFakeData24 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "BlackMage Three": {
@@ -1591,6 +1611,7 @@ var ActFakeData24 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Warrior Three": {
@@ -1664,6 +1685,7 @@ var ActFakeData24 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Paladin Three": {
@@ -1737,6 +1759,7 @@ var ActFakeData24 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Scholar Three": {
@@ -1810,6 +1833,7 @@ var ActFakeData24 = {
             "OverHealPct": "42%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "WhiteMage Three": {
@@ -1883,6 +1907,7 @@ var ActFakeData24 = {
             "OverHealPct": "42%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         }
     },
@@ -2010,6 +2035,7 @@ var ActFakeData8 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Bard One": {
@@ -2083,6 +2109,7 @@ var ActFakeData8 = {
             "OverHealPct": "34%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Dragoon One": {
@@ -2156,6 +2183,7 @@ var ActFakeData8 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "BlackMage One": {
@@ -2229,6 +2257,7 @@ var ActFakeData8 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Warrior One": {
@@ -2302,6 +2331,7 @@ var ActFakeData8 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Paladin One": {
@@ -2375,6 +2405,7 @@ var ActFakeData8 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Scholar One": {
@@ -2448,6 +2479,7 @@ var ActFakeData8 = {
             "OverHealPct": "42%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Limit Break": {
@@ -2521,6 +2553,7 @@ var ActFakeData8 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "WhiteMage One": {
@@ -2594,6 +2627,7 @@ var ActFakeData8 = {
             "OverHealPct": "42%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         }
     },
@@ -2721,6 +2755,7 @@ var ActFakeData4 = {
             "OverHealPct": "34%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Dragoon One": {
@@ -2794,6 +2829,7 @@ var ActFakeData4 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Paladin One": {
@@ -2867,6 +2903,7 @@ var ActFakeData4 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Scholar One": {
@@ -2940,6 +2977,7 @@ var ActFakeData4 = {
             "OverHealPct": "42%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Limit Break": {
@@ -3013,6 +3051,7 @@ var ActFakeData4 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Boco (Dragoon One)": {
@@ -3086,6 +3125,7 @@ var ActFakeData4 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         }
     },
