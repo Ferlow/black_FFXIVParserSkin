@@ -1,5 +1,7 @@
 # Ihellmasker discontinued development of this overlay. I really liked the general look and features like discord push and streamer mode, so I decided to at least update it for 5.0
 
+## For the FF14-like skin see [here](https://github.com/Ferlow/FFXIVParserSkin)
+
 # Ihm's FFXIV Parser Skin
 
 This is a skin for use with RainbowMage's ACT OverlayPlugin, for making your parses look a little more interesting.
