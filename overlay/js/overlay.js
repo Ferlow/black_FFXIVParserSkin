@@ -59,7 +59,7 @@ $("#popupMenu").on("click", "li", function (e) {
                 pushToDiscord();
                 break;
             case "settings":
-                window.open('../settings/','Parser - Settings','width=800,height=600');
+                window.open('../settings/index.html','Parser - Settings','width=800,height=600');
                 break;
             case "hideOverlay":
                 hideOverlay();

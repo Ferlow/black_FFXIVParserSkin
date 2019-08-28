@@ -1,4 +1,4 @@
-# I am currently not able to continue development with this Parser skin due to time issues. If you're interested in helping continue with this then please contact me.
+# Ihellmasker discontinued development of this overlay. I really liked the general look and features like discord push and streamer mode, so I decided to at least update it for 5.0
 
 # Ihm's FFXIV Parser Skin
 
@@ -6,11 +6,22 @@ This is a skin for use with RainbowMage's ACT OverlayPlugin, for making your par
 
 The design for this is made to closely resemble the in-game interface.
 
-### Important - OverlayPlugin 0.3.3.11 Required!
+### Important - OverlayPlugin 0.3.3.11 Required! | The OverlayPlugin fork from Hibyasleep is recommended.
 
 If you're using an older version, your settings will not be saved. To easily identify if you're on this version, just check the overlay configuration window in ACT, you should see 3 buttons labeled `Copy`, `Open DevTools` and, `Reload`, if you do then you're fine, if not then get the [latest version here](https://github.com/hibiyasleep/OverlayPlugin/releases/tag/0.3.3.11).
 
 ---
+
+## Roadmap
+
+The initial goal of this fork was the support of the new 5.0 classes Gunbreaker and Dancer, but also the new DPS thresholds caused some troubles.
+I've found it interesting to work on this and optimise and adjust it to my own personal needs.
+Planned features/changes currently are:
+
+* Custom CSS and skinning options
+* optimisations 
+* possible FF Logs integrations / character lookups
+
 
 ## How to use the skin
 
@@ -18,7 +29,7 @@ If you're using an older version, your settings will not be saved. To easily ide
 
 To use the skin, no download is needed. Simply use the url below as your parsers URL in the OverlayPlugin settings and you're good to go. This also means the skin will automatically be updated with any changes made!
 
-> https://ihellmasker.github.io/FFXIVParserSkin/overlay/
+> https://ferlow.github.io/FFXIVParserSkin/overlay/
 
 ### The hard way
 
@@ -52,6 +63,20 @@ Fully integrated configuration allows you to configure the overlay without editi
 
 For more information on configuring the skin, head over to [the wiki](https://github.com/Ihellmasker/FFXIVParserSkin/wiki).
 
-If you have any problems please create a [new issue ticket](https://github.com/Ihellmasker/FFXIVParserSkin/issues), or hit me up on [Twitter](https://twitter.com/ihellmasker) or over on my [Twitch Stream](https://twitch.tv/ihellmasker).
+If you have any problems please create a [new issue ticket](https://github.com/Ihellmasker/FFXIVParserSkin/issues).
+You can find the original creater here:[Twitter](https://twitter.com/ihellmasker) or here [Twitch Stream](https://twitch.tv/ihellmasker).
 
-Please don't message me ingame <3.
+Please don't message neither me nor Ihm ingame.
+
+---
+
+## LICENSE & Contribution
+
+Ihm hasn't added a license, while I was testing some stuff, they overlay crashed in Safari. As a result I've added the MIT license, feel free to fork, clone, whatever. 
+Contributing to my fork is currently disabled, but I will sooner or later add an contribution guide.
+
+## Copyright notices
+
+Icons are taken from [here](https://ffxiv.gamerescape.com/wiki/Dictionary_of_Icons)
+
+Original creator: [Ihellmasker](https://github.com/Ihellmasker/FFXIVParserSkin)
