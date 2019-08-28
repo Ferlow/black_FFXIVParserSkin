@@ -31,7 +31,7 @@ Planned features/changes currently are:
 
 To use the skin, no download is needed. Simply use the url below as your parsers URL in the OverlayPlugin settings and you're good to go. This also means the skin will automatically be updated with any changes made!
 
-> https://ferlow.github.io/FFXIVParserSkin/overlay/
+> https://ferlow.github.io/black_FFXIVParserSkin/overlay/
 
 ### The hard way
 
