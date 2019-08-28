@@ -1,5 +1,5 @@
 * {
-font-family:Meiryo;
+font-family:Calibri;
 }
 
 body,html {
@@ -169,6 +169,7 @@ position:relative;
 
 .windowContainer .window-body ul.settings li.next-tier {
 margin-left:24px;
+position: relative;
 }
 
 .windowContainer .window-body ul.settings li:hover {
