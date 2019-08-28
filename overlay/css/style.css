@@ -259,7 +259,7 @@ margin-right:auto;
 width:26px;
 height:26px;
 display:block;
-border:1px solid #ffde9d;
+border:1px solid #D1D1D1;
 border-radius:8px;
 box-shadow:0 4px 4px 0 rgba(0,0,0,.75),inset 0 -8px 4px 0 rgba(0,0,0,.3),inset 0 0 2px 0 rgba(255,255,255,.3);
 }
@@ -328,7 +328,7 @@ position:absolute;
 right:0;
 width:22px;
 height:10px;
-background:#ed9;
+background:#c8c8c8;
 padding:1px;
 border-radius:20px;
 box-shadow:inset 0 0 1px rgba(0,0,0,.75),2px 2px 1px rgba(0,0,0,.5);
@@ -337,7 +337,7 @@ box-shadow:inset 0 0 1px rgba(0,0,0,.75),2px 2px 1px rgba(0,0,0,.5);
 #menu-button .menu-button-inner {
 width:100%;
 height:100%;
-background:#b42;
+background:rgba(33,33,33,.99);
 border-radius:20px;
 box-shadow:inset 0 0 5px rgba(0,0,0,.75),inset -3px -3px 5px rgba(0,0,0,.25);
 }
