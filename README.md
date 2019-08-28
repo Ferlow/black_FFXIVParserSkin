@@ -72,9 +72,7 @@ Please don't message neither me nor Ihm ingame.
 
 ---
 
-## LICENSE & Contribution
-
-Ihm hasn't added a license, while I was testing some stuff, they overlay crashed in Safari. As a result I've added the MIT license, feel free to fork, clone, whatever. 
+## Contribution
 Contributing to my fork is currently disabled, but I will sooner or later add an contribution guide.
 
 ## Copyright notices
