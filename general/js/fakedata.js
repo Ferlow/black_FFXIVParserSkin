@@ -128,7 +128,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -201,7 +201,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "34%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -274,7 +274,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -347,7 +347,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -420,7 +420,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -493,7 +493,7 @@ var ActFakeData24 = {
             "BlockPct": "27%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -566,7 +566,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "42%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -639,7 +639,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "---",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -712,7 +712,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "42%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -785,7 +785,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -858,7 +858,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "34%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -931,7 +931,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -1004,7 +1004,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -1077,7 +1077,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -1150,7 +1150,7 @@ var ActFakeData24 = {
             "BlockPct": "27%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -1223,7 +1223,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "42%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -1296,7 +1296,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "42%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -1369,7 +1369,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -1442,7 +1442,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "34%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -1515,7 +1515,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -1588,7 +1588,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -1661,7 +1661,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -1734,7 +1734,7 @@ var ActFakeData24 = {
             "BlockPct": "27%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -1807,7 +1807,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "42%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -1880,7 +1880,7 @@ var ActFakeData24 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "42%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         }
@@ -2007,7 +2007,7 @@ var ActFakeData8 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -2080,7 +2080,7 @@ var ActFakeData8 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "34%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -2153,7 +2153,7 @@ var ActFakeData8 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -2226,7 +2226,7 @@ var ActFakeData8 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -2299,7 +2299,7 @@ var ActFakeData8 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -2372,7 +2372,7 @@ var ActFakeData8 = {
             "BlockPct": "27%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -2445,7 +2445,7 @@ var ActFakeData8 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "42%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -2518,7 +2518,7 @@ var ActFakeData8 = {
             "BlockPct": "0%",
             "IncToHit": "---",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -2591,7 +2591,7 @@ var ActFakeData8 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "42%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         }
@@ -2718,7 +2718,7 @@ var ActFakeData4 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "34%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -2791,7 +2791,7 @@ var ActFakeData4 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -2864,7 +2864,7 @@ var ActFakeData4 = {
             "BlockPct": "27%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -2937,7 +2937,7 @@ var ActFakeData4 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "42%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -3010,7 +3010,7 @@ var ActFakeData4 = {
             "BlockPct": "0%",
             "IncToHit": "---",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         },
@@ -3083,7 +3083,7 @@ var ActFakeData4 = {
             "BlockPct": "0%",
             "IncToHit": "100.00",
             "OverHealPct": "0%",
-            "DirectHitPct": "0%",
+            "DirectHitPct": "5%",
             "DirectHitCount": "0",
             "CritDirectHitCount": "0"
         }
