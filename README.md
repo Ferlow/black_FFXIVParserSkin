@@ -65,7 +65,7 @@ Fully integrated configuration allows you to configure the overlay without editi
 
 For more information on configuring the skin, head over to [the wiki](https://github.com/Ihellmasker/FFXIVParserSkin/wiki).
 
-If you have any problems please create a [new issue ticket](https://github.com/Ihellmasker/FFXIVParserSkin/issues).
+If you have any problems please create a [new issue ticket](https://github.com/Ferlow/black_FFXIVParserSkin/issues).
 You can find the original creater here:[Twitter](https://twitter.com/ihellmasker) or here [Twitch Stream](https://twitch.tv/ihellmasker).
 
 Please don't message neither me nor Ihm ingame.
