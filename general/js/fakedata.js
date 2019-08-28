@@ -130,6 +130,7 @@ var ActFakeData24 = {
             "OverHealPct": "0%",
             "DirectHitPct": "5%",
             "DirectHitCount": "0",
+            "CritDirectHitPct": "5%",
             "CritDirectHitCount": "5"
         },
         "Bard One": {
