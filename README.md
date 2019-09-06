@@ -77,6 +77,8 @@ Contributing to my fork is currently disabled, but I will sooner or later add an
 
 ## Copyright notices
 
-Icons are taken from [here](https://ffxiv.gamerescape.com/wiki/Dictionary_of_Icons)
+Icons are taken from [here](https://ffxiv.gamerescape.com/wiki/Dictionary_of_Icons) & [here](https://github.com/skotlex/ffxiv-material-ui)
 
 Original creator: [Ihellmasker](https://github.com/Ihellmasker/FFXIVParserSkin)
+
+
