@@ -22,7 +22,8 @@ Planned features/changes currently are:
 
 * Custom CSS and skinning options
 * optimisations 
-* possible FF Logs integrations / character lookups
+* possible FF Logs integrations / character lookups / at least a linking feature
+* adding Blue Mage
 
 
 ## How to use the skin
