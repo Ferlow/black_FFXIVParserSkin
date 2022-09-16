@@ -12,7 +12,7 @@ width:100%;
 display:block;
 border-top:1px solid #aeacac;
 border-bottom:1px solid #2c2f29;
-background:linear-gradient(to bottom,#606160 0,#343334 60px);
+background: rgba(33, 33, 33, .99);
 color:#d2d2d2;
 border-radius:10px;
 text-shadow:0 1px rgba(0,0,0,.6);
@@ -100,7 +100,7 @@ background-size:cover;
 
 .windowContainer .settings-right {
 float:left;
-border-left:1px solid #f7c35a;
+border-left:1px solid rgb(201,202,202);
 width:calc(100% - 71px);
 margin-top:2px;
 margin-bottom:2px;
