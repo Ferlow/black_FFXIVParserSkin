@@ -1,4 +1,4 @@
-# Ihellmasker discontinued development of this overlay. I really liked the general look and features like discord push and streamer mode, so I decided to at least update it for 5.0
+# Ihellmasker discontinued development of this overlay. I really liked the general look and features like discord push and streamer mode, so I decided to at least update it for 5.0. Afterwards this project was on another long hiatus, but I've picked up again.
 
 # Ihm's FFXIV Parser Skin
 
