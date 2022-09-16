@@ -102,6 +102,18 @@ var job_details = {
     "gnb": {
     	role: "tank",
     	name: "Gunbreaker"
+    },
+    "blu": {
+        role: "dps",
+        name: "Blue Mage"
+    },
+    "rpr": {
+        role: "dps",
+        name: "Reaper",
+    },
+    "sge": {
+        role: "heal",
+        name: "Sage",
     }
 };
 var dataMapping = {
