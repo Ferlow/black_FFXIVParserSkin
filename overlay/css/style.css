@@ -442,76 +442,94 @@ text-shadow:-1px 0 3px #3769a1,0 1px 3px #3769a1,1px 0 3px #3769a1,0 -1px 3px #3
 margin-left:100px;
 }
 
-.Acn .progBar,.Smn .progBar {
-background:linear-gradient(to right,rgba(70,141,25,.5) 0,rgba(48,98,17,.5) 100%);
-}
-
-.Arc .progBar,.Brd .progBar {
-background:linear-gradient(to right,rgba(128,128,62,.5) 0,rgba(94,94,45,.5) 100%);
-}
-
+/* Combat Classes */
 .Ast .progBar {
-background:linear-gradient(to right,rgba(250,220,112,.5) 0,rgba(248,208,63,.5) 100%);
+	background: rgb(255, 231, 74);
 }
 
-.Blm .progBar,.Thm .progBar {
-background:linear-gradient(to right,rgba(117,80,150,.5) 0,rgba(91,62,117,.5) 100%);
+.Blm .progBar,
+.Thm .progBar {
+	background: rgb(165,121,214);
 }
 
-.Rdm .progBar {
-background:linear-gradient(to right,rgba(180,87,113,.5) 0,rgba(149,67,90,.5) 100%);
+.Blu .progbar {
+	background: rgb(0, 128, 255);
 }
 
-.Sam .progBar {
-background:linear-gradient(to right,rgba(249,208,113,.5) 0,rgba(247,192,64,.5) 100%);
-}
-
-.Cnj .progBar,.Whm .progBar {
-background:linear-gradient(to right,rgba(187,171,126,.5) 0,rgba(169,149,93,.5) 100%);
-}
-
-.Drg .progBar,.Lnc .progBar {
-background:linear-gradient(to right,rgba(68,83,170,.5) 0,rgba(53,65,134,.5) 100%);
-}
-
-.Drk .progBar {
-background:linear-gradient(to right,rgba(109,78,83,.5) 0,rgba(79,57,60,.5) 100%);
-}
-
-.Mnk .progBar,.Pgl .progBar {
-background:linear-gradient(to right,rgba(174,144,24,.5) 0,rgba(129,107,18,.5) 100%);
-}
-
-.Mch .progBar {
-background:linear-gradient(to right,rgba(114,218,206,.5) 0,rgba(74,207,192,.5) 100%);
-}
-
-.Mrd .progBar,.War .progBar {
-background:linear-gradient(to right,rgba(107,12,8,.5) 0,rgba(60,7,4,.5) 100%);
-}
-
-.Nin .progBar,.Rog .progBar {
-background:linear-gradient(to right,rgba(81,72,82,.5) 0,rgba(54,48,55,.5) 100%);
-}
-
-.Gld .progBar,.Pld .progBar {
-background:linear-gradient(to right,rgba(145,173,178,.5) 0,rgba(115,151,157,.5) 100%);
-}
-
-.Sch .progBar {
-background:linear-gradient(to right,rgba(68,61,157,.5) 0,rgba(52,47,120,.5) 100%);
-}
-
-.Gnb .progBar {
-	background:linear-gradient(to right,rgba(130,111,76,.5) 0,rgba(83,71,49,.5) 100%);
+.Brd .progBar,
+.Arc .progBar {
+	background: rgb(145, 186, 94);
 }
 
 .Dnc .progBar {
-	background:linear-gradient(to right,rgba(226,176,175,.5) 0,rgba(181, 141, 140,.5) 100%);	
+	background: rgb(226,176,175);
 }
 
-.LimitBreak .progBar {
-background:linear-gradient(to right,rgba(187,68,34.5) 0,rgba(150,54,27,.5) 100%);
+.Drg .progBar,
+.Lnc .progBar {
+	background: rgb(65,100,205);
+}
+
+.Drk .progBar {
+	background: rgb(209,38,204);
+}
+
+.Gld .progBar,
+.Pld .progBar {
+	background: rgb(168,210,230);
+}
+
+.Gnb .progBar {
+	background: rgb(121, 109, 48);
+}
+
+.Mch .progBar {
+	background: rgb(110,225,214);
+}
+
+.Mnk .progBar,
+.Pgl .progBar {
+	background: rgb(214,156,0);
+}
+
+.Mrd .progBar,
+.War .progBar {
+	background: rgb(207,38,33);
+}
+
+.Nin .progBar,
+.Rog .progBar {
+	background: rgb(175,25,100);
+}
+
+.Rdm .progBar {
+	background: rgb(232,123,123);
+}
+
+.Rpr .progBar {
+	background: rgb(175,115,169);
+}
+
+.Sam .progBar {
+	background: rgb(228,109,4);
+}
+
+.Sch .progBar {
+	background: rgb(134,87,255);
+}
+
+.Sge .progBar {
+	background: rgb(128,160,240);
+}
+
+.Smn .progBar,
+.Acn .progBar {
+	background: rgb(45, 155, 120)
+}
+
+.Whm .progBar,
+.Cnj .progBar {
+	background: rgb(255,240,220);
 }
 
 .LimitBreak .inner-left-table .image div {
