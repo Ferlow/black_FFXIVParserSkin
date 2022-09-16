@@ -16,10 +16,11 @@ Both versions will soon be merged and will support adhoc skin swapping.
 
 ## Roadmap
 
+* Optimisations [Version 1.5+]
+* Fakedata cleanup [Version 1.5+]
 * Multi-skin (FF XIV-like) [Version 2]
 * How-To and screenshot update [Version 2]
 * Custom CSS and skinning options [Version 3+]
-* Optimisations [Version 1+]
 * Possible FF Logs integrations / character lookups / at least a linking feature [Version 3+]
 
 ## How to use the skin
