@@ -1,5 +1,7 @@
 # Ihellmasker discontinued development of this overlay. I really liked the general look and features like discord push and streamer mode, so I decided to at least update it for 5.0. Afterwards this project was on another long hiatus, but I've picked up again.
 
+# 6.X+ is now supported!
+
 # Ihm's FFXIV Parser Skin
 
 This is a skin for use with the Advanced Combat Tracker OverlayPlugin. This originally started with the [FF XIV-like skin](https://github.com/Ferlow/FFXIVParserSkin), 
@@ -24,7 +26,7 @@ Both versions will soon be merged and will support adhoc skin swapping.
 
 ### The easy way
 
-To use the skin, no download is needed. Simply use the url below as your parsers URL in the OverlayPlugin settings ,and you're good to go. This also means the skin will automatically be updated with any changes made!
+To use the skin, no download is needed. Simply use the url below as your parsers URL in the OverlayPlugin settings, and you're good to go. This also means the skin will automatically be updated with any changes made!
 
 > https://ferlow.github.io/black_FFXIVParserSkin/overlay/
 
